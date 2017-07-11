@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./administrador.xhtml"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="content">
+        <h:form id="frmImpresora">
+            <p:panel id="pnlImpresora">
+            <p:dataTable 
+                id="dtbImpresoras" 
+                var="impre" 
+                value="#{ccImpresora.lista}"
+                selectionMode="single"
+                selection="#{ccImpresora.selectedimpresora}"
+                rowKey="#{impre.idimpresora}"
+                rows="8" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+                <f:facet name="header">
+                    Impresoras
+                </f:facet>
+                <p:column headerText="Codigo" style="width: 55px;text-align: center">
+                    <h:outputText value="#{impre.idimpresora}" />
+                </p:column>
+                <p:column headerText="Serie">
+                    <h:outputText value="#{impre.serie}" />
+                </p:column>
+                <p:column headerText="Marca">
+                    <h:outputText value="#{impre.marca}" />
+                </p:column>
+                <p:column headerText="Modelo" >
+                    <h:outputText value="#{impre.modelo}" />
+                </p:column>
+                <p:column headerText="Estado">
+                    <h:outputText value="#{impre.estado}" />
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{impre.tipo}" />
+                </p:column>
+                <p:column headerText="Fecha Compra">
+                    <h:outputText value="#{impre.fechacompra}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
+                     <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarImpresora"/>
+                </f:facet>
+            </p:dataTable>
+                </p:panel>
+        </h:form>
+        <p:dialog 
+            id="dlgAgregar" 
+            header="Nueva Impresora"
+            widgetVar="wdlgNuevo" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmNuevaImpresora">
+                    <p:panel header="Datos">
+                        <h:panelGrid >
+                            <p:outputLabel value="Codigo ">
+                                <p:inputText  
+                                    style="width:130px"
+                                    value="#{ccImpresora.newimpresora.idimpresora}"/>
+                                <p:outputLabel value=" Serie: "/>
+                                <p:inputText  
+                                    style="width:130px"
+                                    value="#{ccImpresora.newimpresora.serie}"/>
+                                <p:outputLabel value=" Marca: "/>
+                                <p:inputText 
+                                    style="width:180px"
+                                    value="#{ccImpresora.newimpresora.marca}"/>
+                                <p:outputLabel value=" Modelo: "/>
+                                <p:inputText 
+                                    style="width:180px"
+                                    value="#{ccImpresora.newimpresora.modelo}"/>
+                            </p:outputLabel>
+                        </h:panelGrid>
+                </p:panel>
+                <p:panel header="Detalle">
+                    <h:panelGrid >
+                            <p:outputLabel value="Estado: ">
+                                <p:autoComplete dropdown="true" value="#{ccImpresora.newimpresora.estado}" completeMethod="#{itembeans.completeText(query)}" />
+                                <p:outputLabel value=" Tipo: "/>
+                                <p:autoComplete dropdown="true" value="#{ccImpresora.newimpresora.tipo}" completeMethod="#{tipoimpresorabeans.completeText(query)}" />
+                                </p:outputLabel>
+                                <p:outputLabel value=" Fecha Compra ">
+                                    <p:calendar value="#{ccImpresora.newimpresora.fechacompra}"  pattern="dd-MM-yyyy" mask="true" />
+                            </p:outputLabel>
+                        </h:panelGrid>            
+                    </p:panel>
+                <p:commandButton 
+                    value="Ingresar"
+                    action="#{ccImpresora.insertar()}"
+                    update=":frmImpresora:pnlImpresora: frmNuevaImpresora" 
+                    onclick="wdlgNuevo.hide();"/>                
+                <p:commandButton 
+                    value="Cancelar"
+                    immediate="true"
+                    oncomplete="PF('wdlgNuevo').hide();"
+                    type="reset"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog 
+            id="dlgModificar" 
+            header="Modificar Impresora"
+            widgetVar="wdlgModificar" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmModificarImpresora">
+                <p:panel header="Impresora">
+                    <p:panel header="Datos">
+                        <h:panelGrid >
+                            <p:outputLabel value="codigo ">
+                                <p:inputText  
+                                    style="width:130px"
+                                    value="#{ccImpresora.selectedimpresora.idimpresora}"/>
+                                <p:outputLabel value=" serie "/>
+                                <p:inputText 
+                                    id="usu"  
+                                    style="width:130px"
+                                    value="#{ccImpresora.selectedimpresora.serie}"/>
+                                <p:outputLabel value=" Marca: "/>
+                                <p:inputText 
+                                    id="nom" 
+                                    style="width:180px"
+                                    value="#{ccImpresora.selectedimpresora.marca}"/>
+                                <p:outputLabel value=" Modelo: "/>
+                                <p:inputText 
+                                    id="ape" 
+                                    style="width:180px"
+                                    value="#{ccImpresora.selectedimpresora.modelo}"/>
+                            </p:outputLabel>
+                        </h:panelGrid>
+                </p:panel>
+                <p:panel header="Detalle">
+                    <h:panelGrid >
+                            <p:outputLabel value="Estado: ">
+                                <p:autoComplete dropdown="true" value="#{ccImpresora.selectedimpresora.estado}" completeMethod="#{itembeans.completeText(query)}" />
+                                <p:outputLabel value=" Tipo: "/>
+                                <p:autoComplete dropdown="true" value="#{ccImpresora.selectedimpresora.tipo}" completeMethod="#{tipoimpresorabeans.completeText(query)}" />
+                                </p:outputLabel>
+                                <p:outputLabel value=" Fecha Compra ">
+                                    <!--p:inputMask value="#{ccImpresora.selectedimpresora.fechacompra}" mask="9999/99/99"/-->
+                                    <p:calendar value="#{ccImpresora.selectedimpresora.fechacompra}"  pattern="yyyy-MM-dd" mask="true" />
+                            </p:outputLabel>
+                        </h:panelGrid>            
+                    </p:panel>
+                </p:panel>
+                <p:commandButton 
+                    value="Modificar"
+                    action="#{ccImpresora.actualizar()}"
+                    update=":frmImpresora:pnlImpresora: frmModificarImpresora"
+                    onclick="wdlgModificar.hide()"/>
+                <p:commandButton 
+                    value="Cancelar" 
+                    onclick="wdlgModificar.hide()"
+                    type="reset" />
+                </h:form>
+        </p:dialog>
+    </ui:define>
+
+</ui:composition>

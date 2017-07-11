@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./usuario.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="content">
+        <h:form>
+            <p:growl id="msgs" showDetail="true" />
+
+                <p:panel id="basic" header="Sistema de Control de Inventario " footer="Movie Details" style="margin-bottom:20px">
+                    <h:panelGrid cellpadding="10">
+                        <h:outputText
+                            value="En todas las empresas es necesario tener un riguroso sistema que nos permita obtener información de forma rápida y eficiente, ya que las empresas dependen mucho de este tipo de información para la toma de decisiones.">
+
+                        </h:outputText>
+                        <h:outputText
+                            value="El objetivo principal de este proyecto es elaborar un inventario de equipo de cómputo en donde se describa detalladamente la cantidad y características del mismo además de conocer las condiciones en las que se encuentra, por quien está siendo utilizado y su ubicación dentro de Uniandes Puyo. "></h:outputText>
+                    </h:panelGrid>
+                </p:panel>
+        </h:form>
+    </ui:define>
+
+</ui:composition>

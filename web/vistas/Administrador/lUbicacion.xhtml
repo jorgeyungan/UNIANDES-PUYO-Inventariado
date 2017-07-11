@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./administrador.xhtml"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <ui:define name="content">
+        <h:form id="frmUbicacion">
+            <p:panel id="pnlUbicacion">
+            <p:dataTable 
+                id="basicDT" 
+                var="ubi" 
+                value="#{ccUbicacion.lista}"
+                selectionMode="single"
+                selection="#{ccUbicacion.selectedubicacion}"
+                rowKey="#{ubi.idubicacion}"
+                rows="8" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+                <f:facet name="header">
+                    UBICACION
+                </f:facet>
+                <p:column headerText="codigo" style="width: 55px;text-align: center">
+                    <h:outputText value="#{ubi.idubicacion}" />
+                </p:column>
+                <p:column headerText="Edificio">
+                    <h:outputText value="#{ubi.edificio}" />
+                </p:column>
+                <p:column headerText="Piso">
+                    <h:outputText value="#{ubi.piso}" />
+                </p:column>
+                <p:column headerText="Carrera">
+                    <h:outputText value="#{ubi.carrera}" />
+                </p:column>
+                <p:column headerText="Laboratorio">
+                    <h:outputText value="#{ubi.laboratorio}" />
+                </p:column>
+                <p:column headerText="Dependencia">
+                    <h:outputText value="#{ubi.dependencia}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{ubi.idusuario.nombre}" />
+                </p:column>
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{ubi.idusuario.apellido}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
+                     <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUbicacion"/>
+                </f:facet>
+            </p:dataTable>
+                </p:panel>
+        </h:form>
+        <p:dialog 
+            id="dlgAgregar" 
+            header="Nuevo Ubicacion"
+            widgetVar="wdlgNuevo" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmNuevoUbicacion">
+            <p:panel id="pnlUsuario">
+            <p:dataTable 
+                id="tblUsuario" 
+                var="cli"
+                value="#{ccUsuario.lista}"
+                selectionMode="single"
+                selection="#{ccUbicacion.selectedcliente}"
+                rowKey="#{cli.id_usuario}">
+                <f:facet name="header">
+                    USUARIOS
+                </f:facet>
+                <p:column headerText="codigo" style="width: 55px;text-align: center">
+                    <h:outputText value="#{cli.id_usuario}" />
+                </p:column>
+                <p:column headerText="RUC-Cédula Identidad">
+                    <h:outputText value="#{cli.cedula}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{cli.nombre}" />
+                </p:column>
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{cli.apellido}" />
+                </p:column>
+                <p:column headerText="Cargo">
+                    <h:outputText value="#{cli.cargo}" />
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{cli.telefono}" />
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{cli.tipo}" />
+                </p:column>
+            </p:dataTable>
+                </p:panel>
+                <p:panel header="Ubicacion">
+                    <p:outputLabel  value=" Edificio: ">
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.edificio}"/>
+                            <p:outputLabel value=" Piso: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.piso}"/>
+                            <p:outputLabel value=" Carrera: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.carrera}"/>
+                            <p:outputLabel value=" Laboratorio: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.laboratorio}"/>
+                            <p:outputLabel value="Dependencia "/>
+                            <p:inputText 
+                                id="cargo" 
+                                style="width:130px"
+                                value="#{ccUbicacion.newubicacion.dependencia}"/>
+                        </p:outputLabel>
+                </p:panel>
+                <p:commandButton 
+                    value="Ingresar"
+                    action="#{ccUbicacion.insertar()}"
+                    update=":frmUbicacion:pnlUbicacion: frmNuevoUbicacion" 
+                    onclick="wdlgNuevo.hide();"/>                
+                <p:commandButton 
+                    value="Cancelar"
+                    immediate="true"
+                    oncomplete="PF('wdlgNuevo').hide();"
+                    type="reset"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog 
+            id="dlgModificar" 
+            header="Modificar Ubicacion"
+            widgetVar="wdlgModificar" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmModificarUbicacion">
+                <p:panel id="pnlUsuario">
+            <p:dataTable 
+                id="tblUsuario" 
+                var="cli"
+                value="#{ccUbicacion.selectedcliente}">
+                <f:facet name="header">
+                    USUARIOS
+                </f:facet>
+                <p:column headerText="codigo" style="width: 55px;text-align: center">
+                    <h:outputText value="#{cli.id_usuario}" />
+                </p:column>
+                <p:column headerText="RUC-Cédula Identidad">
+                    <h:outputText value="#{cli.cedula}" />
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{cli.nombre}" />
+                </p:column>
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{cli.apellido}" />
+                </p:column>
+                <p:column headerText="Cargo">
+                    <h:outputText value="#{cli.cargo}" />
+                </p:column>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{cli.telefono}" />
+                </p:column>
+                <p:column headerText="Tipo">
+                    <h:outputText value="#{cli.tipo}" />
+                </p:column>
+            </p:dataTable>
+                    <p:panel header="Ubicacion">
+                    <p:outputLabel value=" Edificio: ">
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.edificio}"/>
+                            <p:outputLabel value=" Piso: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.piso}"/>
+                            <p:outputLabel value=" Carrera: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.carrera}"/>
+                            <p:outputLabel value=" Laboratorio: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.laboratorio}"/>
+                            <p:outputLabel value="Dependencia "/>
+                            <p:inputText 
+                                id="cargo" 
+                                style="width:130px"
+                                value="#{ccUbicacion.selectedubicacion.dependencia}"/>
+                        </p:outputLabel>
+                </p:panel>
+                <p:commandButton 
+                    value="Modificar"
+                    action="#{ccUbicacion.actualizar()}"
+                    update=":frmUbicacion:pnlUbicacion: frmModificarUbicacion"
+                    onclick="wdlgModificar.hide()"/>
+                <p:commandButton 
+                    value="Cancelar" 
+                    onclick="wdlgModificar.hide()"
+                    type="reset" />
+                </p:panel>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+
+</ui:composition>

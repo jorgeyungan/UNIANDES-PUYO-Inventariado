@@ -12,7 +12,7 @@ public final  class Global {
         PASS=getValor("clave");        
     }
      public static String getValor(String clave) {
-        java.util.ResourceBundle Configuracion = java.util.ResourceBundle.getBundle("ec.org.camariweb.accesodatos.database");
+        java.util.ResourceBundle Configuracion = java.util.ResourceBundle.getBundle("ec.org.uniandes.accesodatos.database");
         return  Configuracion.getString(clave);
      }    
 }
