@@ -1,9 +1,11 @@
 
 package ec.org.uniandes.beans;
 
+
 import ec.org.uniandes.entidades.clsEquipo;
-import ec.org.uniandes.entidades.clsUbicacion;
+import ec.org.uniandes.entidades.clsEquipoprueba;
 import ec.org.uniandes.funciones.crudEquipo;
+import ec.org.uniandes.funciones.crudEquipoprueba;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -12,71 +14,60 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ccEquipo {
 
-    private clsEquipo newEquipo;
-    private clsEquipo selectedEquipo;
-    private List<clsEquipo> lista;
-    private clsUbicacion selectedUbicacion;
-    
-    public ccEquipo() {
-        newEquipo=new clsEquipo();
-        cargarDatos();
+    private clsEquipoprueba newEquipo;
+    private clsEquipoprueba selectedEquipo;
+    private List<clsEquipoprueba> lista;
+    public ccEquipo(){
+        newEquipo=new clsEquipoprueba();
+        cargardatos();
     }
-    private void cargarDatos(){
-        lista=crudEquipo.findbyAll();
+    private void cargardatos(){
+        lista=crudEquipoprueba.findbyAll();
     }
-    public void insertar(){
-        newEquipo.setIdubicacion(selectedUbicacion);
-        if (crudEquipo.save(newEquipo)) {
-            newEquipo=new clsEquipo();
-            cargarDatos();
-        } else {
-        }
-    }
-    public void eliminar() {
-        if (crudEquipo.delete(selectedEquipo)) {
-            newEquipo=new clsEquipo();
-            cargarDatos();
-        } else {
-        }
-    }
-    public void actualizar(){
-        if (crudEquipo.update(selectedEquipo)) {
-            newEquipo=new clsEquipo();
-            cargarDatos();
-        } else {
-        }
-    }
+//    public void insertar(){
+//        if (crudEquipoprueba.save(newEquipo)) {
+//            newEquipo=new clsEquipoprueba();
+//            cargardatos();
+//        } else {
+//        }
+//    }
+//    public void eliminar(){
+//        if (crudEquipoprueba.delete(newEquipo)) {
+//            newEquipo=new clsEquipoprueba();
+//            cargardatos();
+//        } else {
+//        }
+//    }
+//    public void actualizar(){
+//        if (crudEquipoprueba.update(selectedEquipo)) {
+//            newEquipo=new clsEquipoprueba();
+//            cargardatos();
+//        } else {
+//        }
+//    }
 
-    public clsEquipo getNewEquipo() {
+    public clsEquipoprueba getNewEquipo() {
         return newEquipo;
     }
 
-    public void setNewEquipo(clsEquipo newEquipo) {
+    public void setNewEquipo(clsEquipoprueba newEquipo) {
         this.newEquipo = newEquipo;
     }
 
-    public clsEquipo getSelectedEquipo() {
+    public clsEquipoprueba getSelectedEquipo() {
         return selectedEquipo;
     }
 
-    public void setSelectedEquipo(clsEquipo selectedEquipo) {
+    public void setSelectedEquipo(clsEquipoprueba selectedEquipo) {
         this.selectedEquipo = selectedEquipo;
     }
 
-    public List<clsEquipo> getLista() {
+    public List<clsEquipoprueba> getLista() {
         return lista;
     }
 
-    public void setLista(List<clsEquipo> lista) {
+    public void setLista(List<clsEquipoprueba> lista) {
         this.lista = lista;
-    }
-
-    public clsUbicacion getSelectedUbicacion() {
-        return selectedUbicacion;
-    }
-
-    public void setSelectedUbicacion(clsUbicacion selectedUbicacion) {
-        this.selectedUbicacion = selectedUbicacion;
     }
     
 }

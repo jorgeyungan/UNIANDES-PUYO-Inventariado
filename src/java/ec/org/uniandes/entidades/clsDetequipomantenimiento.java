@@ -5,14 +5,24 @@ public class clsDetequipomantenimiento {
     private int _iddetalle;
     private clsEquipo _idequipo;
     private clsMantenimiento _idmantenimiento;
+    private String _reporte;
 
     public clsDetequipomantenimiento() {
     }
 
-    public clsDetequipomantenimiento(int _iddetalle, clsEquipo _idequipo, clsMantenimiento _idmantenimiento) {
+    public clsDetequipomantenimiento(int _iddetalle, clsEquipo _idequipo, clsMantenimiento _idmantenimiento, String _reporte) {
         this._iddetalle = _iddetalle;
         this._idequipo = _idequipo;
         this._idmantenimiento = _idmantenimiento;
+        this._reporte = _reporte;
+    }
+
+    public String getReporte() {
+        return _reporte;
+    }
+
+    public void setReporte(String _reporte) {
+        this._reporte = _reporte;
     }
 
     public int getIddetalle() {
@@ -41,7 +51,7 @@ public class clsDetequipomantenimiento {
 
     @Override
     public String toString() {
-        return "clsDetequipomantenimiento{" + "_iddetalle=" + _iddetalle + ", _idequipo=" + _idequipo + ", _idmantenimiento=" + _idmantenimiento + '}';
+        return "clsDetequipomantenimiento{" + "_iddetalle=" + _iddetalle + ", _idequipo=" + _idequipo + ", _idmantenimiento=" + _idmantenimiento + ", _reporte=" + _reporte + '}';
     }
     
 }

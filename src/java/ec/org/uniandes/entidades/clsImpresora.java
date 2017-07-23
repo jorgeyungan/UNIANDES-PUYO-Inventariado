@@ -1,45 +1,58 @@
 
 package ec.org.uniandes.entidades;
 
-
-
-
 public class clsImpresora {
-    private int _idimpresora;
-    private String _serie;
-    private String _marca;
+    private int _idequipo;
+    private String _codigo;
     private String _modelo;
+    private String _marca;
+    private String _nombre;
+    private String _fecha_compra;
+    private String _fecha_fabrica;
     private String _estado;
     private String _tipo;
-    private String _fechacompra;
+    private String _detalle;
+    private String _dependencia;
 
     public clsImpresora() {
     }
 
-    public clsImpresora(int _idimpresora, String _serie, String _marca, String _modelo, String _estado, String _tipo, String _fechacompra) {
-        this._idimpresora = _idimpresora;
-        this._serie = _serie;
-        this._marca = _marca;
+    public clsImpresora(int _idequipo, String _codigo, String _modelo, String _marca, String _nombre, String _fecha_compra, String _fecha_fabrica, String _estado, String _tipo, String _detalle, String _dependencia) {
+        this._idequipo = _idequipo;
+        this._codigo = _codigo;
         this._modelo = _modelo;
+        this._marca = _marca;
+        this._nombre = _nombre;
+        this._fecha_compra = _fecha_compra;
+        this._fecha_fabrica = _fecha_fabrica;
         this._estado = _estado;
         this._tipo = _tipo;
-        this._fechacompra = _fechacompra;
+        this._detalle = _detalle;
+        this._dependencia = _dependencia;
     }
 
-    public int getIdimpresora() {
-        return _idimpresora;
+    public int getIdequipo() {
+        return _idequipo;
     }
 
-    public void setIdimpresora(int _idimpresora) {
-        this._idimpresora = _idimpresora;
+    public void setIdequipo(int _idequipo) {
+        this._idequipo = _idequipo;
     }
 
-    public String getSerie() {
-        return _serie;
+    public String getCodigo() {
+        return _codigo;
     }
 
-    public void setSerie(String _serie) {
-        this._serie = _serie;
+    public void setCodigo(String _codigo) {
+        this._codigo = _codigo;
+    }
+
+    public String getModelo() {
+        return _modelo;
+    }
+
+    public void setModelo(String _modelo) {
+        this._modelo = _modelo;
     }
 
     public String getMarca() {
@@ -50,12 +63,28 @@ public class clsImpresora {
         this._marca = _marca;
     }
 
-    public String getModelo() {
-        return _modelo;
+    public String getNombre() {
+        return _nombre;
     }
 
-    public void setModelo(String _modelo) {
-        this._modelo = _modelo;
+    public void setNombre(String _nombre) {
+        this._nombre = _nombre;
+    }
+
+    public String getFecha_compra() {
+        return _fecha_compra;
+    }
+
+    public void setFecha_compra(String _fecha_compra) {
+        this._fecha_compra = _fecha_compra;
+    }
+
+    public String getFecha_fabrica() {
+        return _fecha_fabrica;
+    }
+
+    public void setFecha_fabrica(String _fecha_fabrica) {
+        this._fecha_fabrica = _fecha_fabrica;
     }
 
     public String getEstado() {
@@ -74,17 +103,25 @@ public class clsImpresora {
         this._tipo = _tipo;
     }
 
-    public String getFechacompra() {
-        return _fechacompra;
+    public String getDetalle() {
+        return _detalle;
     }
 
-    public void setFechacompra(String _fechacompra) {
-        this._fechacompra = _fechacompra;
+    public void setDetalle(String _detalle) {
+        this._detalle = _detalle;
+    }
+
+    public String getDependencia() {
+        return _dependencia;
+    }
+
+    public void setDependencia(String _dependencia) {
+        this._dependencia = _dependencia;
     }
 
     @Override
     public String toString() {
-        return "clsImpresora{" + "_idimpresora=" + _idimpresora + ", _serie=" + _serie + ", _marca=" + _marca + ", _modelo=" + _modelo + ", _estado=" + _estado + ", _tipo=" + _tipo + ", _fechacompra=" + _fechacompra + '}';
+        return "clsImpresora{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + ", _estado=" + _estado + ", _tipo=" + _tipo + ", _detalle=" + _detalle + ", _dependencia=" + _dependencia + '}';
     }
     
 }

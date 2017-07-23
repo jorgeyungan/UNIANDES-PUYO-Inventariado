@@ -1,52 +1,36 @@
 
 package ec.org.uniandes.entidades;
 
-import java.sql.Date;
-
 public class clsEquipo {
     private int _idequipo;
-    private clsUbicacion _idubicacion;
     private String _codigo;
+    private String _modelo;
     private String _marca;
-    private String _tipo;
-    private String _procesador;
-    private String _motherboard;
-    private String _año_fabrica;
-    private String _disco_duro;
-    private String _ram;
-    private String _vida_util;
-    private String _card_rw;
-    private String _acceso_internet;
-    private String _unidad_optica;
-    private String _estado;    
+    private String _nombre;
     private String _fecha_compra;
-    private int _numero_puertos;
-    private String _tipo_puertos;
-    private String _administrable;
+    private String _fecha_fabrica;
+    private String _estado;
+    private String _disco_duro;
+    private String _procesador;
+    private String _detalle;
+    private String _dependencia;
 
     public clsEquipo() {
     }
 
-    public clsEquipo(int _idequipo, clsUbicacion _idubicacion, String _codigo, String _marca, String _tipo, String _procesador, String _motherboard, String _año_fabrica, String _disco_duro, String _ram, String _vida_util, String _card_rw, String _acceso_internet, String _unidad_optica, String _estado, String _fecha_compra, int _numero_puertos, String _tipo_puertos, String _administrable) {
+    public clsEquipo(int _idequipo, String _codigo, String _modelo, String _marca, String _nombre, String _fecha_compra, String _fecha_fabrica, String _estado, String _disco_duro, String _procesador, String _detalle, String _dependencia) {
         this._idequipo = _idequipo;
-        this._idubicacion = _idubicacion;
         this._codigo = _codigo;
+        this._modelo = _modelo;
         this._marca = _marca;
-        this._tipo = _tipo;
-        this._procesador = _procesador;
-        this._motherboard = _motherboard;
-        this._año_fabrica = _año_fabrica;
-        this._disco_duro = _disco_duro;
-        this._ram = _ram;
-        this._vida_util = _vida_util;
-        this._card_rw = _card_rw;
-        this._acceso_internet = _acceso_internet;
-        this._unidad_optica = _unidad_optica;
-        this._estado = _estado;
+        this._nombre = _nombre;
         this._fecha_compra = _fecha_compra;
-        this._numero_puertos = _numero_puertos;
-        this._tipo_puertos = _tipo_puertos;
-        this._administrable = _administrable;
+        this._fecha_fabrica = _fecha_fabrica;
+        this._estado = _estado;
+        this._disco_duro = _disco_duro;
+        this._procesador = _procesador;
+        this._detalle = _detalle;
+        this._dependencia = _dependencia;
     }
 
     public int getIdequipo() {
@@ -57,20 +41,20 @@ public class clsEquipo {
         this._idequipo = _idequipo;
     }
 
-    public clsUbicacion getIdubicacion() {
-        return _idubicacion;
-    }
-
-    public void setIdubicacion(clsUbicacion _idubicacion) {
-        this._idubicacion = _idubicacion;
-    }
-
     public String getCodigo() {
         return _codigo;
     }
 
     public void setCodigo(String _codigo) {
         this._codigo = _codigo;
+    }
+
+    public String getModelo() {
+        return _modelo;
+    }
+
+    public void setModelo(String _modelo) {
+        this._modelo = _modelo;
     }
 
     public String getMarca() {
@@ -81,92 +65,12 @@ public class clsEquipo {
         this._marca = _marca;
     }
 
-    public String getTipo() {
-        return _tipo;
+    public String getNombre() {
+        return _nombre;
     }
 
-    public void setTipo(String _tipo) {
-        this._tipo = _tipo;
-    }
-
-    public String getProcesador() {
-        return _procesador;
-    }
-
-    public void setProcesador(String _procesador) {
-        this._procesador = _procesador;
-    }
-
-    public String getMotherboard() {
-        return _motherboard;
-    }
-
-    public void setMotherboard(String _motherboard) {
-        this._motherboard = _motherboard;
-    }
-
-    public String getAño_fabrica() {
-        return _año_fabrica;
-    }
-
-    public void setAño_fabrica(String _año_fabrica) {
-        this._año_fabrica = _año_fabrica;
-    }
-
-    public String getDisco_duro() {
-        return _disco_duro;
-    }
-
-    public void setDisco_duro(String _disco_duro) {
-        this._disco_duro = _disco_duro;
-    }
-
-    public String getRam() {
-        return _ram;
-    }
-
-    public void setRam(String _ram) {
-        this._ram = _ram;
-    }
-
-    public String getVida_util() {
-        return _vida_util;
-    }
-
-    public void setVida_util(String _vida_util) {
-        this._vida_util = _vida_util;
-    }
-
-    public String getCard_rw() {
-        return _card_rw;
-    }
-
-    public void setCard_rw(String _card_rw) {
-        this._card_rw = _card_rw;
-    }
-
-    public String getAcceso_internet() {
-        return _acceso_internet;
-    }
-
-    public void setAcceso_internet(String _acceso_internet) {
-        this._acceso_internet = _acceso_internet;
-    }
-
-    public String getUnidad_optica() {
-        return _unidad_optica;
-    }
-
-    public void setUnidad_optica(String _unidad_optica) {
-        this._unidad_optica = _unidad_optica;
-    }
-
-    public String getEstado() {
-        return _estado;
-    }
-
-    public void setEstado(String _estado) {
-        this._estado = _estado;
+    public void setNombre(String _nombre) {
+        this._nombre = _nombre;
     }
 
     public String getFecha_compra() {
@@ -177,33 +81,57 @@ public class clsEquipo {
         this._fecha_compra = _fecha_compra;
     }
 
-    public int getNumero_puertos() {
-        return _numero_puertos;
+    public String getFecha_fabrica() {
+        return _fecha_fabrica;
     }
 
-    public void setNumero_puertos(int _numero_puertos) {
-        this._numero_puertos = _numero_puertos;
+    public void setFecha_fabrica(String _fecha_fabrica) {
+        this._fecha_fabrica = _fecha_fabrica;
     }
 
-    public String getTipo_puertos() {
-        return _tipo_puertos;
+    public String getEstado() {
+        return _estado;
     }
 
-    public void setTipo_puertos(String _tipo_puertos) {
-        this._tipo_puertos = _tipo_puertos;
+    public void setEstado(String _estado) {
+        this._estado = _estado;
     }
 
-    public String getAdministrable() {
-        return _administrable;
+    public String getDisco_duro() {
+        return _disco_duro;
     }
 
-    public void setAdministrable(String _administrable) {
-        this._administrable = _administrable;
+    public void setDisco_duro(String _disco_duro) {
+        this._disco_duro = _disco_duro;
+    }
+
+    public String getProcesador() {
+        return _procesador;
+    }
+
+    public void setProcesador(String _procesador) {
+        this._procesador = _procesador;
+    }
+
+    public String getDetalle() {
+        return _detalle;
+    }
+
+    public void setDetalle(String _detalle) {
+        this._detalle = _detalle;
+    }
+
+    public String getDependencia() {
+        return _dependencia;
+    }
+
+    public void setDependencia(String _dependencia) {
+        this._dependencia = _dependencia;
     }
 
     @Override
     public String toString() {
-        return "clsEquipo{" + "_idequipo=" + _idequipo + ", _idubicacion=" + _idubicacion + ", _codigo=" + _codigo + ", _marca=" + _marca + ", _tipo=" + _tipo + ", _procesador=" + _procesador + ", _motherboard=" + _motherboard + ", _a\u00f1o_fabrica=" + _año_fabrica + ", _disco_duro=" + _disco_duro + ", _ram=" + _ram + ", _vida_util=" + _vida_util + ", _card_rw=" + _card_rw + ", _acceso_internet=" + _acceso_internet + ", _unidad_optica=" + _unidad_optica + ", _estado=" + _estado + ", _fecha_compra=" + _fecha_compra + ", _numero_puertos=" + _numero_puertos + ", _tipo_puertos=" + _tipo_puertos + ", _administrable=" + _administrable + '}';
+        return "clsEquipo{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + ", _estado=" + _estado + ", _disco_duro=" + _disco_duro + ", _procesador=" + _procesador + ", _detalle=" + _detalle + ", _dependencia=" + _dependencia + '}';
     }
     
 }

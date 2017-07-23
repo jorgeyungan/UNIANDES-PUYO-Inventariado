@@ -15,7 +15,7 @@ public class crudUsuario {
 //    }
     public static boolean save(clsUsuario usuario){
         boolean resultado = false;
-        String sql = "INSERT INTO public.usuario(cedula,nombre,apellido,cargo,telefono,tipo) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO public.usuario(cedula,nombres,apellidos,cargo,telefono,tipo) VALUES(?,?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, usuario.getCedula()));
         lstPar.add(new Parametro(2, usuario.getNombre()));
@@ -46,7 +46,7 @@ public class crudUsuario {
 
     public static boolean update(clsUsuario usuario) {
         boolean res = false;
-        String sql = "UPDATE public.usuario SET cedula=?,nombre=?,apellido=?,cargo=?,telefono=?,tipo=? WHERE id_usuario=?";
+        String sql = "UPDATE public.usuario SET cedula=?,nombres=?,apellidos=?,cargo=?,telefono=?,tipo=? WHERE id_usuario=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();        
         lstPar.add(new Parametro(1, usuario.getCedula()));
         lstPar.add(new Parametro(2, usuario.getNombre()));
@@ -65,7 +65,7 @@ public class crudUsuario {
 
     public static ArrayList<clsUsuario> findbyAll() {
         ArrayList<clsUsuario> listado = new ArrayList<>();
-        String sql = "SELECT id_usuario,cedula,nombre,apellido,cargo,telefono,tipo "
+        String sql = "SELECT id_usuario,cedula,nombres,apellidos,cargo,telefono,tipo "
                 + "FROM public.usuario";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
@@ -76,8 +76,33 @@ public class crudUsuario {
                 usuario = new clsUsuario();
                 usuario.setId_usuario(cres.getInt("id_usuario"));
                 usuario.setCedula(cres.getString("cedula"));
-                usuario.setNombre(cres.getString("nombre"));
-                usuario.setApellido(cres.getString("apellido"));
+                usuario.setNombre(cres.getString("nombres"));
+                usuario.setApellido(cres.getString("apellidos"));
+                usuario.setCargo(cres.getString("cargo"));
+                usuario.setTelefono(cres.getString("telefono"));
+                usuario.setTipo(cres.getString("tipo"));
+                listado.add((usuario));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return listado;
+    }
+    public static ArrayList<clsUsuario> findbyAll1() {
+        ArrayList<clsUsuario> listado = new ArrayList<>();
+        String sql = "SELECT id_usuario,cedula,nombres,apellidos,cargo,telefono,tipo "
+                + "FROM public.usuario";
+        ArrayList<Parametro> lstPar = new ArrayList<>();
+        try {
+            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
+            clsUsuario usuario = null;
+            while (cres.next())
+            {
+                usuario = new clsUsuario();
+                usuario.setId_usuario(cres.getInt("id_usuario"));
+                usuario.setCedula(cres.getString("cedula"));
+                usuario.setNombre(cres.getString("nombres"));
+                usuario.setApellido(cres.getString("apellidos"));
                 usuario.setCargo(cres.getString("cargo"));
                 usuario.setTelefono(cres.getString("telefono"));
                 usuario.setTipo(cres.getString("tipo"));
@@ -91,7 +116,7 @@ public class crudUsuario {
 
     public static clsUsuario findbyId(clsUsuario usu) {
         clsUsuario usuario = null;
-        String sql = "SELECT id_usuario,cedula,nombre,apellido,cargo,telefono,tipo FROM public.usuario WHERE id_usuario=?";
+        String sql = "SELECT id_usuario,cedula,nombres,apellidos,cargo,telefono,tipo FROM public.usuario WHERE id_usuario=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, usu.getId_usuario()));
         try {
@@ -100,8 +125,8 @@ public class crudUsuario {
                 usuario = new clsUsuario();
                 usuario.setId_usuario(cres.getInt("id_usuario"));
                 usuario.setCedula(cres.getString("cedula"));
-                usuario.setNombre(cres.getString("nombre"));
-                usuario.setApellido(cres.getString("apellido"));
+                usuario.setNombre(cres.getString("nombres"));
+                usuario.setApellido(cres.getString("apellidos"));
                 usuario.setCargo(cres.getString("cargo"));
                 usuario.setTelefono(cres.getString("telefono"));
                 usuario.setTipo(cres.getString("tipo"));           
@@ -113,7 +138,7 @@ public class crudUsuario {
     }
     public static clsUsuario findbyId(int usu) {
         clsUsuario usuario = null;
-        String sql = "SELECT id_usuario,cedula,nombre,apellido,cargo,telefono,tipo FROM public.usuario WHERE id_usuario=?";
+        String sql = "SELECT id_usuario,cedula,nombres,apellidos,cargo,telefono,tipo FROM public.usuario WHERE id_usuario=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, usu));
         try {
@@ -122,8 +147,8 @@ public class crudUsuario {
                 usuario = new clsUsuario();
                 usuario.setId_usuario(cres.getInt("id_usuario"));
                 usuario.setCedula(cres.getString("cedula"));
-                usuario.setNombre(cres.getString("nombre"));
-                usuario.setApellido(cres.getString("apellido"));
+                usuario.setNombre(cres.getString("nombres"));
+                usuario.setApellido(cres.getString("apellidos"));
                 usuario.setCargo(cres.getString("cargo"));
                 usuario.setTelefono(cres.getString("telefono"));
                 usuario.setTipo(cres.getString("tipo"));           
@@ -133,5 +158,4 @@ public class crudUsuario {
         }
         return usuario;
     }
-    
 }

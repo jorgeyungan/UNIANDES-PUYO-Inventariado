@@ -5,7 +5,9 @@
  */
 package ec.org.uniandes.beans;
 
+import ec.org.uniandes.entidades.clsEquipoprueba;
 import ec.org.uniandes.entidades.clsImpresora;
+import ec.org.uniandes.funciones.crudEquipoprueba;
 import ec.org.uniandes.funciones.crudImpresora;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -14,61 +16,52 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class ccImpresora {
-    private clsImpresora newimpresora;
-    private clsImpresora selectedimpresora;
-    private List<clsImpresora> lista;
-
-    public ccImpresora() {
-        newimpresora=new clsImpresora();
-        cargardatos();
-    }
+    private clsEquipoprueba newimpresora;
+    private clsEquipoprueba selectedimpresora;
+    private List<clsEquipoprueba> listar;
     private void cargardatos(){
-        lista=crudImpresora.findbyAll();
+        listar=crudEquipoprueba.findbyAll();
     }
-    public void insertar(){
-        if (crudImpresora.save(newimpresora)) {
-            newimpresora=new clsImpresora();
-            cargardatos();
-        } else {
-        }
+    public ccImpresora(){
+        newimpresora=new clsEquipoprueba();
     }
-    public void actualizar(){
-        if (crudImpresora.update(selectedimpresora)) {
-            newimpresora=new clsImpresora();
-            cargardatos();
-        } else {
-        }
-    }
-    public void eliminar(){
-        if (crudImpresora.delete(selectedimpresora)) {
-            newimpresora=new clsImpresora();
-            cargardatos();
-        } else {
-        }
-    }
+//    public void insertar(){
+//        if (crudEquipoprueba.save(newimpresora)) {
+//            newimpresora=new clsEquipoprueba();
+//            cargardatos();
+//        } else {
+//        }
+//    }
+//    public void eliminar(){
+//        if (crudEquipoprueba.delete(selectedimpresora)) {
+//            newimpresora=new clsEquipoprueba();
+//            cargardatos();
+//        } else {
+//        }
+//    }
 
-    public clsImpresora getNewimpresora() {
+    public clsEquipoprueba getNewimpresora() {
         return newimpresora;
     }
 
-    public void setNewimpresora(clsImpresora newimpresora) {
+    public void setNewimpresora(clsEquipoprueba newimpresora) {
         this.newimpresora = newimpresora;
     }
 
-    public clsImpresora getSelectedimpresora() {
+    public clsEquipoprueba getSelectedimpresora() {
         return selectedimpresora;
     }
 
-    public void setSelectedimpresora(clsImpresora selectedimpresora) {
+    public void setSelectedimpresora(clsEquipoprueba selectedimpresora) {
         this.selectedimpresora = selectedimpresora;
     }
 
-    public List<clsImpresora> getLista() {
-        return lista;
+    public List<clsEquipoprueba> getListar() {
+        return listar;
     }
 
-    public void setLista(List<clsImpresora> lista) {
-        this.lista = lista;
+    public void setListar(List<clsEquipoprueba> listar) {
+        this.listar = listar;
     }
     
 }

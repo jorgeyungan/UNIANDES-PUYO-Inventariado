@@ -2,22 +2,18 @@
 package ec.org.uniandes.beans;
 
 import ec.org.uniandes.entidades.clsUbicacion;
-import ec.org.uniandes.entidades.clsUsuario;
 import ec.org.uniandes.funciones.crudUbicacion;
-import ec.org.uniandes.funciones.crudUsuario;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ccUbicacion {
 
     private clsUbicacion newubicacion;
     private clsUbicacion selectedubicacion;
     private List<clsUbicacion> lista;
-    private List<clsUsuario> listaid;
-    private clsUsuario selectedcliente;
     
     public ccUbicacion() {
         newubicacion=new clsUbicacion();
@@ -27,7 +23,6 @@ public class ccUbicacion {
         lista = crudUbicacion.findbyAll();
     }
      public void insertar(){
-         newubicacion.setIdusuario(selectedcliente);
          if (crudUbicacion.save(newubicacion)) {
              newubicacion=new clsUbicacion();
              cargardatos();
@@ -71,14 +66,5 @@ public class ccUbicacion {
 
     public void setLista(List<clsUbicacion> lista) {
         this.lista = lista;
-    }
-
-    public clsUsuario getSelectedcliente() {
-        return selectedcliente;
-    }
-
-    public void setSelectedcliente(clsUsuario selectedcliente) {
-        this.selectedcliente = selectedcliente;
-    }
-     
+    }  
 }

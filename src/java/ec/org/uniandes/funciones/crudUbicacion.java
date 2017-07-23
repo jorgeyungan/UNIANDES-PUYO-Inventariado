@@ -12,15 +12,14 @@ public class crudUbicacion {
 
     public static boolean save(clsUbicacion ubicacion){
         boolean resultado = false;
-        String sql = "INSERT INTO public.ubicacion(edificio,piso,carrera,laboratorio,dependencia,idusuario)"
-                + " VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO public.ubicacion(edificio,piso,carrera,sala,sector)"
+                + " VALUES(?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, ubicacion.getEdificio()));
         lstPar.add(new Parametro(2, ubicacion.getPiso()));
         lstPar.add(new Parametro(3, ubicacion.getCarrera()));
-        lstPar.add(new Parametro(4, ubicacion.getLaboratorio()));
-        lstPar.add(new Parametro(5, ubicacion.getDependencia()));
-        lstPar.add(new Parametro(6, ubicacion.getIdusuario().getId_usuario())); 
+        lstPar.add(new Parametro(4, ubicacion.getSala()));
+        lstPar.add(new Parametro(5, ubicacion.getSector())); 
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {
@@ -33,7 +32,7 @@ public class crudUbicacion {
         boolean res=false;
         String sql = "DELETE FROM public.ubicacion WHERE idubicacion=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1,ubicacion.getIdusuario()));
+        lstPar.add(new Parametro(1,ubicacion.getIdubicacion()));
         try {
             res= AccesoDatos.ejecutaComando(sql, lstPar);
             } catch (Exception e) {
@@ -45,15 +44,15 @@ public class crudUbicacion {
     public static boolean update(clsUbicacion ubicacion) {
         boolean res = false;
         String sql = "UPDATE public.ubicacion " +
-                "SET edificio=?,piso=?,carrera=?,laboratorio=?,dependencia=?,idusuario=?" + 
+                "SET edificio=?,piso=?,carrera=?,sala=?,sector=?" + 
                 "WHERE idubicacion=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();        
         lstPar.add(new Parametro(1, ubicacion.getEdificio()));
         lstPar.add(new Parametro(2, ubicacion.getPiso()));
         lstPar.add(new Parametro(3, ubicacion.getCarrera()));
-        lstPar.add(new Parametro(4, ubicacion.getLaboratorio()));
-        lstPar.add(new Parametro(5, ubicacion.getDependencia()));
-        lstPar.add(new Parametro(6, ubicacion.getIdusuario()));  
+        lstPar.add(new Parametro(4, ubicacion.getSala()));
+        lstPar.add(new Parametro(6, ubicacion.getSector())); 
+        lstPar.add(new Parametro(7, ubicacion.getIdubicacion()));
         try{
             res= AccesoDatos.ejecutaComando(sql, lstPar);
         }catch (Exception e) {
@@ -64,7 +63,7 @@ public class crudUbicacion {
 
     public static ArrayList<clsUbicacion> findbyAll() {
         ArrayList<clsUbicacion> listado = new ArrayList<>();
-        String sql = "SELECT idubicacion,edificio,piso,carrera,laboratorio,dependencia,idusuario "+
+        String sql = "SELECT idubicacion,edificio,piso,carrera,sala,sector "+
                 " FROM public.ubicacion";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
@@ -77,9 +76,8 @@ public class crudUbicacion {
                 ubi.setEdificio(cres.getString("edificio"));
                 ubi.setPiso(cres.getString("piso"));
                 ubi.setCarrera(cres.getString("carrera"));
-                ubi.setLaboratorio(cres.getString("laboratorio"));
-                ubi.setDependencia(cres.getString("dependencia"));
-                ubi.setIdusuario(crudUsuario.findbyId(cres.getInt("idusuario")));
+                ubi.setSala(cres.getString("sala"));
+                ubi.setSector(cres.getString("sector"));
                 listado.add((ubi));
             }
         } catch (Exception e) {
@@ -90,10 +88,10 @@ public class crudUbicacion {
 
     public static clsUbicacion findbyId(clsUbicacion ubicacion) {
         clsUbicacion ubi = null;
-        String sql = "SELECT idubicacion,edificio,piso,carrera,laboratorio,dependencia,idusuario"+
+        String sql = "SELECT idubicacion,edificio,piso,carrera,sala,sector"+
                 " FROM public.ubicacion WHERE idubicacion=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, ubicacion.getIdusuario()));
+        lstPar.add(new Parametro(1, ubicacion.getIdubicacion()));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
@@ -102,9 +100,8 @@ public class crudUbicacion {
                 ubi.setEdificio(cres.getString("edificio"));
                 ubi.setPiso(cres.getString("piso"));
                 ubi.setCarrera(cres.getString("carrera"));
-                ubi.setLaboratorio(cres.getString("laboratorio"));
-                ubi.setDependencia(cres.getString("dependencia"));
-                ubi.setIdusuario(crudUsuario.findbyId(cres.getInt("idusuario")));
+                ubi.setSala(cres.getString("sala"));
+                ubi.setSector(cres.getString("sector"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -113,7 +110,7 @@ public class crudUbicacion {
     }
     public static clsUbicacion findbyId(int ubicacion) {
         clsUbicacion ubi = null;
-        String sql = "SELECT idubicacion,edificio,piso,carrera,laboratorio,dependencia,idusuario"+
+        String sql = "SELECT idubicacion,edificio,piso,carrera,sala,sector"+
                 " FROM public.ubicacion WHERE idubicacion=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, ubicacion));
@@ -125,9 +122,8 @@ public class crudUbicacion {
                 ubi.setEdificio(cres.getString("edificio"));
                 ubi.setPiso(cres.getString("piso"));
                 ubi.setCarrera(cres.getString("carrera"));
-                ubi.setLaboratorio(cres.getString("laboratorio"));
-                ubi.setDependencia(cres.getString("dependencia"));
-                ubi.setIdusuario(crudUsuario.findbyId(cres.getInt("idusuario")));
+                ubi.setSala(cres.getString("sala"));
+                ubi.setSector(cres.getString("sector"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

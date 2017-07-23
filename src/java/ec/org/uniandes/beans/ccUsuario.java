@@ -15,6 +15,10 @@ public class ccUsuario {
     private clsUsuario newUsuario;
     private clsUsuario selectedUsuario;
     private List<clsUsuario> lista;
+    private List<clsUsuario> lasta1;
+    private void cargardatos(){
+        lista=crudUsuario.findbyAll1();
+    }
     
     public ccUsuario() {
         newUsuario = new clsUsuario();
@@ -45,9 +49,7 @@ public class ccUsuario {
         } else {
         }
     }
-    private void cargardatos(){
-        lista=crudUsuario.findbyAll();
-    }
+    
 
     public clsUsuario getNewUsuario() {
         return newUsuario;
@@ -71,6 +73,14 @@ public class ccUsuario {
 
     public void setLista(List<clsUsuario> lista) {
         this.lista = lista;
+    }
+
+    public List<clsUsuario> getLasta1() {
+        return lasta1;
+    }
+
+    public void setLasta1(List<clsUsuario> lasta1) {
+        this.lasta1 = lasta1;
     }
     
 }

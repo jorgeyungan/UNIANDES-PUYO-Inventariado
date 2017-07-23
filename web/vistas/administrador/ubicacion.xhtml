@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/admin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <ui:define name="head">
+        <title>INVENTARIADO UNIANDES PUYO</title>
+    </ui:define>
+
+    <ui:define name="logo-lg">
+        UNIANDES PUYO
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        =>
+    </ui:define>
+
+    <ui:define name="menu">
+        
+        <ui:include src="/includes/menu-search.xhtml"/>
+        <ui:include src="/includes/menu.xhtml"/>
+     </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-bar.xhtml"/>
+    </ui:define>
+
+      <ui:define name="title">
+        <h2 class="align-center">
+            USUARIOS
+        </h2>
+    </ui:define>
+
+    <ui:define name="description">
+        A page description
+    </ui:define>
+
+    <ui:define name="body">
+    	<h2>
+            <h:form id="frmUbicacion">
+            <p:panel id="pnlUbicacion">
+            <p:dataTable 
+                id="basicDT" 
+                var="ubi" 
+                value="#{ccUbicacion.lista}"
+                selectionMode="single"
+                selection="#{ccUbicacion.selectedubicacion}"
+                rowKey="#{ubi.idubicacion}"
+                rows="8" paginator="true" 
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+        rowsPerPageTemplate="6,12,16">
+                <f:facet name="header">
+                    UBICACION
+                </f:facet>
+                <p:column headerText="codigo" style="width: 55px;text-align: center">
+                    <h:outputText value="#{ubi.idubicacion}" />
+                </p:column>
+                <p:column headerText="Edificio">
+                    <h:outputText value="#{ubi.edificio}" />
+                </p:column>
+                <p:column headerText="Piso">
+                    <h:outputText value="#{ubi.piso}" />
+                </p:column>
+                <p:column headerText="Carrera">
+                    <h:outputText value="#{ubi.carrera}" />
+                </p:column>
+                <p:column headerText="Sala">
+                    <h:outputText value="#{ubi.sala}" />
+                </p:column>
+                <p:column headerText="Sector">
+                    <h:outputText value="#{ubi.sector}" />
+                </p:column>
+                <f:facet name="footer">
+                    <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
+                     <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUbicacion"/>
+                </f:facet>
+            </p:dataTable>
+                </p:panel>
+        </h:form>
+        <p:dialog 
+            id="dlgAgregar" 
+            header="Nueva Ubicacion"
+            widgetVar="wdlgNuevo" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmNuevaUbicacion">
+                <p:panel header="Ubicacion">
+                    <p:outputLabel  value=" Edificio: ">
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.edificio}"/>
+                            <p:outputLabel value=" Piso: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.piso}"/>
+                            <p:outputLabel value=" Carrera: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.carrera}"/>
+                            <p:outputLabel value=" Sala: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.newubicacion.sala}"/>
+                            <p:outputLabel value="Sector "/>
+                            <p:inputText 
+                                id="cargo" 
+                                style="width:130px"
+                                value="#{ccUbicacion.newubicacion.sector}"/>
+                        </p:outputLabel>
+                </p:panel>
+                <p:commandButton 
+                    value="Ingresar"
+                    action="#{ccUbicacion.insertar()}"
+                    update=":frmUbicacion:pnlUbicacion: frmNuevaUbicacion" 
+                    onclick="wdlgNuevo.hide();"/>                
+                <p:commandButton 
+                    value="Cancelar"
+                    immediate="true"
+                    oncomplete="PF('wdlgNuevo').hide();"
+                    type="reset"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog 
+            id="dlgModificar" 
+            header="Modificar Ubicacion"
+            widgetVar="wdlgModificar" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmModificarUbicacion">
+                <p:panel header="Ubicacion">
+                    <p:outputLabel value=" Edificio: ">
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.edificio}"/>
+                            <p:outputLabel value=" Piso: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.piso}"/>
+                            <p:outputLabel value=" Carrera: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.carrera}"/>
+                            <p:outputLabel value=" Sala: "/>
+                            <p:inputText 
+                                style="width:180px"
+                                value="#{ccUbicacion.selectedubicacion.sala}"/>
+                            <p:outputLabel value=" Sector: "/>
+                            <p:inputText 
+                                id="cargo" 
+                                style="width:130px"
+                                value="#{ccUbicacion.selectedubicacion.sector}"/>
+                        </p:outputLabel>
+                </p:panel>
+                <p:commandButton 
+                    value="Modificar"
+                    action="#{ccUbicacion.actualizar()}"
+                    update=":frmUbicacion:pnlUbicacion: frmModificarUbicacion"
+                    onclick="wdlgModificar.hide()"/>
+                <p:commandButton 
+                    value="Cancelar" 
+                    onclick="wdlgModificar.hide()"
+                    type="reset" />
+               
+            </h:form>
+        </p:dialog>
+        </h2>
+    </ui:define>
+
+
+    <ui:define name="footer">
+          <a target="_blank"
+           href="https://github.com/adminfaces/">
+            Copyright (C) 2017 - AdminFaces
+        </a>
+
+        <div class="pull-right hidden-xs" style="color: gray">
+            <i>1.0.0</i>
+        </div>
+    </ui:define>
+
+
+</ui:composition>
+

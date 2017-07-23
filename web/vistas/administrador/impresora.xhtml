@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/admin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <ui:define name="head">
+        <title>INVENTARIADO UNIANDES PUYO</title>
+    </ui:define>
+
+    <ui:define name="logo-lg">
+        UNIANDES PUYO
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        =>
+    </ui:define>
+
+    <ui:define name="menu">
+
+        <ui:include src="/includes/menu-search.xhtml"/>
+        <ui:include src="/includes/menu.xhtml"/>
+    </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-bar.xhtml"/>
+    </ui:define>
+
+    <ui:define name="title">
+        <h2 class="align-center">
+            USUARIOS
+        </h2>
+    </ui:define>
+
+    <ui:define name="description">
+        A page description
+    </ui:define>
+
+    <ui:define name="body">
+        <h2>
+            <h:form id="frmEquipo">
+                <p:panel id="pnlEquipo" >
+                    <p:dataTable  
+                        var="equi" 
+                        value="#{ccImpresora.listar}">
+                        <f:facet name="header">
+                            Datos de la Impresora
+                        </f:facet>
+                        <p:column headerText="Codigo" style="width: 55px;text-align: center">
+                            <h:outputText value="#{equi.idequipo}" />
+                        </p:column>
+                        <p:column headerText="Serie" >
+                            <h:outputText value="#{equi.codigo}" />
+                        </p:column>
+                        <p:column headerText="Modelo">
+                            <h:outputText value="#{equi.modelo}" />
+                        </p:column>
+                        <p:column headerText="Marca">
+                            <h:outputText value="#{equi.marca}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{equi.nombre}" />
+                        </p:column>
+                        <p:column headerText="Estado">
+                            <h:outputText value="#{equi.estado}" />
+                        </p:column>                        
+                        <p:column headerText="Año Fabrica">
+                            <h:outputText value="#{equi.fecha_fabrica}" />
+                        </p:column>
+                        <p:column headerText="Fecha Compra">
+                            <h:outputText value="#{equi.fecha_compra}" />
+                        </p:column>
+                        <p:column headerText="Tipo">
+                            <h:outputText value="#{equi.tipo}" />
+                        </p:column>
+                        <p:column headerText="Dependencia">
+                            <h:outputText value="#{equi.dependencia}" />
+                        </p:column>
+                        <p:column headerText="Detalle">
+                            <h:outputText value="#{equi.detalle}" />
+                        </p:column>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+        </h2>
+    </ui:define>
+
+
+    <ui:define name="footer">
+        <a target="_blank"
+           href="https://github.com/adminfaces/">
+            Copyright (C) 2017 - AdminFaces
+        </a>
+
+        <div class="pull-right hidden-xs" style="color: gray">
+            <i>1.0.0</i>
+        </div>
+    </ui:define>
+
+
+</ui:composition>
+
+

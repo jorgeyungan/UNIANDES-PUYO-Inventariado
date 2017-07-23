@@ -1,19 +1,19 @@
 
 package ec.org.uniandes.entidades;
 
-public class clsDetequiposoftware {
+public class clsDetubicacionequipo {
     private int _iddetalle;
     private clsEquipo _idequipo;
-    private clsSoftware _idsoftware;
+    private clsUbicacion _idubicacion;
     private String _fecha;
 
-    public clsDetequiposoftware() {
+    public clsDetubicacionequipo() {
     }
 
-    public clsDetequiposoftware(int _iddetalle, clsEquipo _idequipo, clsSoftware _idsoftware, String _fecha) {
+    public clsDetubicacionequipo(int _iddetalle, clsEquipo _idequipo, clsUbicacion _idubicacion, String _fecha) {
         this._iddetalle = _iddetalle;
         this._idequipo = _idequipo;
-        this._idsoftware = _idsoftware;
+        this._idubicacion = _idubicacion;
         this._fecha = _fecha;
     }
 
@@ -41,17 +41,17 @@ public class clsDetequiposoftware {
         this._idequipo = _idequipo;
     }
 
-    public clsSoftware getIdsoftware() {
-        return _idsoftware;
+    public clsUbicacion getIdubicacion() {
+        return _idubicacion;
     }
 
-    public void setIdsoftware(clsSoftware _idsoftware) {
-        this._idsoftware = _idsoftware;
+    public void setIdubicacion(clsUbicacion _idubicacion) {
+        this._idubicacion = _idubicacion;
     }
 
     @Override
     public String toString() {
-        return "clsDetequiposoftware{" + "_iddetalle=" + _iddetalle + ", _idequipo=" + _idequipo + ", _idsoftware=" + _idsoftware + ", _fecha=" + _fecha + '}';
+        return "clsDetubicacionequipo{" + "_iddetalle=" + _iddetalle + ", _idequipo=" + _idequipo + ", _idubicacion=" + _idubicacion + ", _fecha=" + _fecha + '}';
     }
     
 }

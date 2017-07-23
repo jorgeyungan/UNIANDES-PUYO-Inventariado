@@ -5,21 +5,19 @@ public class clsUbicacion {
     private String _edificio;
     private String _piso;
     private String _carrera;
-    private String _laboratorio;
-    private String _dependencia;
-    private clsUsuario _idusuario;
+    private String _sala;
+    private String _sector;
 
     public clsUbicacion() {
     }
 
-    public clsUbicacion(int _idubicacion, String _edificio, String _piso, String _carrera, String _laboratorio, String _dependencia, clsUsuario _idusuario) {
+    public clsUbicacion(int _idubicacion, String _edificio, String _piso, String _carrera, String _sala, String _sector) {
         this._idubicacion = _idubicacion;
         this._edificio = _edificio;
         this._piso = _piso;
         this._carrera = _carrera;
-        this._laboratorio = _laboratorio;
-        this._dependencia = _dependencia;
-        this._idusuario = _idusuario;
+        this._sala = _sala;
+        this._sector = _sector;
     }
 
     public int getIdubicacion() {
@@ -54,33 +52,25 @@ public class clsUbicacion {
         this._carrera = _carrera;
     }
 
-    public String getLaboratorio() {
-        return _laboratorio;
+    public String getSala() {
+        return _sala;
     }
 
-    public void setLaboratorio(String _laboratorio) {
-        this._laboratorio = _laboratorio;
+    public void setSala(String _sala) {
+        this._sala = _sala;
     }
 
-    public String getDependencia() {
-        return _dependencia;
+    public String getSector() {
+        return _sector;
     }
 
-    public void setDependencia(String _dependencia) {
-        this._dependencia = _dependencia;
-    }
-
-    public clsUsuario getIdusuario() {
-        return _idusuario;
-    }
-
-    public void setIdusuario(clsUsuario _idusuario) {
-        this._idusuario = _idusuario;
+    public void setSector(String _sector) {
+        this._sector = _sector;
     }
 
     @Override
     public String toString() {
-        return "clsUbicacion{" + "_idubicacion=" + _idubicacion + ", _edificio=" + _edificio + ", _piso=" + _piso + ", _carrera=" + _carrera + ", _laboratorio=" + _laboratorio + ", _dependencia=" + _dependencia + ", _idusuario=" + _idusuario + '}';
+        return "clsUbicacion{" + "_idubicacion=" + _idubicacion + ", _edificio=" + _edificio + ", _piso=" + _piso + ", _carrera=" + _carrera + ", _sala=" + _sala + ", _sector=" + _sector + '}';
     }
     
 }
