@@ -17,14 +17,6 @@ public class clsDetequipomantenimiento {
         this._reporte = _reporte;
     }
 
-    public String getReporte() {
-        return _reporte;
-    }
-
-    public void setReporte(String _reporte) {
-        this._reporte = _reporte;
-    }
-
     public int getIddetalle() {
         return _iddetalle;
     }
@@ -47,6 +39,14 @@ public class clsDetequipomantenimiento {
 
     public void setIdmantenimiento(clsMantenimiento _idmantenimiento) {
         this._idmantenimiento = _idmantenimiento;
+    }
+
+    public String getReporte() {
+        return _reporte;
+    }
+
+    public void setReporte(String _reporte) {
+        this._reporte = _reporte;
     }
 
     @Override

@@ -3,7 +3,7 @@ package ec.org.uniandes.funciones;
 import ec.org.uniandes.accesodatos.AccesoDatos;
 import ec.org.uniandes.accesodatos.ConjuntoResultado;
 import ec.org.uniandes.accesodatos.Parametro;
-import ec.org.uniandes.entidades.clsUsuariosistema;
+import ec.org.uniandes.entidades.clsLogin;
 import java.util.ArrayList;
 
 
@@ -13,7 +13,7 @@ public class crudUsuariosistema {
 //    static clsCliente findbyId(String string) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-    public static boolean save(clsUsuariosistema sistema){
+    public static boolean save(clsLogin sistema){
         boolean resultado = false;
         String sql = "INSERT INTO public.usuariosistema(usuario,contraseña,tipo) VALUES(?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
@@ -28,7 +28,7 @@ public class crudUsuariosistema {
         return resultado;
     }
     
-    public static boolean delete(clsUsuariosistema sistema) {
+    public static boolean delete(clsLogin sistema) {
         boolean res=false;
         String sql = "DELETE FROM public.usuariosistema WHERE idusuariosistema=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
@@ -41,7 +41,7 @@ public class crudUsuariosistema {
         return res;
     }
 
-    public static boolean update(clsUsuariosistema sistema) {
+    public static boolean update(clsLogin sistema) {
         boolean res = false;
         String sql = "UPDATE public.usuariosistema "
                 + "SET usuario=?,contraseña=?,tipo=? "
@@ -58,17 +58,17 @@ public class crudUsuariosistema {
         return res;
     }
 
-    public static ArrayList<clsUsuariosistema> findbyAll() {
-        ArrayList<clsUsuariosistema> listado = new ArrayList<>();
+    public static ArrayList<clsLogin> findbyAll() {
+        ArrayList<clsLogin> listado = new ArrayList<>();
         String sql = "SELECT idusuariosistema,usuario,contraseña,tipo "
                 + "FROM public.usuariosistema";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
-            clsUsuariosistema usuario = null;
+            clsLogin usuario = null;
             while (cres.next())
             {
-                usuario = new clsUsuariosistema();
+                usuario = new clsLogin();
                 usuario.setIdusuariosistema(cres.getInt("idusuariosistema"));
                 usuario.setUsuario(cres.getString("cedula"));
                 usuario.setContraseña(cres.getString("nombre"));
@@ -81,8 +81,8 @@ public class crudUsuariosistema {
         return listado;
     }
 
-    public static clsUsuariosistema findbyId(clsUsuariosistema sistema) {
-        clsUsuariosistema usuario = null;
+    public static clsLogin findbyId(clsLogin sistema) {
+        clsLogin usuario = null;
         String sql = "SELECT idusuariosistema,usuario,contraseña,tipo "
                 + "FROM public.usuariosistema WHERE idusuariosistema=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
@@ -90,7 +90,7 @@ public class crudUsuariosistema {
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                usuario = new clsUsuariosistema();
+                usuario = new clsLogin();
                 usuario.setIdusuariosistema(cres.getInt("idusuariosistema"));
                 usuario.setUsuario(cres.getString("cedula"));
                 usuario.setContraseña(cres.getString("nombre"));
@@ -102,8 +102,8 @@ public class crudUsuariosistema {
         return usuario;
     }
     
-    public static clsUsuariosistema findbyId(int sistema) {
-        clsUsuariosistema usuario = null;
+    public static clsLogin findbyId(int sistema) {
+        clsLogin usuario = null;
         String sql = "SELECT idusuariosistema,usuario,contraseña,tipo "
                 + "FROM public.usuariosistema WHERE idusuariosistema=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
@@ -111,7 +111,7 @@ public class crudUsuariosistema {
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                usuario = new clsUsuariosistema();
+                usuario = new clsLogin();
                 usuario.setIdusuariosistema(cres.getInt("idusuariosistema"));
                 usuario.setUsuario(cres.getString("cedula"));
                 usuario.setContraseña(cres.getString("nombre"));

@@ -2,7 +2,7 @@
 package ec.org.uniandes.test;
 
 import ec.org.uniandes.entidades.clsEquipo;
-import ec.org.uniandes.entidades.clsEquipoprueba;
+import ec.org.uniandes.entidades.clsEquipo;
 import ec.org.uniandes.entidades.clsImpresora;
 import ec.org.uniandes.entidades.clsSoftware;
 import ec.org.uniandes.entidades.clsUbicacion;
@@ -50,7 +50,7 @@ public class testUsuario {
 //        ArrayList<clsImpresora> ubi = new ArrayList<>();
 //    ubi = crudImpresora.findbyAll();
 //    System.out.print(ubi.toString());
-    ArrayList<clsEquipoprueba> ubi = new ArrayList<>();
+    ArrayList<clsEquipo> ubi = new ArrayList<>();
     ubi = crudEquipoprueba.findbyAll();
     System.out.print(ubi.toString());
 //    ArrayList<clsImpresora> ubi = new ArrayList<>();

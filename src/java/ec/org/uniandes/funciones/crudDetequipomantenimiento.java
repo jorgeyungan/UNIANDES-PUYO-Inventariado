@@ -11,11 +11,12 @@ import java.util.ArrayList;
 public class crudDetequipomantenimiento {
     private boolean save(clsDetequipomantenimiento manequi){
         boolean res=false;
-        String sql = "INSERT INTO public.detallemantenimiento(idequipo,idmanteminiento)"
+        String sql = "INSERT INTO public.detallemantenimiento(idequipo,idmanteminiento,reporte)"
                 + "value(?,?)";
         ArrayList<Parametro> lstpar =new ArrayList<>();
         lstpar.add(new Parametro(1, manequi.getIdequipo()));
         lstpar.add(new Parametro(2, manequi.getIdmantenimiento()));
+        lstpar.add(new Parametro(3, manequi.getReporte()));
         try {
             res=AccesoDatos.ejecutaComando(sql, lstpar);
         } catch (Exception e) {
@@ -38,12 +39,13 @@ public class crudDetequipomantenimiento {
     private static boolean update(clsDetequipomantenimiento manequi){
         boolean res = false;
         String sql="UPDATE public.detallemantenimiento "
-                + "SET idequipo=?,idmantenimiento=?"
+                + "SET idequipo=?,idmantenimiento=?,reporte=? "
                 + "WHERE iddetalle=?";
         ArrayList<Parametro> lstpar=new ArrayList<>();
         lstpar.add(new Parametro(1, manequi.getIdequipo()));
         lstpar.add(new Parametro(2, manequi.getIdmantenimiento()));
-        lstpar.add(new Parametro(3, manequi.getIddetalle()));
+        lstpar.add(new Parametro(3, manequi.getReporte()));
+        lstpar.add(new Parametro(4, manequi.getIddetalle()));
         try {
             res = AccesoDatos.ejecutaComando(sql, lstpar);
         } catch (Exception e) {
@@ -53,7 +55,7 @@ public class crudDetequipomantenimiento {
     }
     public static ArrayList<clsDetequipomantenimiento> findbyAll() {
         ArrayList<clsDetequipomantenimiento> listado = new ArrayList<>();
-        String sql = "SELECT iddetalle,idequipo,idmantenimiento "
+        String sql = "SELECT iddetalle,idequipo,idmantenimiento,reporte "
                 + "FROM public.detallemantenimeinto";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
@@ -65,6 +67,7 @@ public class crudDetequipomantenimiento {
                 manequi.setIddetalle(cres.getInt("iddetalle"));
                 manequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
                 manequi.setIdmantenimiento(crudMantenimiento.findbyId(cres.getInt("idmantenimiento")));
+                manequi.setReporte(cres.getString("reporte"));
                 listado.add((manequi));
             }
         } catch (Exception e) {
@@ -73,42 +76,42 @@ public class crudDetequipomantenimiento {
         return listado;
     }
 
-    public static clsDetequipomantenimiento findbyId(clsDetequipomantenimiento manequi) {
-        clsDetequipomantenimiento detmanequi = null;
-        String sql = "SELECT iddetalle,idequipo,idmantenimiento "
+    public static clsDetequipomantenimiento findbyId(clsDetequipomantenimiento dmanequi) {
+        clsDetequipomantenimiento manequi = null;
+        String sql = "SELECT iddetalle,idequipo,idmantenimiento,reporte "
                 + "FROM public.detallemantenimeinto WHERE iddetalle=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, manequi.getIddetalle()));
+        lstPar.add(new Parametro(1, dmanequi.getIddetalle()));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                detmanequi = new clsDetequipomantenimiento();
-                detmanequi.setIddetalle(cres.getInt("iddetalle"));
-                detmanequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
-                detmanequi.setIdmantenimiento(crudMantenimiento.findbyId(cres.getInt("idmantenimeinto")));
+                manequi.setIddetalle(cres.getInt("iddetalle"));
+                manequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
+                manequi.setIdmantenimiento(crudMantenimiento.findbyId(cres.getInt("idmantenimiento")));
+                manequi.setReporte(cres.getString("reporte"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return detmanequi;
+        return manequi;
     }
-    public static clsDetequipomantenimiento findbyId(int manequi) {
-        clsDetequipomantenimiento detmanequi = null;
-        String sql = "SELECT iddetalle,idequipo,idmantenimiento "
+    public static clsDetequipomantenimiento findbyId(int dmanequi) {
+        clsDetequipomantenimiento manequi = null;
+        String sql = "SELECT iddetalle,idequipo,idmantenimiento,reporte "
                 + "FROM public.detallemantenimeinto WHERE iddetalle=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, manequi));
+        lstPar.add(new Parametro(1, dmanequi));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                detmanequi = new clsDetequipomantenimiento();
-                detmanequi.setIddetalle(cres.getInt("iddetalle"));
-                detmanequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
-                detmanequi.setIdmantenimiento(crudMantenimiento.findbyId(cres.getInt("idmantenimeinto")));
+                manequi.setIddetalle(cres.getInt("iddetalle"));
+                manequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
+                manequi.setIdmantenimiento(crudMantenimiento.findbyId(cres.getInt("idmantenimiento")));
+                manequi.setReporte(cres.getString("reporte"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return detmanequi;
+        return manequi;
     }
 }

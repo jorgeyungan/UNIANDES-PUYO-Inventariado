@@ -11,7 +11,7 @@ public class crudEquipo {
 //    static clsCliente findbyId(String string) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-    public static boolean save(clsEquipo pc) {
+    public static boolean savepc(clsEquipo pc) {
         boolean resultado = false;
         String sql = "INSERT INTO public.equipo(codigo,modelo,marca,nombre,fecha_compra,"
                 + "fecha_fabrica,estado,disco_duro,procesador,dependencia,detalle)"
@@ -24,7 +24,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(5, pc.getFecha_compra()));
         lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
         lstPar.add(new Parametro(7, pc.getEstado()));
-        lstPar.add(new Parametro(8, pc.getDisco_duro()));
         lstPar.add(new Parametro(9, pc.getProcesador()));
         lstPar.add(new Parametro(10, pc.getDependencia()));
         lstPar.add(new Parametro(11, pc.getDetalle()));
@@ -63,7 +62,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(5, pc.getFecha_compra()));
         lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
         lstPar.add(new Parametro(7, pc.getEstado()));
-        lstPar.add(new Parametro(8, pc.getDisco_duro()));
         lstPar.add(new Parametro(9, pc.getProcesador()));
         lstPar.add(new Parametro(10, pc.getDependencia()));
         lstPar.add(new Parametro(11, pc.getDetalle()));
@@ -110,7 +108,6 @@ public class crudEquipo {
                 pcs.setFecha_compra(cres.getString("fecha_compra"));
                 pcs.setFecha_fabrica(cres.getString("fecha_fabrica"));
                 pcs.setEstado(cres.getString("estado"));
-                pcs.setDisco_duro(cres.getString("disco_duro"));
                 pcs.setProcesador(cres.getString("procesador"));
                 pcs.setDetalle(cres.getString("detalle"));
                 pcs.setDependencia(cres.getString("dependencia"));
@@ -141,7 +138,6 @@ public class crudEquipo {
                 pcs.setFecha_compra(cres.getString("fecha_compra"));
                 pcs.setFecha_fabrica(cres.getString("fecha_fabrica"));
                 pcs.setEstado(cres.getString("estado"));
-                pcs.setDisco_duro(cres.getString("disco_duro"));
                 pcs.setProcesador(cres.getString("procesador"));
                 pcs.setDetalle(cres.getString("detalle"));
                 pcs.setDependencia(cres.getString("dependencia"));
@@ -171,7 +167,6 @@ public class crudEquipo {
                 pcs.setFecha_compra(cres.getString("fecha_compra"));
                 pcs.setFecha_fabrica(cres.getString("fecha_fabrica"));
                 pcs.setEstado(cres.getString("estado"));
-                pcs.setDisco_duro(cres.getString("disco_duro"));
                 pcs.setProcesador(cres.getString("procesador"));
                 pcs.setDetalle(cres.getString("detalle"));
                 pcs.setDependencia(cres.getString("dependencia"));

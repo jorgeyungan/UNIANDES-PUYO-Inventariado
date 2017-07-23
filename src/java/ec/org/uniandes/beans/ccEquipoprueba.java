@@ -1,7 +1,7 @@
 
 package ec.org.uniandes.beans;
 
-import ec.org.uniandes.entidades.clsEquipoprueba;
+import ec.org.uniandes.entidades.clsEquipo;
 import ec.org.uniandes.funciones.crudEquipoprueba;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -11,38 +11,38 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 
 public class ccEquipoprueba {
-    private clsEquipoprueba newequipo;
-    private clsEquipoprueba selectedequipo;
-    private List<clsEquipoprueba> lista;
+    private clsEquipo newequipo;
+    private clsEquipo selectedequipo;
+    private List<clsEquipo> lista;
     public ccEquipoprueba(){
-        newequipo=new clsEquipoprueba();
+        newequipo=new clsEquipo();
         cargardator();
     }
     private void cargardator(){
         lista=crudEquipoprueba.findbyAll();
     }
 
-    public clsEquipoprueba getNewequipo() {
+    public clsEquipo getNewequipo() {
         return newequipo;
     }
 
-    public void setNewequipo(clsEquipoprueba newequipo) {
+    public void setNewequipo(clsEquipo newequipo) {
         this.newequipo = newequipo;
     }
 
-    public clsEquipoprueba getSelectedequipo() {
+    public clsEquipo getSelectedequipo() {
         return selectedequipo;
     }
 
-    public void setSelectedequipo(clsEquipoprueba selectedequipo) {
+    public void setSelectedequipo(clsEquipo selectedequipo) {
         this.selectedequipo = selectedequipo;
     }
 
-    public List<clsEquipoprueba> getLista() {
+    public List<clsEquipo> getLista() {
         return lista;
     }
 
-    public void setLista(List<clsEquipoprueba> lista) {
+    public void setLista(List<clsEquipo> lista) {
         this.lista = lista;
     }
     

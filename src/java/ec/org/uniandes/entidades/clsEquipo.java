@@ -7,30 +7,36 @@ public class clsEquipo {
     private String _modelo;
     private String _marca;
     private String _nombre;
+    private String _estado;
+    private String _tamaño;
+    private String _procesador;
+    private String _tipo;
+    private int _numeropuertos;
+    private String _detalle;
+    private String _administrable;
+    private String _dependencia;
     private String _fecha_compra;
     private String _fecha_fabrica;
-    private String _estado;
-    private String _disco_duro;
-    private String _procesador;
-    private String _detalle;
-    private String _dependencia;
 
     public clsEquipo() {
     }
 
-    public clsEquipo(int _idequipo, String _codigo, String _modelo, String _marca, String _nombre, String _fecha_compra, String _fecha_fabrica, String _estado, String _disco_duro, String _procesador, String _detalle, String _dependencia) {
+    public clsEquipo(int _idequipo, String _codigo, String _modelo, String _marca, String _nombre, String _estado, String _tamaño, String _procesador, String _tipo, int _numeropuertos, String _detalle, String _administrable, String _dependencia, String _fecha_compra, String _fecha_fabrica) {
         this._idequipo = _idequipo;
         this._codigo = _codigo;
         this._modelo = _modelo;
         this._marca = _marca;
         this._nombre = _nombre;
+        this._estado = _estado;
+        this._tamaño = _tamaño;
+        this._procesador = _procesador;
+        this._tipo = _tipo;
+        this._numeropuertos = _numeropuertos;
+        this._detalle = _detalle;
+        this._administrable = _administrable;
+        this._dependencia = _dependencia;
         this._fecha_compra = _fecha_compra;
         this._fecha_fabrica = _fecha_fabrica;
-        this._estado = _estado;
-        this._disco_duro = _disco_duro;
-        this._procesador = _procesador;
-        this._detalle = _detalle;
-        this._dependencia = _dependencia;
     }
 
     public int getIdequipo() {
@@ -73,6 +79,70 @@ public class clsEquipo {
         this._nombre = _nombre;
     }
 
+    public String getEstado() {
+        return _estado;
+    }
+
+    public void setEstado(String _estado) {
+        this._estado = _estado;
+    }
+
+    public String getTamaño() {
+        return _tamaño;
+    }
+
+    public void setTamaño(String _tamaño) {
+        this._tamaño = _tamaño;
+    }
+
+    public String getProcesador() {
+        return _procesador;
+    }
+
+    public void setProcesador(String _procesador) {
+        this._procesador = _procesador;
+    }
+
+    public String getTipo() {
+        return _tipo;
+    }
+
+    public void setTipo(String _tipo) {
+        this._tipo = _tipo;
+    }
+
+    public int getNumeropuertos() {
+        return _numeropuertos;
+    }
+
+    public void setNumeropuertos(int _numeropuertos) {
+        this._numeropuertos = _numeropuertos;
+    }
+
+    public String getDetalle() {
+        return _detalle;
+    }
+
+    public void setDetalle(String _detalle) {
+        this._detalle = _detalle;
+    }
+
+    public String getAdministrable() {
+        return _administrable;
+    }
+
+    public void setAdministrable(String _administrable) {
+        this._administrable = _administrable;
+    }
+
+    public String getDependencia() {
+        return _dependencia;
+    }
+
+    public void setDependencia(String _dependencia) {
+        this._dependencia = _dependencia;
+    }
+
     public String getFecha_compra() {
         return _fecha_compra;
     }
@@ -89,49 +159,9 @@ public class clsEquipo {
         this._fecha_fabrica = _fecha_fabrica;
     }
 
-    public String getEstado() {
-        return _estado;
-    }
-
-    public void setEstado(String _estado) {
-        this._estado = _estado;
-    }
-
-    public String getDisco_duro() {
-        return _disco_duro;
-    }
-
-    public void setDisco_duro(String _disco_duro) {
-        this._disco_duro = _disco_duro;
-    }
-
-    public String getProcesador() {
-        return _procesador;
-    }
-
-    public void setProcesador(String _procesador) {
-        this._procesador = _procesador;
-    }
-
-    public String getDetalle() {
-        return _detalle;
-    }
-
-    public void setDetalle(String _detalle) {
-        this._detalle = _detalle;
-    }
-
-    public String getDependencia() {
-        return _dependencia;
-    }
-
-    public void setDependencia(String _dependencia) {
-        this._dependencia = _dependencia;
-    }
-
     @Override
     public String toString() {
-        return "clsEquipo{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + ", _estado=" + _estado + ", _disco_duro=" + _disco_duro + ", _procesador=" + _procesador + ", _detalle=" + _detalle + ", _dependencia=" + _dependencia + '}';
+        return "clsEquipo{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _estado=" + _estado + ", _tama\u00f1o=" + _tamaño + ", _procesador=" + _procesador + ", _tipo=" + _tipo + ", _numeropuertos=" + _numeropuertos + ", _detalle=" + _detalle + ", _administrable=" + _administrable + ", _dependencia=" + _dependencia + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + '}';
     }
     
 }

@@ -5,7 +5,7 @@
  */
 package ec.org.uniandes.beans;
 
-import ec.org.uniandes.entidades.clsEquipoprueba;
+import ec.org.uniandes.entidades.clsEquipo;
 import ec.org.uniandes.entidades.clsImpresora;
 import ec.org.uniandes.funciones.crudEquipoprueba;
 import ec.org.uniandes.funciones.crudImpresora;
@@ -16,14 +16,14 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean
 @ViewScoped
 public class ccImpresora {
-    private clsEquipoprueba newimpresora;
-    private clsEquipoprueba selectedimpresora;
-    private List<clsEquipoprueba> listar;
+    private clsEquipo newimpresora;
+    private clsEquipo selectedimpresora;
+    private List<clsEquipo> listar;
     private void cargardatos(){
         listar=crudEquipoprueba.findbyAll();
     }
     public ccImpresora(){
-        newimpresora=new clsEquipoprueba();
+        newimpresora=new clsEquipo();
     }
 //    public void insertar(){
 //        if (crudEquipoprueba.save(newimpresora)) {
@@ -40,27 +40,27 @@ public class ccImpresora {
 //        }
 //    }
 
-    public clsEquipoprueba getNewimpresora() {
+    public clsEquipo getNewimpresora() {
         return newimpresora;
     }
 
-    public void setNewimpresora(clsEquipoprueba newimpresora) {
+    public void setNewimpresora(clsEquipo newimpresora) {
         this.newimpresora = newimpresora;
     }
 
-    public clsEquipoprueba getSelectedimpresora() {
+    public clsEquipo getSelectedimpresora() {
         return selectedimpresora;
     }
 
-    public void setSelectedimpresora(clsEquipoprueba selectedimpresora) {
+    public void setSelectedimpresora(clsEquipo selectedimpresora) {
         this.selectedimpresora = selectedimpresora;
     }
 
-    public List<clsEquipoprueba> getListar() {
+    public List<clsEquipo> getListar() {
         return listar;
     }
 
-    public void setListar(List<clsEquipoprueba> listar) {
+    public void setListar(List<clsEquipo> listar) {
         this.listar = listar;
     }
     

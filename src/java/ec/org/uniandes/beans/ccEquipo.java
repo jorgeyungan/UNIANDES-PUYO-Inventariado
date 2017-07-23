@@ -3,9 +3,7 @@ package ec.org.uniandes.beans;
 
 
 import ec.org.uniandes.entidades.clsEquipo;
-import ec.org.uniandes.entidades.clsEquipoprueba;
 import ec.org.uniandes.funciones.crudEquipo;
-import ec.org.uniandes.funciones.crudEquipoprueba;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,59 +12,59 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ccEquipo {
 
-    private clsEquipoprueba newEquipo;
-    private clsEquipoprueba selectedEquipo;
-    private List<clsEquipoprueba> lista;
+    private clsEquipo newEquipo;
+    private clsEquipo selectedEquipo;
+    private List<clsEquipo> lista;
     public ccEquipo(){
-        newEquipo=new clsEquipoprueba();
+        newEquipo=new clsEquipo();
         cargardatos();
     }
     private void cargardatos(){
-        lista=crudEquipoprueba.findbyAll();
+        lista=crudEquipo.findbyAll();
     }
-//    public void insertar(){
-//        if (crudEquipoprueba.save(newEquipo)) {
-//            newEquipo=new clsEquipoprueba();
-//            cargardatos();
-//        } else {
-//        }
-//    }
-//    public void eliminar(){
-//        if (crudEquipoprueba.delete(newEquipo)) {
-//            newEquipo=new clsEquipoprueba();
-//            cargardatos();
-//        } else {
-//        }
-//    }
-//    public void actualizar(){
-//        if (crudEquipoprueba.update(selectedEquipo)) {
-//            newEquipo=new clsEquipoprueba();
-//            cargardatos();
-//        } else {
-//        }
-//    }
+    public void insertar(){
+        if (crudEquipo.save(newEquipo)) {
+            newEquipo=new clsEquipo();
+            cargardatos();
+        } else {
+        }
+    }
+    public void eliminar(){
+        if (crudEquipo.delete(newEquipo)) {
+            newEquipo=new clsEquipo();
+            cargardatos();
+        } else {
+        }
+    }
+    public void actualizar(){
+        if (crudEquipo.update(selectedEquipo)) {
+            newEquipo=new clsEquipo();
+            cargardatos();
+        } else {
+        }
+    }
 
-    public clsEquipoprueba getNewEquipo() {
+    public clsEquipo getNewEquipo() {
         return newEquipo;
     }
 
-    public void setNewEquipo(clsEquipoprueba newEquipo) {
+    public void setNewEquipo(clsEquipo newEquipo) {
         this.newEquipo = newEquipo;
     }
 
-    public clsEquipoprueba getSelectedEquipo() {
+    public clsEquipo getSelectedEquipo() {
         return selectedEquipo;
     }
 
-    public void setSelectedEquipo(clsEquipoprueba selectedEquipo) {
+    public void setSelectedEquipo(clsEquipo selectedEquipo) {
         this.selectedEquipo = selectedEquipo;
     }
 
-    public List<clsEquipoprueba> getLista() {
+    public List<clsEquipo> getLista() {
         return lista;
     }
 
-    public void setLista(List<clsEquipoprueba> lista) {
+    public void setLista(List<clsEquipo> lista) {
         this.lista = lista;
     }
     

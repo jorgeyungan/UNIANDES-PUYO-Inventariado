@@ -1,21 +1,19 @@
-
 package ec.org.uniandes.funciones;
 
 import ec.org.uniandes.accesodatos.AccesoDatos;
 import ec.org.uniandes.accesodatos.ConjuntoResultado;
 import ec.org.uniandes.accesodatos.Parametro;
-import ec.org.uniandes.entidades.clsDetequiposoftware;
+import ec.org.uniandes.entidades.clsDetubicacionequipo;
 import java.util.ArrayList;
 
-
-public class crudDetequiposoftware {
-    private boolean save(clsDetequiposoftware sofequi){
+public class crudDetubicacionequipo {
+    private static boolean save(clsDetubicacionequipo sofequi){
         boolean res=false;
-        String sql = "INSERT INTO public.detallesoftware(idequipo,idsoftware,fecha)"
+        String sql = "INSERT INTO public.detalleequiubi(idequipo,idubicacion,fecha)"
                 + "value(?,?,?)";
         ArrayList<Parametro> lstpar =new ArrayList<>();
         lstpar.add(new Parametro(1, sofequi.getIdequipo()));
-        lstpar.add(new Parametro(2, sofequi.getIdsoftware()));
+        lstpar.add(new Parametro(2, sofequi.getIdubicacion()));
         lstpar.add(new Parametro(3, sofequi.getFecha()));
         try {
             res=AccesoDatos.ejecutaComando(sql, lstpar);
@@ -24,9 +22,9 @@ public class crudDetequiposoftware {
         }
         return res;
     }
-    private static boolean delete(clsDetequiposoftware softequi){
+    private static boolean delete(clsDetubicacionequipo softequi){
         boolean res =false;
-        String sql = "DELETE FROM public.detallesoftware WHERE iddetalle=?";
+        String sql = "DELETE FROM public.detalleequiubi WHERE iddetalle=?";
         ArrayList<Parametro> lstpar=new ArrayList<>();
         lstpar.add(new Parametro(1, softequi.getIddetalle()));
         try {
@@ -36,14 +34,14 @@ public class crudDetequiposoftware {
         }
         return res;
     }
-    private static boolean update(clsDetequiposoftware softequi){
+    private static boolean update(clsDetubicacionequipo softequi){
         boolean res = false;
-        String sql="UPDATE public.detallesoftware "
-                + "SET idequipo=?,idsoftware=?,fecha=? "
+        String sql="UPDATE public.detalleequiubi "
+                + "SET idequipo=?,idubicacion=?,fecha=? "
                 + "WHERE iddetalle=?";
         ArrayList<Parametro> lstpar=new ArrayList<>();
         lstpar.add(new Parametro(1, softequi.getIdequipo()));
-        lstpar.add(new Parametro(2, softequi.getIdsoftware()));
+        lstpar.add(new Parametro(2, softequi.getIdubicacion()));
         lstpar.add(new Parametro(3, softequi.getIddetalle()));
         lstpar.add(new Parametro(4, softequi.getFecha()));
         try {
@@ -53,20 +51,20 @@ public class crudDetequiposoftware {
         }
         return res;
     }
-    public static ArrayList<clsDetequiposoftware> findbyAll() {
-        ArrayList<clsDetequiposoftware> listado = new ArrayList<>();
-        String sql = "SELECT iddetalle,idequipo,idsoftware,fecha "
-                + "FROM public.detallesoftware";
+    public static ArrayList<clsDetubicacionequipo> findbyAll() {
+        ArrayList<clsDetubicacionequipo> listado = new ArrayList<>();
+        String sql = "SELECT iddetalle,idequipo,idubicacion,fecha "
+                + "FROM public.detalleequiubi";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
-            clsDetequiposoftware softequi = null;
+            clsDetubicacionequipo softequi = null;
             while (cres.next())
             {
-                softequi = new clsDetequiposoftware();
+                softequi = new clsDetubicacionequipo();
                 softequi.setIddetalle(cres.getInt("iddetalle"));
                 softequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
-                softequi.setIdsoftware(crudSoftware.findbyId(cres.getInt("idsoftware")));
+                softequi.setIdubicacion(crudUbicacion.findbyId(cres.getInt("idubicacion")));
                 softequi.setFecha(cres.getString("fecha"));
                listado.add((softequi));
             }
@@ -76,19 +74,19 @@ public class crudDetequiposoftware {
         return listado;
     }
 
-    public static clsDetequiposoftware findbyId(clsDetequiposoftware dsoftequi) {
-        clsDetequiposoftware softequi = null;
-        String sql = "SELECT iddetalle,idequipo,idsoftware "
-                + "FROM public.detallesoftware WHERE iddetalle=?";
+    public static clsDetubicacionequipo findbyId(clsDetubicacionequipo dsoftequi) {
+        clsDetubicacionequipo softequi = null;
+        String sql = "SELECT iddetalle,idequipo,idubicacion,fecha "
+                + "FROM public.detalleequiubi WHERE iddetalle=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, dsoftequi.getIddetalle()));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                softequi = new clsDetequiposoftware();
+                softequi = new clsDetubicacionequipo();
                 softequi.setIddetalle(cres.getInt("iddetalle"));
                 softequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
-                softequi.setIdsoftware(crudSoftware.findbyId(cres.getInt("idsoftware")));
+                softequi.setIdubicacion(crudUbicacion.findbyId(cres.getInt("idubicacion")));
                 softequi.setFecha(cres.getString("fecha"));
             }
         } catch (Exception e) {
@@ -96,19 +94,19 @@ public class crudDetequiposoftware {
         }
         return softequi;
     }
-    public static clsDetequiposoftware findbyId(int dsoftequi) {
-        clsDetequiposoftware softequi = null;
-        String sql = "SELECT iddetalle,idequipo,idsoftware "
-                + "FROM public.detallesoftware WHERE iddetalle=?";
+    public static clsDetubicacionequipo findbyId(int dsoftequi) {
+        clsDetubicacionequipo softequi = null;
+        String sql = "SELECT iddetalle,idequipo,idubicacion,fecha "
+                + "FROM public.detalleequiubi WHERE iddetalle=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, dsoftequi));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                softequi = new clsDetequiposoftware();
+                softequi = new clsDetubicacionequipo();
                 softequi.setIddetalle(cres.getInt("iddetalle"));
                 softequi.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
-                softequi.setIdsoftware(crudSoftware.findbyId(cres.getInt("idsoftware")));
+                softequi.setIdubicacion(crudUbicacion.findbyId(cres.getInt("idubicacion")));
                 softequi.setFecha(cres.getString("fecha"));
             }
         } catch (Exception e) {

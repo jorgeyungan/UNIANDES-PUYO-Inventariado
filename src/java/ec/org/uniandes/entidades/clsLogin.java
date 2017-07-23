@@ -1,15 +1,15 @@
 package ec.org.uniandes.entidades;
 
-public class clsUsuariosistema {
+public class clsLogin {
     private int _idusuariosistema;
     private String _usuario;
     private String _contraseña;
     private String _tipo;
 
-    public clsUsuariosistema() {
+    public clsLogin() {
     }
 
-    public clsUsuariosistema(int _idusuariosistema, String _usuario, String _contraseña, String _tipo) {
+    public clsLogin(int _idusuariosistema, String _usuario, String _contraseña, String _tipo) {
         this._idusuariosistema = _idusuariosistema;
         this._usuario = _usuario;
         this._contraseña = _contraseña;
