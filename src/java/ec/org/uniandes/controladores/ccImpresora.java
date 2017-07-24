@@ -1,5 +1,5 @@
 
-package ec.org.uniandes.beans;
+package ec.org.uniandes.controladores;
 
 import ec.org.uniandes.entidades.clsEquipo;
 import ec.org.uniandes.funciones.crudEquipo;

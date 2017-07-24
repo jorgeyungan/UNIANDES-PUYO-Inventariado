@@ -1,5 +1,5 @@
 
-package ec.org.uniandes.beans;
+package ec.org.uniandes.controladores;
 
 //import ec.org.uniandes.entidades.clsSoftware;
 //import ec.org.uniandes.funciones.crudSoftware;
