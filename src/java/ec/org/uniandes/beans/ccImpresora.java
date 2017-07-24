@@ -1,44 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ec.org.uniandes.beans;
 
 import ec.org.uniandes.entidades.clsEquipo;
-import ec.org.uniandes.entidades.clsImpresora;
-import ec.org.uniandes.funciones.crudEquipoprueba;
-import ec.org.uniandes.funciones.crudImpresora;
+import ec.org.uniandes.funciones.crudEquipo;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class ccImpresora {
     private clsEquipo newimpresora;
     private clsEquipo selectedimpresora;
-    private List<clsEquipo> listar;
-    private void cargardatos(){
-        listar=crudEquipoprueba.findbyAll();
-    }
-    public ccImpresora(){
+    private List<clsEquipo> lista;
+    public ccImpresora() {
         newimpresora=new clsEquipo();
+        cargardatos();
     }
-//    public void insertar(){
-//        if (crudEquipoprueba.save(newimpresora)) {
-//            newimpresora=new clsEquipoprueba();
-//            cargardatos();
-//        } else {
-//        }
-//    }
-//    public void eliminar(){
-//        if (crudEquipoprueba.delete(selectedimpresora)) {
-//            newimpresora=new clsEquipoprueba();
-//            cargardatos();
-//        } else {
-//        }
-//    }
+    private void cargardatos(){
+        lista=crudEquipo.findAllimpresoras();
+    }
+    public void insertar(){
+        if (crudEquipo.saveimpresora(newimpresora)) {
+            newimpresora=new clsEquipo();
+            cargardatos();
+        } else {
+        }
+    }
+    public void eliminar(){
+        if (crudEquipo.delete(selectedimpresora)) {
+            newimpresora=new clsEquipo();
+            cargardatos();
+        } else {
+        }
+    }
+    public void actualizar(){
+        if (crudEquipo.updateimpresora(selectedimpresora)) {
+            newimpresora=new clsEquipo();
+            cargardatos();
+        } else {
+        }
+    }
 
     public clsEquipo getNewimpresora() {
         return newimpresora;
@@ -56,12 +58,13 @@ public class ccImpresora {
         this.selectedimpresora = selectedimpresora;
     }
 
-    public List<clsEquipo> getListar() {
-        return listar;
+    public List<clsEquipo> getLista() {
+        return lista;
     }
 
-    public void setListar(List<clsEquipo> listar) {
-        this.listar = listar;
+    public void setLista(List<clsEquipo> lista) {
+        this.lista = lista;
     }
+    
     
 }

@@ -3,13 +3,10 @@ package ec.org.uniandes.test;
 
 import ec.org.uniandes.entidades.clsEquipo;
 import ec.org.uniandes.entidades.clsEquipo;
-import ec.org.uniandes.entidades.clsImpresora;
 import ec.org.uniandes.entidades.clsSoftware;
 import ec.org.uniandes.entidades.clsUbicacion;
 import ec.org.uniandes.entidades.clsUsuario;
 import ec.org.uniandes.funciones.crudEquipo;
-import ec.org.uniandes.funciones.crudEquipoprueba;
-import ec.org.uniandes.funciones.crudImpresora;
 import java.util.ArrayList;
 //import ec.org.uniandes.funciones.crudSoftware;
 //import ec.org.uniandes.funciones.crudUbicacion;
@@ -50,12 +47,13 @@ public class testUsuario {
 //        ArrayList<clsImpresora> ubi = new ArrayList<>();
 //    ubi = crudImpresora.findbyAll();
 //    System.out.print(ubi.toString());
-    ArrayList<clsEquipo> ubi = new ArrayList<>();
-    ubi = crudEquipoprueba.findbyAll();
-    System.out.print(ubi.toString());
-//    ArrayList<clsImpresora> ubi = new ArrayList<>();
-//    ubi = crudImpresora.findbyAll();
+//    ArrayList<clsEquipo> ubi = new ArrayList<>();
+//    ubi = crudEquipo.findAllimpresoras();
 //    System.out.print(ubi.toString());
+//    }
+    ArrayList<clsEquipo> PC = new ArrayList<>();
+    PC = crudEquipo.findAllimpresoras();
+    System.out.print(PC.toString());
     }
     
             

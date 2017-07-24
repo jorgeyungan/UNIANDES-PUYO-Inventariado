@@ -16,13 +16,7 @@
     </ui:define>
 
     <ui:define name="logo-mini">
-        <h:form id="form">
-            <p:growl id="msgs" showDetail="true"  />
-
-            <h:panelGrid cellpadding="3" >
-                <p:calendar id="inline"  mode="inline"  />
-            </h:panelGrid>
-        </h:form>
+        =>
     </ui:define>
 
     <ui:define name="menu">
@@ -37,29 +31,35 @@
 
     <ui:define name="title">
         <h2 class="align-center">
-            IMPRESORAS
+            Bienvenidos a Uniandes PUYO
         </h2>
     </ui:define>
 
     <ui:define name="description">
-        <ui:include src="/includes/menubar.xhtml"/>
-    </ui:define>
+        
+            aqui la descripcion
+        
 
+    </ui:define>
+    <ui:define name="right">
+        aqui la descripcion
+    </ui:define>
     <ui:define name="body">
         <h2>
-            <h:form id="frmImpresora">
-                <p:panel id="pnlImpresora" >
-                    <p:dataTable  
+            <h:form id="frmEquipo">
+                <p:panel id="pnlEquipo" >
+                    <p:dataTable 
+                        id="tblEquipo" 
                         var="equi" 
-                        value="#{ccImpresora.lista}"
+                        value="#{ccEquipo.lista}"
                         selectionMode="single"
-                        selection="#{ccImpresora.selectedimpresora}"
+                        selection="#{ccEquipo.selectedEquipo}"
                         rowKey="#{equi.idequipo}"
                         rows="8" paginator="true" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16">
                         <f:facet name="header">
-                            Datos de la Impresora
+                            Datos del Ordenadores
                         </f:facet>
                         <p:column headerText="Codigo" style="width: 55px;text-align: center">
                             <h:outputText value="#{equi.idequipo}" />
@@ -76,6 +76,9 @@
                         <p:column headerText="Nombre">
                             <h:outputText value="#{equi.nombre}" />
                         </p:column>
+                        <p:column headerText="Procesador">
+                            <h:outputText value="#{equi.procesador}" />
+                        </p:column>
                         <p:column headerText="Estado">
                             <h:outputText value="#{equi.estado}" />
                         </p:column>                        
@@ -85,9 +88,6 @@
                         <p:column headerText="Fecha Compra">
                             <h:outputText value="#{equi.fecha_compra}" />
                         </p:column>
-                        <p:column headerText="Tipo">
-                            <h:outputText value="#{equi.tipo}" />
-                        </p:column>
                         <p:column headerText="Dependencia">
                             <h:outputText value="#{equi.dependencia}" />
                         </p:column>
@@ -96,54 +96,54 @@
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
-                            <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarImpresora"/>
-                            <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarImpresora"/>
+                            <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarEquipo"/>
+                            <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarEquipo"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
             </h:form>
             <p:dialog 
                 id="dlgAgregar" 
-                header="NUEVA IMPRESORA"
+                header="Nuevo Equipo"
                 widgetVar="wdlgNuevo" 
                 modal="true"
                 resizable="false" 
                 showEffect="clip"
                 hideEffect="fold">
-                <h:form id="frmNuevoImpresora">
-                    <p:outputLabel value="DATOS DE LA IMPRESORA"/>
+                <h:form id="frmNuevoEquipo">
+                    <p:outputLabel value="DATOS DEL ORDENADOR"/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <p:outputLabel value="Serie:"/>
-                        <p:inputText value="#{ccImpresora.newimpresora.codigo}"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.codigo}"/>
                         <p:outputLabel value=" Modelo: "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.modelo}"/>    
+                        <p:inputText value="#{ccEquipo.newEquipo.modelo}"/>    
                         <p:outputLabel value=" Marca: "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.marca}"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.marca}"/>
                         <p:outputLabel value=" Nombre: "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.nombre}"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.nombre}"/>
                     </p:panelGrid>
-                    <p:outputLabel value="CARACTERISTICAS DE LA IMPRESORA"/>
+                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR"/>
                     <p:panelGrid columns="4" style="width: 100%">
-                        <p:outputLabel value="Tipo:  "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.tipo}"/>
+                        <p:outputLabel value="Procesador:  "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.procesador}"/>
                         <p:outputLabel value=" Dependencia: "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.dependencia}"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.dependencia}"/>
                     </p:panelGrid>
-                    <p:outputLabel value="DETALLES DE LA IMPRESORA"/>
+                    <p:outputLabel value="DETALLES DEL ORDENADOR"/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <p:outputLabel  value="Año Fabrica: "/>
-                        <p:inputMask value="#{ccImpresora.newimpresora.fecha_fabrica}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccEquipo.newEquipo.fecha_fabrica}" mask="9999/99/99"/>
                         <p:outputLabel  value=" Fecha Compra: "/>
-                        <p:inputMask value="#{ccImpresora.newimpresora.fecha_compra}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccEquipo.newEquipo.fecha_compra}" mask="9999/99/99"/>
                         <p:outputLabel value=" Detalle: "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.detalle}"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.detalle}"/>
                         <p:outputLabel value=" Estado: "/>
-                        <p:inputText value="#{ccImpresora.newimpresora.estado}"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.estado}"/>
                     </p:panelGrid>
                     <p:commandButton 
                         value="Ingresar"
-                        action="#{ccImpresora.insertar()}"
-                        update=":frmImpresora:pnlImpresora: frmNuevoImpresora" 
+                        action="#{ccEquipo.insertar()}"
+                        update=":frmEquipo:pnlEquipo: frmNuevoEquipo" 
                         onclick="wdlgNuevo.hide();"/>                
                     <p:commandButton 
                         value="Cancelar"
@@ -154,47 +154,47 @@
             </p:dialog>
             <p:dialog 
                 id="dlgModificar" 
-                header="MODIFICAR IMPRESORA"
+                header="Modificar Equipo"
                 widgetVar="wdlgModificar" 
                 modal="true"
                 resizable="false" 
                 showEffect="clip"
                 hideEffect="fold"
                 style="width: 300%">
-                <h:form id="frmModificarImpresora">
-                    <p:outputLabel value="DATOS DE LA IMPRESORA"/>
+                <h:form id="frmModificarEquipo">
+                    <p:outputLabel value="DATOS DEL ORDENADOR"/>
                     <p:panelGrid  columns="4" style="width: 100%">
                         <p:outputLabel value="Serie: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.codigo}"/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.codigo}"/>
                         <p:outputLabel value=" Modelo: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.modelo}"/>    
+                        <p:inputText value="#{ccEquipo.selectedEquipo.modelo}"/>    
                         <p:outputLabel value=" Marca: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.marca}"/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.marca}"/>
                         <p:outputLabel value=" Nombre: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.nombre}"/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.nombre}"/>
                     </p:panelGrid>
-                    <p:outputLabel value="CARACTERISTICAS DE LA IMPRESORA "/>
+                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR "/>
                     <p:panelGrid  columns="4" style="height: 100%">
-                        <p:outputLabel value="Tipo:  "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.tipo}"/>
+                        <p:outputLabel value="Procesador:  "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.procesador}"/>
                         <p:outputLabel value=" Dependencia: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.dependencia}"/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.dependencia}"/>
                     </p:panelGrid>
-                    <p:outputLabel value="DETALLES DE LA IMPRESORA "/>
+                    <p:outputLabel value="DETALLES DEL ORDENADOR "/>
                     <p:panelGrid  columns="4" style="width: 100%">
                         <p:outputLabel  value="Año Fabrica: "/>
-                        <p:inputMask value="#{ccImpresora.selectedimpresora.fecha_fabrica}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_fabrica}" mask="9999/99/99"/>
                         <p:outputLabel  value=" Fecha Compra: "/>
-                        <p:inputMask value="#{ccImpresora.selectedimpresora.fecha_compra}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_compra}" mask="9999/99/99"/>
                         <p:outputLabel value=" Estado: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.estado}"/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.estado}"/>
                         <p:outputLabel value=" Detalle: "/>
-                        <p:inputText value="#{ccImpresora.selectedimpresora.detalle}"/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.detalle}"/>
                     </p:panelGrid>
                     <p:commandButton 
                         value="Modificar"
-                        action="#{ccImpresora.actualizar()}"
-                        update=":frmImpresora:pnlImpresora: frmModificarImpresora"
+                        action="#{ccEquipo.actualizar()}"
+                        update=":frmEquipo:pnlEquipo: frmModificarEquipo"
                         onclick="wdlgModificar.hide()"/>
                     <p:commandButton 
                         value="Cancelar" 
@@ -204,48 +204,48 @@
             </p:dialog>
             <p:dialog 
                 id="dlgEliminar" 
-                header="ELIMINAR IMPRESORA"
+                header="Eliminar Equipo"
                 widgetVar="wdlgEliminar" 
                 modal="true"
                 resizable="false" 
                 showEffect="clip"
                 hideEffect="fold">
-                <h:form id="frmEliminarImpresora">
-                    <p:outputLabel value="DATOS DE LA IMPRESORA "/>
+                <h:form id="frmEliminarEquipo">
+                    <p:outputLabel value="DATOS DEL ORDENADOR "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <h:outputText value="Código" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.idequipo}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.idequipo}" />
                         <h:outputText value="Serie" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.codigo}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.codigo}" />
                         <h:outputText value="Modelo" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.modelo}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.modelo}" />
                         <h:outputText value="Marca" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.marca}" /> 
+                        <h:outputText value="#{ccEquipo.selectedEquipo.marca}" /> 
                         <h:outputText value="Nombre" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.nombre}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.nombre}" />
                     </p:panelGrid>
-                    <p:outputLabel value="CARACTERISTICAS DE LA IMPRESORA "/>
+                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <h:outputText value="Estado" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.estado}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.estado}" />
                         <h:outputText value="Procesador" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.tipo}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.procesador}" />
                     </p:panelGrid>
-                    <p:outputLabel value="DETALLES DE LA IMPRESORA "/>
+                    <p:outputLabel value="DETALLES DEL ORDENADOR "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <h:outputText value="Fecha Compra" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.fecha_compra}" /> 
+                        <h:outputText value="#{ccEquipo.selectedEquipo.fecha_compra}" /> 
                         <h:outputText value="Fecha Fabrica" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.fecha_fabrica}" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.fecha_fabrica}" />
                         <h:outputText value="Detalle" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.detalle}" /> 
+                        <h:outputText value="#{ccEquipo.selectedEquipo.detalle}" /> 
                         <h:outputText value="Dependencia" />
-                        <h:outputText value="#{ccImpresora.selectedimpresora.dependencia}" /> 
+                        <h:outputText value="#{ccEquipo.selectedEquipo.dependencia}" /> 
                     </p:panelGrid>
                     <p:commandButton 
                         value="Eliminar"
-                        action="#{ccImpresora.eliminar()}"
-                        update=":frmImpresora:pnlImpresora :frmEliminarImpresora" 
+                        action="#{ccEquipo.eliminar()}"
+                        update=":frmEquipo:pnlEquipo :frmEliminarEquipo" 
                         onclick="wdlgEliminar.hide()"/>
                     <p:commandButton 
                         value="Cancelar" 
@@ -270,5 +270,4 @@
 
 
 </ui:composition>
-
 

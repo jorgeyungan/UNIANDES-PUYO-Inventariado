@@ -15,29 +15,31 @@ public class ccEquipo {
     private clsEquipo newEquipo;
     private clsEquipo selectedEquipo;
     private List<clsEquipo> lista;
+    
     public ccEquipo(){
         newEquipo=new clsEquipo();
         cargardatos();
     }
+    
     private void cargardatos(){
-        lista=crudEquipo.findbyAll();
+        lista=crudEquipo.findAllpc();
     }
     public void insertar(){
-        if (crudEquipo.save(newEquipo)) {
+        if (crudEquipo.savepc(newEquipo)) {
             newEquipo=new clsEquipo();
             cargardatos();
         } else {
         }
     }
     public void eliminar(){
-        if (crudEquipo.delete(newEquipo)) {
+        if (crudEquipo.delete(selectedEquipo)) {
             newEquipo=new clsEquipo();
             cargardatos();
         } else {
         }
     }
     public void actualizar(){
-        if (crudEquipo.update(selectedEquipo)) {
+        if (crudEquipo.updatepc(selectedEquipo)) {
             newEquipo=new clsEquipo();
             cargardatos();
         } else {

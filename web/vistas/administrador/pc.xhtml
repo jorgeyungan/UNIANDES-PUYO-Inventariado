@@ -36,9 +36,14 @@
     </ui:define>
 
     <ui:define name="description">
-        A page description
-    </ui:define>
+        
+            aqui la descripcion
+        
 
+    </ui:define>
+    <ui:define name="right">
+        aqui la descripcion
+    </ui:define>
     <ui:define name="body">
         <h2>
             <h:form id="frmEquipo">
@@ -52,8 +57,7 @@
                         rowKey="#{equi.idequipo}"
                         rows="8" paginator="true" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16"
-                        >
+                        rowsPerPageTemplate="6,12,16">
                         <f:facet name="header">
                             Datos del Ordenadores
                         </f:facet>
@@ -66,7 +70,6 @@
                         <p:column headerText="Modelo">
                             <h:outputText value="#{equi.modelo}" />
                         </p:column>
-
                         <p:column headerText="Marca">
                             <h:outputText value="#{equi.marca}" />
                         </p:column>
@@ -75,9 +78,6 @@
                         </p:column>
                         <p:column headerText="Procesador">
                             <h:outputText value="#{equi.procesador}" />
-                        </p:column>
-                        <p:column headerText="Disco Duro">
-                            <h:outputText value="#{equi.disco_duro}" />
                         </p:column>
                         <p:column headerText="Estado">
                             <h:outputText value="#{equi.estado}" />
@@ -97,10 +97,10 @@
                         <f:facet name="footer">
                             <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
                             <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarEquipo"/>
+                            <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarEquipo"/>
                         </f:facet>
                     </p:dataTable>
                 </p:panel>
-
             </h:form>
             <p:dialog 
                 id="dlgAgregar" 
@@ -111,52 +111,35 @@
                 showEffect="clip"
                 hideEffect="fold">
                 <h:form id="frmNuevoEquipo">
-                    <p:panel header="Datos del Ordenador">
-                        <h:panelGrid >
-                            <p:outputLabel value="Serie: ">
-                                <p:inputText style="width:300px"
-                                             value="#{ccEquipo.newEquipo.codigo}"/>
-                            </p:outputLabel>
-                            <p:outputLabel value=" Modelo: ">
-                                <p:inputText style="width:300px"
-                                             value="#{ccEquipo.newEquipo.modelo}"/>    
-                                <p:outputLabel value=" Marca: "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.newEquipo.marca}"/>
-                                <p:outputLabel value=" Nombre: "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.newEquipo.nombre}"/>
-                            </p:outputLabel>
-                        </h:panelGrid>
-                    </p:panel>  
-                    <p:panel header="Caracteristicas">
-                        <h:panelGrid >
-                            <p:outputLabel value="Procesador:  ">
-                                <p:inputText style="width:150px" 
-                                             value="#{ccEquipo.newEquipo.procesador}"/>
-                                <p:outputLabel value="Disco Duro:  "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.newEquipo.disco_duro}"/>
-                                <p:outputLabel value=" Dependencia: "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.newEquipo.dependencia}"/>
-                            </p:outputLabel>
-                        </h:panelGrid>
-                    </p:panel>
-                    <p:panel header="Detalles">
-                        <h:panelGrid >
-                            <p:outputLabel  value="Año Fabrica: ">
-                                <p:inputMask value="#{ccEquipo.newEquipo.fecha_fabrica}" mask="9999/99/99"/>
-                                <p:outputLabel  value=" Fecha Compra: "/>
-                                <p:inputMask value="#{ccEquipo.newEquipo.fecha_compra}" mask="9999/99/99"/>
-                            </p:outputLabel>
-                            <p:outputLabel value=" Detalle: ">
-                                <p:inputText value="#{ccEquipo.newEquipo.detalle}"/>
-                                <p:outputLabel value=" Estado: "/>
-                                <p:inputText value="#{ccEquipo.newEquipo.estado}"/>
-                            </p:outputLabel>
-                        </h:panelGrid>
-                    </p:panel>
+                    <p:outputLabel value="DATOS DEL ORDENADOR"/>
+                    <p:panelGrid columns="4" style="width: 100%">
+                        <p:outputLabel value="Serie:"/>
+                        <p:inputText value="#{ccEquipo.newEquipo.codigo}"/>
+                        <p:outputLabel value=" Modelo: "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.modelo}"/>    
+                        <p:outputLabel value=" Marca: "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.marca}"/>
+                        <p:outputLabel value=" Nombre: "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.nombre}"/>
+                    </p:panelGrid>
+                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR"/>
+                    <p:panelGrid columns="4" style="width: 100%">
+                        <p:outputLabel value="Procesador:  "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.procesador}"/>
+                        <p:outputLabel value=" Dependencia: "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.dependencia}"/>
+                    </p:panelGrid>
+                    <p:outputLabel value="DETALLES DEL ORDENADOR"/>
+                    <p:panelGrid columns="4" style="width: 100%">
+                        <p:outputLabel  value="Año Fabrica: "/>
+                        <p:inputMask value="#{ccEquipo.newEquipo.fecha_fabrica}" mask="9999/99/99"/>
+                        <p:outputLabel  value=" Fecha Compra: "/>
+                        <p:inputMask value="#{ccEquipo.newEquipo.fecha_compra}" mask="9999/99/99"/>
+                        <p:outputLabel value=" Detalle: "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.detalle}"/>
+                        <p:outputLabel value=" Estado: "/>
+                        <p:inputText value="#{ccEquipo.newEquipo.estado}"/>
+                    </p:panelGrid>
                     <p:commandButton 
                         value="Ingresar"
                         action="#{ccEquipo.insertar()}"
@@ -167,11 +150,8 @@
                         immediate="true"
                         oncomplete="PF('wdlgNuevo').hide();"
                         type="reset"/>
-
                 </h:form>
-
             </p:dialog>
-
             <p:dialog 
                 id="dlgModificar" 
                 header="Modificar Equipo"
@@ -179,54 +159,38 @@
                 modal="true"
                 resizable="false" 
                 showEffect="clip"
-                hideEffect="fold">
+                hideEffect="fold"
+                style="width: 300%">
                 <h:form id="frmModificarEquipo">
-                    <p:panel header="Datos del Ordenador">
-                        <h:panelGrid >
-                            <p:outputLabel value="Serie: ">
-                                <p:inputText style="width:300px"
-                                             value="#{ccEquipo.selectedEquipo.codigo}"/>
-                            </p:outputLabel>
-                            <p:outputLabel value=" Modelo: ">
-                                <p:inputText style="width:300px"
-                                             value="#{ccEquipo.selectedEquipo.modelo}"/>    
-                                <p:outputLabel value=" Marca: "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.selectedEquipo.marca}"/>
-                                <p:outputLabel value=" Nombre: "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.selectedEquipo.nombre}"/>
-                            </p:outputLabel>
-                        </h:panelGrid>
-                    </p:panel>  
-                    <p:panel header="Caracteristicas">
-                        <h:panelGrid >
-                            <p:outputLabel value="Procesador:  ">
-                                <p:inputText style="width:150px" 
-                                             value="#{ccEquipo.selectedEquipo.procesador}"/>
-                                <p:outputLabel value="Disco Duro:  "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.selectedEquipo.disco_duro}"/>
-                                <p:outputLabel value=" Dependencia: "/>
-                                <p:inputText style="width:100px"
-                                             value="#{ccEquipo.selectedEquipo.dependencia}"/>
-                            </p:outputLabel>
-                        </h:panelGrid>
-                    </p:panel>
-                    <p:panel header="Detalles">
-                        <h:panelGrid >
-                            <p:outputLabel  value="Año Fabrica: ">
-                                <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_fabrica}" mask="9999/99/99"/>
-                                <p:outputLabel  value=" Fecha Compra: "/>
-                                <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_compra}" mask="9999/99/99"/>
-                            </p:outputLabel>
-                            <p:outputLabel value=" Detalle: ">
-                                <p:inputText value="#{ccEquipo.selectedEquipo.detalle}"/>
-                                <p:outputLabel value=" Estado: "/>
-                                <p:inputText value="#{ccEquipo.selectedEquipo.estado}"/>
-                            </p:outputLabel>
-                        </h:panelGrid>
-                    </p:panel>
+                    <p:outputLabel value="DATOS DEL ORDENADOR"/>
+                    <p:panelGrid  columns="4" style="width: 100%">
+                        <p:outputLabel value="Serie: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.codigo}"/>
+                        <p:outputLabel value=" Modelo: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.modelo}"/>    
+                        <p:outputLabel value=" Marca: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.marca}"/>
+                        <p:outputLabel value=" Nombre: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.nombre}"/>
+                    </p:panelGrid>
+                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR "/>
+                    <p:panelGrid  columns="4" style="height: 100%">
+                        <p:outputLabel value="Procesador:  "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.procesador}"/>
+                        <p:outputLabel value=" Dependencia: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.dependencia}"/>
+                    </p:panelGrid>
+                    <p:outputLabel value="DETALLES DEL ORDENADOR "/>
+                    <p:panelGrid  columns="4" style="width: 100%">
+                        <p:outputLabel  value="Año Fabrica: "/>
+                        <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_fabrica}" mask="9999/99/99"/>
+                        <p:outputLabel  value=" Fecha Compra: "/>
+                        <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_compra}" mask="9999/99/99"/>
+                        <p:outputLabel value=" Estado: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.estado}"/>
+                        <p:outputLabel value=" Detalle: "/>
+                        <p:inputText value="#{ccEquipo.selectedEquipo.detalle}"/>
+                    </p:panelGrid>
                     <p:commandButton 
                         value="Modificar"
                         action="#{ccEquipo.actualizar()}"
@@ -236,7 +200,57 @@
                         value="Cancelar" 
                         onclick="wdlgModificar.hide()"
                         type="reset" />
-
+                </h:form>
+            </p:dialog>
+            <p:dialog 
+                id="dlgEliminar" 
+                header="Eliminar Equipo"
+                widgetVar="wdlgEliminar" 
+                modal="true"
+                resizable="false" 
+                showEffect="clip"
+                hideEffect="fold">
+                <h:form id="frmEliminarEquipo">
+                    <p:outputLabel value="DATOS DEL ORDENADOR "/>
+                    <p:panelGrid columns="4" style="width: 100%">
+                        <h:outputText value="Código" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.idequipo}" />
+                        <h:outputText value="Serie" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.codigo}" />
+                        <h:outputText value="Modelo" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.modelo}" />
+                        <h:outputText value="Marca" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.marca}" /> 
+                        <h:outputText value="Nombre" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.nombre}" />
+                    </p:panelGrid>
+                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR "/>
+                    <p:panelGrid columns="4" style="width: 100%">
+                        <h:outputText value="Estado" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.estado}" />
+                        <h:outputText value="Procesador" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.procesador}" />
+                    </p:panelGrid>
+                    <p:outputLabel value="DETALLES DEL ORDENADOR "/>
+                    <p:panelGrid columns="4" style="width: 100%">
+                        <h:outputText value="Fecha Compra" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.fecha_compra}" /> 
+                        <h:outputText value="Fecha Fabrica" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.fecha_fabrica}" />
+                        <h:outputText value="Detalle" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.detalle}" /> 
+                        <h:outputText value="Dependencia" />
+                        <h:outputText value="#{ccEquipo.selectedEquipo.dependencia}" /> 
+                    </p:panelGrid>
+                    <p:commandButton 
+                        value="Eliminar"
+                        action="#{ccEquipo.eliminar()}"
+                        update=":frmEquipo:pnlEquipo :frmEliminarEquipo" 
+                        onclick="wdlgEliminar.hide()"/>
+                    <p:commandButton 
+                        value="Cancelar" 
+                        onclick="wdlgEliminar.hide()"
+                        type="reset" />
                 </h:form>
             </p:dialog>
         </h2>
