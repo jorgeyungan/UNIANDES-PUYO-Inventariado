@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/admin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <ui:define name="head">
+        <title>INVENTARIADO UNIANDES PUYO</title>
+    </ui:define>
+
+    <ui:define name="logo-lg">
+        UNIANDES PUYO
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        =>
+    </ui:define>
+
+    <ui:define name="menu">
+
+        <ui:include src="/includes/menu-search.xhtml"/>
+        <ui:include src="/includes/menu.xhtml"/>
+    </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-bar.xhtml"/>
+    </ui:define>
+
+    <ui:define name="title">
+        <h2 class="align-center">
+            Bienvenidos a Uniandes PUYO
+        </h2>
+    </ui:define>
+
+    <ui:define name="description">
+        <h2 style="font-size: 150%;font-style: oblique">
+        Implementacion de un nuevo Equipo para el uso de Docentes ó Estudiantes.
+</h2>
+
+    </ui:define>
+    <ui:define name="right">
+        aqui la descripcion
+    </ui:define>
+    <ui:define name="body">
+        <h2>
+            <h:form id="frmImplementacion">
+                <p:panel id="pnlImplementacion">
+                    <p:dataTable 
+                        id="tblUbiEquipo" 
+                        var="cli"
+                        value="#{ccUbiEqui.lista}"
+                        selectionMode="single"
+                        selection="#{ccUbiEqui.selecteddetalle}"
+                        rowKey="#{cli.iddetalle}"
+                        rows="6" paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+                        <f:facet name="header">
+                            Implementacion
+                        </f:facet>
+                        <p:column headerText="N° Mantenimiento" style="width: 75px;text-align: center">
+                            <h:outputText value="#{cli.iddetalle}" />
+                        </p:column>
+                        <p:column headerText="Fecha" style="text-align: center">
+                            <h:outputText value="#{cli.fecha}" />
+                        </p:column>
+                        <p:column headerText="Serie" style="text-align: center">
+                            <h:outputText value="#{cli.idequipo.codigo}" />
+                        </p:column>
+                        <p:column headerText="Marca" style="text-align: center" >
+                            <h:outputText value="#{cli.idequipo.marca}" />
+                        </p:column>
+                        <p:column headerText="Modelo" style="text-align: center">
+                            <h:outputText value="#{cli.idequipo.modelo}" />
+                        </p:column>
+                        <p:column headerText="Modelo" style="text-align: center">
+                            <h:outputText value="#{cli.idequipo.nombre}" />
+                        </p:column>
+                        <p:column headerText="Estado" style="text-align: center">
+                            <h:outputText value="#{cli.estado}" />
+                        </p:column>                        
+                        <p:column headerText="Edificio" style="text-align: center">
+                            <h:outputText value="#{cli.idubicacion.edificio}" />
+                        </p:column>                       
+                        <p:column headerText="Piso" style="text-align: center">
+                            <h:outputText value="#{cli.idubicacion.piso}" />
+                        </p:column>
+                        <p:column headerText="Laboratorio" style="text-align: center">
+                            <h:outputText value="#{cli.idubicacion.sala}" />
+                        </p:column>
+                        <p:column headerText="PC" style="text-align: center">
+                            <h:outputText value="#{cli.idubicacion.sector}" />
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+            <p:dialog 
+                id="dlgAgregar" 
+                header="Nueva Implementación"
+                widgetVar="wdlgNuevo" 
+                modal="true"
+                resizable="false" 
+                showEffect="clip"
+                hideEffect="fold">
+                <h:form id="frmNuevoImplementacion">
+
+                    <p:panelGrid columns="2" style="width: 100%">
+                        
+                        <p:dataTable 
+                            id="tblEquipo" 
+                            var="equi" 
+                            value="#{ccEquipotodo.lista}"
+                            selectionMode="single"
+                            selection="#{ccUbiEqui.selectedequipo}"
+                            rowKey="#{equi.idequipo}"
+                            rows="6" paginator="true" 
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="6,12,16">
+                            <f:facet name="header">
+                                EQUIPO
+                            </f:facet>
+                            <p:column headerText="Codigo" style="width: 55px;text-align: center">
+                                <h:outputText value="#{equi.idequipo}" />
+                            </p:column>
+                            <p:column headerText="Serie" >
+                                <h:outputText value="#{equi.codigo}" />
+                            </p:column>
+                            <p:column headerText="Modelo">
+                                <h:outputText value="#{equi.modelo}" />
+                            </p:column>
+                            <p:column headerText="Marca">
+                                <h:outputText value="#{equi.marca}" />
+                            </p:column>
+                            <p:column headerText="Nombre">
+                                <h:outputText value="#{equi.nombre}" />
+                            </p:column>
+                        </p:dataTable>
+                        <p:dataTable 
+                            id="basicDT" 
+                            var="ubi" 
+                            value="#{ccUbicacion.lista}"
+                            selectionMode="single"
+                            selection="#{ccUbiEqui.selectedUbicacion}"
+                            rowKey="#{ubi.idubicacion}"
+                            rows="6" paginator="true" 
+                            paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="6,12,16">
+                            <f:facet name="header">
+                                UBICACION
+                            </f:facet>
+                            <p:column headerText="Edificio">
+                                <h:outputText value="#{ubi.edificio}" />
+                            </p:column>
+                            <p:column headerText="Piso">
+                                <h:outputText value="#{ubi.piso}" />
+                            </p:column>
+                            <p:column headerText="Sala">
+                                <h:outputText value="#{ubi.sala}" />
+                            </p:column>
+                            <p:column headerText="Sector">
+                                <h:outputText value="#{ubi.sector}" />
+                            </p:column>
+                        </p:dataTable>
+                        <p:outputLabel value=" Fecha "/>
+                        <p:inputMask value="#{ccUbiEqui.newdetalle.fecha}" mask="9999/99/99"/>
+                        <p:outputLabel value=" Estado "/>
+                        <p:inputText value="#{ccUbiEqui.newdetalle.estado}"/>
+                    </p:panelGrid>
+
+                    <p:commandButton 
+                        value="Ingresar"
+                        action="#{ccUbiEqui.insertar()}"
+                        update=":frmImplementacion:pnlImplementacion: frmNuevoImplementacion" 
+                        onclick="wdlgNuevo.hide();"/>                
+                    <p:commandButton 
+                        value="Cancelar"
+                        immediate="true"
+                        oncomplete="PF('wdlgNuevo').hide();"
+                        type="reset"/>
+                </h:form>
+            </p:dialog>
+            
+        </h2>
+    </ui:define>
+
+
+    <ui:define name="footer">
+        <a target="_blank"
+           href="https://github.com/adminfaces/">
+            Copyright (C) 2017 - AdminFaces
+        </a>
+
+        <div class="pull-right hidden-xs" style="color: gray">
+            <i>1.0.0</i>
+        </div>
+    </ui:define>
+
+
+</ui:composition>
+

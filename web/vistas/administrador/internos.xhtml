@@ -47,7 +47,7 @@
     <ui:define name="body">
         <h2>
             <h:form id="frmInternos">
-                <p:panel id="pnlIntenros" >
+                <p:panel id="pnlInternos" >
                     <p:dataTable 
                         id="tblInternos" 
                         var="equi" 
@@ -55,7 +55,7 @@
                         selectionMode="single"
                         selection="#{ccInterno.selectedinterno}"
                         rowKey="#{equi.idequipo}"
-                        rows="8" paginator="true" 
+                        rows="6" paginator="true" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16">
                         <f:facet name="header">
@@ -79,9 +79,6 @@
                         <p:column headerText="Tamaño">
                             <h:outputText value="#{equi.tamaño}" />
                         </p:column>
-                        <p:column headerText="Estado">
-                            <h:outputText value="#{equi.estado}" />
-                        </p:column>                        
                         <p:column headerText="Año Fabrica">
                             <h:outputText value="#{equi.fecha_fabrica}" />
                         </p:column>
@@ -110,40 +107,38 @@
                 resizable="false" 
                 showEffect="clip"
                 hideEffect="fold">
-                <h:form id="frmNuevoInterno">
+                <h:form id="frmNuevoInternos">
                     <p:outputLabel value="DATOS GENERALES "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <p:outputLabel value="Serie:"/>
-                        <p:inputText value="#{ccEquipo.newEquipo.codigo}"/>
+                        <p:inputText value="#{ccInterno.newinterno.codigo}"/>
                         <p:outputLabel value=" Modelo: "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.modelo}"/>    
+                        <p:inputText value="#{ccInterno.newinterno.modelo}"/>    
                         <p:outputLabel value=" Marca: "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.marca}"/>
+                        <p:inputText value="#{ccInterno.newinterno.marca}"/>
                         <p:outputLabel value=" Nombre: "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.nombre}"/>
+                        <p:inputText value="#{ccInterno.newinterno.nombre}"/>
                     </p:panelGrid>
                     <p:outputLabel value="CARACTERISTICAS "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <p:outputLabel value="Procesador:  "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.procesador}"/>
+                        <p:inputText value="#{ccInterno.newinterno.tamaño}"/>
                         <p:outputLabel value=" Dependencia: "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.dependencia}"/>
+                        <p:inputText value="#{ccInterno.newinterno.dependencia}"/>
                     </p:panelGrid>
                     <p:outputLabel value="DETALLES "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <p:outputLabel  value="Año Fabrica: "/>
-                        <p:inputMask value="#{ccEquipo.newEquipo.fecha_fabrica}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccInterno.newinterno.fecha_fabrica}" mask="9999/99/99"/>
                         <p:outputLabel  value=" Fecha Compra: "/>
-                        <p:inputMask value="#{ccEquipo.newEquipo.fecha_compra}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccInterno.newinterno.fecha_compra}" mask="9999/99/99"/>
                         <p:outputLabel value=" Detalle: "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.detalle}"/>
-                        <p:outputLabel value=" Estado: "/>
-                        <p:inputText value="#{ccEquipo.newEquipo.estado}"/>
+                        <p:inputText value="#{ccInterno.newinterno.detalle}"/>
                     </p:panelGrid>
                     <p:commandButton 
                         value="Ingresar"
-                        action="#{ccEquipo.insertar()}"
-                        update=":frmInterno:pnlInterno: frmNuevoInterno" 
+                        action="#{ccInterno.insertar()}"
+                        update=":frmInternos:pnlInternos: frmNuevoInternos" 
                         onclick="wdlgNuevo.hide();"/>                
                     <p:commandButton 
                         value="Cancelar"
@@ -154,47 +149,45 @@
             </p:dialog>
             <p:dialog 
                 id="dlgModificar" 
-                header="Modificar Equipo"
+                header="Modificar Dispositivos Internos"
                 widgetVar="wdlgModificar" 
                 modal="true"
                 resizable="false" 
                 showEffect="clip"
                 hideEffect="fold"
                 style="width: 300%">
-                <h:form id="frmModificarEquipo">
-                    <p:outputLabel value="DATOS DEL ORDENADOR"/>
+                <h:form id="frmModificarInternos">
+                    <p:outputLabel value="DATOS GENERALES"/>
                     <p:panelGrid  columns="4" style="width: 100%">
                         <p:outputLabel value="Serie: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.codigo}"/>
+                        <p:inputText value="#{ccInterno.selectedinterno.codigo}"/>
                         <p:outputLabel value=" Modelo: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.modelo}"/>    
+                        <p:inputText value="#{ccInterno.selectedinterno.modelo}"/>    
                         <p:outputLabel value=" Marca: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.marca}"/>
+                        <p:inputText value="#{ccInterno.selectedinterno.marca}"/>
                         <p:outputLabel value=" Nombre: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.nombre}"/>
+                        <p:inputText value="#{ccInterno.selectedinterno.nombre}"/>
                     </p:panelGrid>
-                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR "/>
+                    <p:outputLabel value="CARACTERISTICAS  "/>
                     <p:panelGrid  columns="4" style="height: 100%">
                         <p:outputLabel value="Procesador:  "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.procesador}"/>
+                        <p:inputText value="#{ccInterno.selectedinterno.tamaño}"/>
                         <p:outputLabel value=" Dependencia: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.dependencia}"/>
+                        <p:inputText value="#{ccInterno.selectedinterno.dependencia}"/>
                     </p:panelGrid>
-                    <p:outputLabel value="DETALLES DEL ORDENADOR "/>
+                    <p:outputLabel value="DETALLES  "/>
                     <p:panelGrid  columns="4" style="width: 100%">
                         <p:outputLabel  value="Año Fabrica: "/>
-                        <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_fabrica}" mask="9999/99/99"/>
+                        <p:inputMask value="#{ccInterno.selectedinterno.fecha_fabrica}" mask="9999/99/99"/>
                         <p:outputLabel  value=" Fecha Compra: "/>
-                        <p:inputMask value="#{ccEquipo.selectedEquipo.fecha_compra}" mask="9999/99/99"/>
-                        <p:outputLabel value=" Estado: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.estado}"/>
+                        <p:inputMask value="#{ccInterno.selectedinterno.fecha_compra}" mask="9999/99/99"/>
                         <p:outputLabel value=" Detalle: "/>
-                        <p:inputText value="#{ccEquipo.selectedEquipo.detalle}"/>
+                        <p:inputText value="#{ccInterno.selectedinterno.detalle}"/>
                     </p:panelGrid>
                     <p:commandButton 
                         value="Modificar"
-                        action="#{ccEquipo.actualizar()}"
-                        update=":frmEquipo:pnlEquipo: frmModificarEquipo"
+                        action="#{ccInterno.actualizar()}"
+                        update=":frmInternos:pnlInternos: frmModificarInternos"
                         onclick="wdlgModificar.hide()"/>
                     <p:commandButton 
                         value="Cancelar" 
@@ -204,48 +197,46 @@
             </p:dialog>
             <p:dialog 
                 id="dlgEliminar" 
-                header="Eliminar Equipo"
+                header="Eliminar Dispositivos Internos"
                 widgetVar="wdlgEliminar" 
                 modal="true"
                 resizable="false" 
                 showEffect="clip"
                 hideEffect="fold">
-                <h:form id="frmEliminarEquipo">
-                    <p:outputLabel value="DATOS DEL ORDENADOR "/>
+                <h:form id="frmEliminarInternos">
+                    <p:outputLabel value="DATOS GENERALES "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <h:outputText value="Código" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.idequipo}" />
+                        <h:outputText value="#{ccInterno.selectedinterno.idequipo}" />
                         <h:outputText value="Serie" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.codigo}" />
+                        <h:outputText value="#{ccInterno.selectedinterno.codigo}" />
                         <h:outputText value="Modelo" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.modelo}" />
+                        <h:outputText value="#{ccInterno.selectedinterno.modelo}" />
                         <h:outputText value="Marca" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.marca}" /> 
+                        <h:outputText value="#{ccInterno.selectedinterno.marca}" /> 
                         <h:outputText value="Nombre" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.nombre}" />
+                        <h:outputText value="#{ccInterno.selectedinterno.nombre}" />
                     </p:panelGrid>
-                    <p:outputLabel value="CARACTERISTICAS DEL ORDENADOR "/>
+                    <p:outputLabel value="CARACTERISTICAS "/>
                     <p:panelGrid columns="4" style="width: 100%">
-                        <h:outputText value="Estado" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.estado}" />
+                        <h:outputText value="Dependencia" />
+                        <h:outputText value="#{ccInterno.selectedinterno.dependencia}" />
                         <h:outputText value="Procesador" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.procesador}" />
+                        <h:outputText value="#{ccInterno.selectedinterno.tamaño}" />
                     </p:panelGrid>
-                    <p:outputLabel value="DETALLES DEL ORDENADOR "/>
+                    <p:outputLabel value="DETALLES "/>
                     <p:panelGrid columns="4" style="width: 100%">
                         <h:outputText value="Fecha Compra" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.fecha_compra}" /> 
+                        <h:outputText value="#{ccInterno.selectedinterno.fecha_compra}" /> 
                         <h:outputText value="Fecha Fabrica" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.fecha_fabrica}" />
+                        <h:outputText value="#{ccInterno.selectedinterno.fecha_fabrica}" />
                         <h:outputText value="Detalle" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.detalle}" /> 
-                        <h:outputText value="Dependencia" />
-                        <h:outputText value="#{ccEquipo.selectedEquipo.dependencia}" /> 
+                        <h:outputText value="#{ccInterno.selectedinterno.detalle}" /> 
                     </p:panelGrid>
                     <p:commandButton 
                         value="Eliminar"
                         action="#{ccEquipo.eliminar()}"
-                        update=":frmEquipo:pnlEquipo :frmEliminarEquipo" 
+                        update=":frmInternos:pnlInternos :frmEliminarInternos" 
                         onclick="wdlgEliminar.hide()"/>
                     <p:commandButton 
                         value="Cancelar" 

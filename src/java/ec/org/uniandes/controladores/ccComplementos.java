@@ -5,10 +5,10 @@ import ec.org.uniandes.entidades.clsEquipo;
 import ec.org.uniandes.funciones.crudEquipo;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class ccComplementos {
 
     private clsEquipo newcomplemento;

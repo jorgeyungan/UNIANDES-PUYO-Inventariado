@@ -14,13 +14,16 @@ public class ccEquipo {
 
     private clsEquipo newEquipo;
     private clsEquipo selectedEquipo;
-    private List<clsEquipo> lista;
+    private List<clsEquipo> lista,todo;
+    
     
     public ccEquipo(){
         newEquipo=new clsEquipo();
         cargardatos();
     }
-    
+    private void cargartodo(){
+        todo=crudEquipo.findAll();
+    }
     private void cargardatos(){
         lista=crudEquipo.findAllpc();
     }
@@ -68,6 +71,14 @@ public class ccEquipo {
 
     public void setLista(List<clsEquipo> lista) {
         this.lista = lista;
+    }
+
+    public List<clsEquipo> getTodo() {
+        return todo;
+    }
+
+    public void setTodo(List<clsEquipo> todo) {
+        this.todo = todo;
     }
     
 }

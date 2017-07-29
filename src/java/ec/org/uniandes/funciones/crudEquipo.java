@@ -14,8 +14,8 @@ public class crudEquipo {
     public static boolean savepc(clsEquipo pc) {
         boolean resultado = false;
         String sql = "INSERT INTO public.equipo(codigo,modelo,marca,nombre,fecha_compra,"
-                + "fecha_fabrica,estado,procesador,dependencia,detalle)"
-                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+                + "fecha_fabrica,procesador,dependencia,detalle)"
+                + " VALUES(?,?,?,?,?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pc.getCodigo()));
         lstPar.add(new Parametro(2, pc.getModelo()));
@@ -23,7 +23,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, pc.getNombre()));
         lstPar.add(new Parametro(5, pc.getFecha_compra()));
         lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, pc.getEstado()));
         lstPar.add(new Parametro(8, pc.getProcesador()));
         lstPar.add(new Parametro(9, pc.getDependencia()));
         lstPar.add(new Parametro(10, pc.getDetalle()));
@@ -37,8 +36,8 @@ public class crudEquipo {
     public static boolean savecomplementos(clsEquipo complementos) {
         boolean resultado = false;
         String sql = "INSERT INTO public.equipo(codigo,modelo,marca,nombre,fecha_compra,"
-                + "fecha_fabrica,estado,dependencia,detalle)"
-                + " VALUES(?,?,?,?,?,?,?,?,?)";
+                + "fecha_fabrica,dependencia,detalle)"
+                + " VALUES(?,?,?,?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, complementos.getCodigo()));
         lstPar.add(new Parametro(2, complementos.getModelo()));
@@ -46,7 +45,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, complementos.getNombre()));
         lstPar.add(new Parametro(5, complementos.getFecha_compra()));
         lstPar.add(new Parametro(6, complementos.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, complementos.getEstado()));
         lstPar.add(new Parametro(8, complementos.getDependencia()));
         lstPar.add(new Parametro(9, complementos.getDetalle()));
         try {
@@ -59,8 +57,8 @@ public class crudEquipo {
     public static boolean saveimpresora(clsEquipo impresora) {
         boolean resultado = false;
         String sql = "INSERT INTO public.equipo(codigo,modelo,marca,nombre,fecha_compra,"
-                + "fecha_fabrica,estado,tipo,dependencia,detalle)"
-                + " VALUES(?,?,?,?,?,?,?,?,?,?)";
+                + "fecha_fabrica,tipo,dependencia,detalle)"
+                + " VALUES(?,?,?,?,?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, impresora.getCodigo()));
         lstPar.add(new Parametro(2, impresora.getModelo()));
@@ -68,7 +66,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, impresora.getNombre()));
         lstPar.add(new Parametro(5, impresora.getFecha_compra()));
         lstPar.add(new Parametro(6, impresora.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, impresora.getEstado()));
         lstPar.add(new Parametro(8, impresora.getTipo()));
         lstPar.add(new Parametro(9, impresora.getDependencia()));
         lstPar.add(new Parametro(10, impresora.getDetalle()));
@@ -82,8 +79,8 @@ public class crudEquipo {
     public static boolean saveinterno(clsEquipo interno) {
         boolean resultado = false;
         String sql = "INSERT INTO public.equipo(codigo,modelo,marca,nombre,fecha_compra,"
-                + "fecha_fabrica,estado,dependencia,detalle,tamaño)"
-                + " VALUES(?,?,?,?,?,?,?,?,?)";
+                + "fecha_fabrica,dependencia,detalle,tamaño)"
+                + " VALUES(?,?,?,?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, interno.getCodigo()));
         lstPar.add(new Parametro(2, interno.getModelo()));
@@ -91,7 +88,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, interno.getNombre()));
         lstPar.add(new Parametro(5, interno.getFecha_compra()));
         lstPar.add(new Parametro(6, interno.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, interno.getEstado()));
         lstPar.add(new Parametro(8, interno.getDependencia()));
         lstPar.add(new Parametro(9, interno.getDetalle()));
         lstPar.add(new Parametro(10, interno.getTamaño()));
@@ -107,7 +103,7 @@ public class crudEquipo {
         boolean res = false;
         String sql = "UPDATE public.equipo "
                 + "SET codigo=?,modelo=?,marca=?,nombre=?,fecha_compra=?,"
-                + "fecha_fabrica=?,estado=?,procesador=?,dependencia=?,detalle=? "
+                + "fecha_fabrica=?,procesador=?,dependencia=?,detalle=? "
                 + "WHERE idequipo=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pc.getCodigo()));
@@ -116,7 +112,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, pc.getNombre()));
         lstPar.add(new Parametro(5, pc.getFecha_compra()));
         lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, pc.getEstado()));
         lstPar.add(new Parametro(8, pc.getProcesador()));
         lstPar.add(new Parametro(9, pc.getDependencia()));
         lstPar.add(new Parametro(10, pc.getDetalle()));
@@ -132,7 +127,7 @@ public class crudEquipo {
         boolean res = false;
         String sql = "UPDATE public.equipo "
                 + "SET codigo=?,modelo=?,marca=?,nombre=?,fecha_compra=?,"
-                + "fecha_fabrica=?,estado=?,dependencia=?,detalle=? "
+                + "fecha_fabrica=?,dependencia=?,detalle=? "
                 + "WHERE idequipo=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, complementos.getCodigo()));
@@ -141,7 +136,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, complementos.getNombre()));
         lstPar.add(new Parametro(5, complementos.getFecha_compra()));
         lstPar.add(new Parametro(6, complementos.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, complementos.getEstado()));
         lstPar.add(new Parametro(8, complementos.getDependencia()));
         lstPar.add(new Parametro(9, complementos.getDetalle()));
         lstPar.add(new Parametro(10, complementos.getIdequipo()));
@@ -152,24 +146,23 @@ public class crudEquipo {
         }
         return res;
     }
-    public static boolean updateimpresora(clsEquipo pc) {
+    public static boolean updateimpresora(clsEquipo impresora) {
         boolean res = false;
         String sql = "UPDATE public.equipo "
                 + "SET codigo=?,modelo=?,marca=?,nombre=?,fecha_compra=?,"
-                + "fecha_fabrica=?,estado=?,tipo=?,dependencia=?,detalle=? "
+                + "fecha_fabrica=?,tipo=?,dependencia=?,detalle=? "
                 + "WHERE idequipo=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, pc.getCodigo()));
-        lstPar.add(new Parametro(2, pc.getModelo()));
-        lstPar.add(new Parametro(3, pc.getMarca()));
-        lstPar.add(new Parametro(4, pc.getNombre()));
-        lstPar.add(new Parametro(5, pc.getFecha_compra()));
-        lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, pc.getEstado()));
-        lstPar.add(new Parametro(8, pc.getTipo()));
-        lstPar.add(new Parametro(9, pc.getDependencia()));
-        lstPar.add(new Parametro(10, pc.getDetalle()));
-        lstPar.add(new Parametro(11, pc.getIdequipo()));
+        lstPar.add(new Parametro(1, impresora.getCodigo()));
+        lstPar.add(new Parametro(2, impresora.getModelo()));
+        lstPar.add(new Parametro(3, impresora.getMarca()));
+        lstPar.add(new Parametro(4, impresora.getNombre()));
+        lstPar.add(new Parametro(5, impresora.getFecha_compra()));
+        lstPar.add(new Parametro(6, impresora.getFecha_fabrica()));
+        lstPar.add(new Parametro(8, impresora.getTipo()));
+        lstPar.add(new Parametro(9, impresora.getDependencia()));
+        lstPar.add(new Parametro(10, impresora.getDetalle()));
+        lstPar.add(new Parametro(11, impresora.getIdequipo()));
         try {
             res = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {
@@ -181,7 +174,7 @@ public class crudEquipo {
         boolean res = false;
         String sql = "UPDATE public.equipo "
                 + "SET codigo=?,modelo=?,marca=?,nombre=?,fecha_compra=?,"
-                + "fecha_fabrica=?,estado=?,tamaño=?,dependencia=?,detalle=? "
+                + "fecha_fabrica=?,tamaño=?,dependencia=?,detalle=? "
                 + "WHERE idequipo=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, pc.getCodigo()));
@@ -190,7 +183,6 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, pc.getNombre()));
         lstPar.add(new Parametro(5, pc.getFecha_compra()));
         lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
-        lstPar.add(new Parametro(7, pc.getEstado()));
         lstPar.add(new Parametro(8, pc.getTamaño()));
         lstPar.add(new Parametro(9, pc.getDependencia()));
         lstPar.add(new Parametro(10, pc.getDetalle()));
@@ -218,7 +210,7 @@ public class crudEquipo {
     
     public static ArrayList<clsEquipo> findAllpc() {
         ArrayList<clsEquipo> listado = new ArrayList<>();
-        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,estado,procesador,"
+        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,procesador,"
                 + "detalle,dependencia,fecha_compra,fecha_fabrica "
                 + "FROM public.equipo "
                 + "WHERE nombre = 'DESTOCK' OR nombre = 'LAPTOP'";
@@ -235,7 +227,6 @@ public class crudEquipo {
                 pcs.setNombre(cres.getString("nombre"));
                 pcs.setFecha_compra(cres.getString("fecha_compra"));
                 pcs.setFecha_fabrica(cres.getString("fecha_fabrica"));
-                pcs.setEstado(cres.getString("estado"));
                 pcs.setProcesador(cres.getString("procesador"));
                 pcs.setDetalle(cres.getString("detalle"));
                 pcs.setDependencia(cres.getString("dependencia"));
@@ -248,7 +239,7 @@ public class crudEquipo {
     }
     public static ArrayList<clsEquipo> findAllcomplementos() {
         ArrayList<clsEquipo> listado = new ArrayList<>();
-        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,estado,detalle,"
+        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,detalle,"
                 + "dependencia,fecha_compra,fecha_fabrica "
                 + "FROM public.equipo "
                 + "WHERE nombre = 'MONITOR' OR nombre = 'TECLADO' OR nombre = 'PARLANTES' "
@@ -266,7 +257,6 @@ public class crudEquipo {
                 complementos.setNombre(cres.getString("nombre"));
                 complementos.setFecha_compra(cres.getString("fecha_compra"));
                 complementos.setFecha_fabrica(cres.getString("fecha_fabrica"));
-                complementos.setEstado(cres.getString("estado"));
                 complementos.setDetalle(cres.getString("detalle"));
                 complementos.setDependencia(cres.getString("dependencia"));
                 listado.add((complementos));
@@ -278,7 +268,7 @@ public class crudEquipo {
     }
     public static ArrayList<clsEquipo> findAllimpresoras() {
         ArrayList<clsEquipo> listado = new ArrayList<>();
-        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,estado,detalle,"
+        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,detalle,"
                 + "dependencia,fecha_compra,fecha_fabrica,tipo "
                 + "FROM public.equipo "
                 + "WHERE nombre = 'IMPRESORA'";
@@ -295,7 +285,6 @@ public class crudEquipo {
                 impresoras.setNombre(cres.getString("nombre"));
                 impresoras.setFecha_compra(cres.getString("fecha_compra"));
                 impresoras.setFecha_fabrica(cres.getString("fecha_fabrica"));
-                impresoras.setEstado(cres.getString("estado"));
                 impresoras.setDetalle(cres.getString("detalle"));
                 impresoras.setDependencia(cres.getString("dependencia"));
                 impresoras.setTipo(cres.getString("tipo"));
@@ -308,7 +297,7 @@ public class crudEquipo {
     }
     public static ArrayList<clsEquipo> findAllinterno() {
         ArrayList<clsEquipo> listado = new ArrayList<>();
-        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,estado,detalle,"
+        String sql = "SELECT idequipo,codigo,modelo,marca,nombre,detalle,"
                 + "dependencia,fecha_compra,fecha_fabrica,tamaño "
                 + "FROM public.equipo "
                 + "WHERE nombre = 'RAM' OR nombre='DISCO DURO'";
@@ -325,7 +314,6 @@ public class crudEquipo {
                 impresoras.setNombre(cres.getString("nombre"));
                 impresoras.setFecha_compra(cres.getString("fecha_compra"));
                 impresoras.setFecha_fabrica(cres.getString("fecha_fabrica"));
-                impresoras.setEstado(cres.getString("estado"));
                 impresoras.setDetalle(cres.getString("detalle"));
                 impresoras.setDependencia(cres.getString("dependencia"));
                 impresoras.setTamaño(cres.getString("tamaño"));
@@ -336,42 +324,70 @@ public class crudEquipo {
         }
         return listado;
     }
+    public static ArrayList<clsEquipo> findAll() {
+        ArrayList<clsEquipo> listado = new ArrayList<>();
+        String sql = "SELECT idequipo,codigo,modelo,marca,nombre "
+                + "FROM public.equipo ";
+        ArrayList<Parametro> lstPar = new ArrayList<>();
+        try {
+            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
+            clsEquipo equipo = null;
+            while (cres.next()) {
+                equipo = new clsEquipo();
+                equipo.setIdequipo(cres.getInt("idequipo"));
+                equipo.setCodigo(cres.getString("codigo"));
+                equipo.setModelo(cres.getString("modelo"));
+                equipo.setMarca(cres.getString("marca"));
+                equipo.setNombre(cres.getString("nombre"));
+                listado.add((equipo));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return listado;
+    }
 
     public static clsEquipo findbyId(clsEquipo equipo) {
-        clsEquipo pcs = null;
-        String sql = "SELECT idequipo "
+        clsEquipo equipos = null;
+        String sql = "SELECT idequipo,codigo,marca,modelo,nombre "
                 + "FROM public.equipo WHERE idequipo=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, equipo.getIdequipo()));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                pcs = new clsEquipo();
-                pcs.setIdequipo(cres.getInt("idequipo"));
-                
+                equipos = new clsEquipo();
+                equipos.setIdequipo(cres.getInt("idequipo"));
+                equipos.setCodigo(cres.getString("codigo"));
+                equipos.setModelo(cres.getString("modelo"));
+                equipos.setMarca(cres.getString("marca"));
+                equipos.setNombre(cres.getString("nombre"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return pcs;
+        return equipos;
     }
-
     public static clsEquipo findbyId(int equipo) {
-        clsEquipo pcs = null;
-        String sql = "SELECT idequipo "
+        clsEquipo equipos = null;
+        String sql = "SELECT idequipo,codigo,marca,modelo,nombre "
                 + "FROM public.equipo WHERE idequipo=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, equipo));
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
             while (cres.next()) {
-                pcs = new clsEquipo();
-                pcs.setIdequipo(cres.getInt("idequipo"));
-                
+                equipos = new clsEquipo();
+                equipos.setIdequipo(cres.getInt("idequipo"));
+                equipos.setCodigo(cres.getString("codigo"));
+                equipos.setModelo(cres.getString("modelo"));
+                equipos.setMarca(cres.getString("marca"));
+                equipos.setNombre(cres.getString("nombre"));
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        return pcs;
+        return equipos;
     }
+
 }

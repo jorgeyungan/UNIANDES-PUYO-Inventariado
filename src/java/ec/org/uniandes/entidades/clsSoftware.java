@@ -14,11 +14,13 @@ public class clsSoftware {
     public clsSoftware() {
     }
 
-    public String getFecha() {
-        return _fecha;
-    }
-
-    public void setFecha(String _fecha) {
+    public clsSoftware(int _idsoftware, String _nombre, String _compania, String _version, String _licencia, String _Descripcion, String _fecha) {
+        this._idsoftware = _idsoftware;
+        this._nombre = _nombre;
+        this._compania = _compania;
+        this._version = _version;
+        this._licencia = _licencia;
+        this._Descripcion = _Descripcion;
         this._fecha = _fecha;
     }
 
@@ -70,9 +72,18 @@ public class clsSoftware {
         this._Descripcion = _Descripcion;
     }
 
+    public String getFecha() {
+        return _fecha;
+    }
+
+    public void setFecha(String _fecha) {
+        this._fecha = _fecha;
+    }
+
     @Override
     public String toString() {
         return "clsSoftware{" + "_idsoftware=" + _idsoftware + ", _nombre=" + _nombre + ", _compania=" + _compania + ", _version=" + _version + ", _licencia=" + _licencia + ", _Descripcion=" + _Descripcion + ", _fecha=" + _fecha + '}';
     }
-    
+
+     
 }

@@ -43,42 +43,42 @@
     	<h2>
             <h:form id="frmUbicacion">
             <p:panel id="pnlUbicacion">
-            <p:dataTable 
-                id="basicDT" 
-                var="ubi" 
-                value="#{ccUbicacion.lista}"
-                selectionMode="single"
-                selection="#{ccUbicacion.selectedubicacion}"
-                rowKey="#{ubi.idubicacion}"
-                rows="8" paginator="true" 
-                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-        rowsPerPageTemplate="6,12,16">
-                <f:facet name="header">
-                    UBICACION
-                </f:facet>
-                <p:column headerText="codigo" style="width: 55px;text-align: center">
-                    <h:outputText value="#{ubi.idubicacion}" />
-                </p:column>
-                <p:column headerText="Edificio">
-                    <h:outputText value="#{ubi.edificio}" />
-                </p:column>
-                <p:column headerText="Piso">
-                    <h:outputText value="#{ubi.piso}" />
-                </p:column>
-                <p:column headerText="Carrera">
-                    <h:outputText value="#{ubi.carrera}" />
-                </p:column>
-                <p:column headerText="Sala">
-                    <h:outputText value="#{ubi.sala}" />
-                </p:column>
-                <p:column headerText="Sector">
-                    <h:outputText value="#{ubi.sector}" />
-                </p:column>
-                <f:facet name="footer">
-                    <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
-                     <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUbicacion"/>
-                </f:facet>
-            </p:dataTable>
+                <p:dataTable 
+                    id="basicDT" 
+                    var="ubi" 
+                    value="#{ccUbicacion.lista}"
+                    selectionMode="single"
+                    selection="#{ccUbicacion.selectedubicacion}"
+                    rowKey="#{ubi.idubicacion}"
+                    rows="6" paginator="true" 
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="6,12,16">
+                    <f:facet name="header">
+                        UBICACION
+                    </f:facet>
+                    <p:column headerText="codigo" style="width: 55px;text-align: center">
+                        <h:outputText value="#{ubi.idubicacion}" />
+                    </p:column>
+                    <p:column headerText="Edificio">
+                        <h:outputText value="#{ubi.edificio}" />
+                    </p:column>
+                    <p:column headerText="Piso">
+                        <h:outputText value="#{ubi.piso}" />
+                    </p:column>
+                    <p:column headerText="Carrera">
+                        <h:outputText value="#{ubi.carrera}" />
+                    </p:column>
+                    <p:column headerText="Sala">
+                        <h:outputText value="#{ubi.sala}" />
+                    </p:column>
+                    <p:column headerText="Sector">
+                        <h:outputText value="#{ubi.sector}" />
+                    </p:column>
+                    <f:facet name="footer">
+                        <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
+                        <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUbicacion"/>
+                    </f:facet>
+                </p:dataTable>
                 </p:panel>
         </h:form>
         <p:dialog 

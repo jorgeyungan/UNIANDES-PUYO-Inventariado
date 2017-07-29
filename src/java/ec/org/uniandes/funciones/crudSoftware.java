@@ -18,9 +18,9 @@ public class crudSoftware {
         lstPar.add(new Parametro(1, software.getNombre()));        
         lstPar.add(new Parametro(2, software.getCompania()));
         lstPar.add(new Parametro(3, software.getVersion()));
-        lstPar.add(new Parametro(5, software.getLicencia()));
-        lstPar.add(new Parametro(6, software.getDescripcion()));
-        lstPar.add(new Parametro(7, software.getFecha()));
+        lstPar.add(new Parametro(4, software.getLicencia()));
+        lstPar.add(new Parametro(5, software.getDescripcion()));
+        lstPar.add(new Parametro(6, software.getFecha()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {
@@ -65,8 +65,8 @@ public class crudSoftware {
 
     public static ArrayList<clsSoftware> findbyAll() {
         ArrayList<clsSoftware> listado = new ArrayList<>();
-        String sql = "SELECT idsoftware,nombre,compania,version,licencia,desccripcion,fecha "+
-                " FROM public.software";
+        String sql = "SELECT idsoftware,nombre,compania,version,licencia,descripcion,fecha "+
+                "FROM public.software";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
@@ -91,7 +91,7 @@ public class crudSoftware {
 
     public static clsSoftware findbyId(clsSoftware softwares) {
         clsSoftware software = null;
-        String sql = "SELECT idsoftware,nombre,compania,version,licencia,desccripcion,fecha "+
+        String sql = "SELECT idsoftware,nombre,compania,version,licencia,descripcion,fecha "+
                 " FROM public.software WHERE idsoftware=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, softwares.getIdsoftware()));
@@ -114,7 +114,7 @@ public class crudSoftware {
     }
     public static clsSoftware findbyId(int softwares) {
         clsSoftware software = null;
-        String sql = "SELECT idsoftware,nombre,compania,version,licencia,desccripcion,fecha "+
+        String sql = "SELECT idsoftware,nombre,compania,version,licencia,descripcion,fecha "+
                 " FROM public.software WHERE idsoftware=?";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, softwares));

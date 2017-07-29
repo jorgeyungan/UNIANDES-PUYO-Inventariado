@@ -6,23 +6,17 @@ public class clsDetubicacionequipo {
     private clsEquipo _idequipo;
     private clsUbicacion _idubicacion;
     private String _fecha;
+    private String _estado;
 
     public clsDetubicacionequipo() {
     }
 
-    public clsDetubicacionequipo(int _iddetalle, clsEquipo _idequipo, clsUbicacion _idubicacion, String _fecha) {
+    public clsDetubicacionequipo(int _iddetalle, clsEquipo _idequipo, clsUbicacion _idubicacion, String _fecha, String _estado) {
         this._iddetalle = _iddetalle;
         this._idequipo = _idequipo;
         this._idubicacion = _idubicacion;
         this._fecha = _fecha;
-    }
-
-    public String getFecha() {
-        return _fecha;
-    }
-
-    public void setFecha(String _fecha) {
-        this._fecha = _fecha;
+        this._estado = _estado;
     }
 
     public int getIddetalle() {
@@ -49,9 +43,25 @@ public class clsDetubicacionequipo {
         this._idubicacion = _idubicacion;
     }
 
+    public String getFecha() {
+        return _fecha;
+    }
+
+    public void setFecha(String _fecha) {
+        this._fecha = _fecha;
+    }
+
+    public String getEstado() {
+        return _estado;
+    }
+
+    public void setEstado(String _estado) {
+        this._estado = _estado;
+    }
+
     @Override
     public String toString() {
-        return "clsDetubicacionequipo{" + "_iddetalle=" + _iddetalle + ", _idequipo=" + _idequipo + ", _idubicacion=" + _idubicacion + ", _fecha=" + _fecha + '}';
+        return "clsDetubicacionequipo{" + "_iddetalle=" + _iddetalle + ", _idequipo=" + _idequipo + ", _idubicacion=" + _idubicacion + ", _fecha=" + _fecha + ", _estado=" + _estado + '}';
     }
     
 }

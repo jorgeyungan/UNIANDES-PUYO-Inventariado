@@ -13,17 +13,35 @@ public class crudMantenimiento {
     public static boolean save(clsMantenimiento mantenimiento){
         boolean resultado = false;
         String sql = "INSERT INTO public.mantenimiento(fecha)"
-                + " VALUES(?,?)";
+                + " VALUES(?) RETURNING mantenimiento.idmantenimiento";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         lstPar.add(new Parametro(1, mantenimiento.getFechamantenimiento()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
+            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
+            clsMantenimiento mante = null;
+            
+                mante = new clsMantenimiento();
+                mante.setIdmantenimiento(cres.getInt("idmantenimiento"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return resultado;
     }
-    
+    public static int saveman(clsMantenimiento mantenimiento){
+        int a = 0;
+        String sql = "INSERT INTO public.mantenimiento(fecha)"
+                + " VALUES(?) RETURNING mantenimiento.idmantenimiento";
+        ArrayList<Parametro> lstPar = new ArrayList<>();
+        lstPar.add(new Parametro(1, mantenimiento.getFechamantenimiento()));
+        try {
+            a = AccesoDatos.ejecutaComandoReturn(sql, lstPar);
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return a;
+    }
     public static boolean delete(clsMantenimiento mantenimiento) {
         boolean res=false;
         String sql = "DELETE FROM public.mantenimiento WHERE idmantenimiento=?";
@@ -31,6 +49,7 @@ public class crudMantenimiento {
         lstPar.add(new Parametro(1,mantenimiento.getIdmantenimiento()));
         try {
             res= AccesoDatos.ejecutaComando(sql, lstPar);
+            
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -55,7 +74,8 @@ public class crudMantenimiento {
 
     public static ArrayList<clsMantenimiento> findbyAll() {
         ArrayList<clsMantenimiento> listado = new ArrayList<>();
-        String sql = "SELECT idmantenimiento,fecha "+
+        String sql = "SELECT idmantenimiento,fecha,equipo.serie,equipo.marca"
+                + "equipo.modelo,detallemantenimiento.reporte "+
                 "FROM public.mantenimiento";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {

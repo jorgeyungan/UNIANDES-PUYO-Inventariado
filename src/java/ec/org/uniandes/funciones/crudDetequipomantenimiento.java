@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 
 public class crudDetequipomantenimiento {
-    private boolean save(clsDetequipomantenimiento manequi){
+    public static boolean save(clsDetequipomantenimiento manequi){
         boolean res=false;
-        String sql = "INSERT INTO public.detallemantenimiento(idequipo,idmanteminiento,reporte)"
-                + "value(?,?)";
+        String sql = "INSERT INTO public.detallemantenimiento(idequipo,idmantenimiento,reporte)"
+                + " values(?,?,?)";
         ArrayList<Parametro> lstpar =new ArrayList<>();
-        lstpar.add(new Parametro(1, manequi.getIdequipo()));
-        lstpar.add(new Parametro(2, manequi.getIdmantenimiento()));
+        lstpar.add(new Parametro(1, manequi.getIdequipo().getIdequipo()));
+        lstpar.add(new Parametro(2, manequi.getIdmantenimiento().getIdmantenimiento()));
         lstpar.add(new Parametro(3, manequi.getReporte()));
         try {
             res=AccesoDatos.ejecutaComando(sql, lstpar);
@@ -24,7 +24,7 @@ public class crudDetequipomantenimiento {
         }
         return res;
     }
-    private static boolean delete(clsDetequipomantenimiento manequi){
+    public static boolean delete(clsDetequipomantenimiento manequi){
         boolean res =false;
         String sql = "DELETE FROM public.detallemantenimiento WHERE iddetalle=?";
         ArrayList<Parametro> lstpar=new ArrayList<>();
@@ -36,7 +36,7 @@ public class crudDetequipomantenimiento {
         }
         return res;
     }
-    private static boolean update(clsDetequipomantenimiento manequi){
+    public static boolean update(clsDetequipomantenimiento manequi){
         boolean res = false;
         String sql="UPDATE public.detallemantenimiento "
                 + "SET idequipo=?,idmantenimiento=?,reporte=? "
@@ -56,7 +56,7 @@ public class crudDetequipomantenimiento {
     public static ArrayList<clsDetequipomantenimiento> findbyAll() {
         ArrayList<clsDetequipomantenimiento> listado = new ArrayList<>();
         String sql = "SELECT iddetalle,idequipo,idmantenimiento,reporte "
-                + "FROM public.detallemantenimeinto";
+                + "FROM public.detallemantenimiento ";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);

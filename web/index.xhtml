@@ -8,6 +8,13 @@
 
     <ui:define name="head">
         <title>INVENTARIADO UNIANDES PUYO</title>
+
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="Made with WOW Slider - Create beautiful, responsive image sliders in a few clicks. Awesome skins and animations. Image carousel" />
+        <!-- Start WOWSlider.com HEAD section -->
+        <link rel="stylesheet" type="text/css" href="engine1/style.css" />
+        <script type="text/javascript" src="engine1/jquery.js"></script>
+        <!-- End WOWSlider.com HEAD section -->
     </ui:define>
 
     <ui:define name="logo-lg">
@@ -15,46 +22,59 @@
     </ui:define>
 
     <ui:define name="logo-mini">
-        =>
+        MENÚ
     </ui:define>
 
     <ui:define name="menu">
-        
+
         <ui:include src="/includes/menu-search.xhtml"/>
         <ui:include src="/includes/menu.xhtml"/>
-     </ui:define>
+    </ui:define>
 
     <ui:define name="top-menu">
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
 
-      <ui:define name="title">
+    <ui:define name="title">
         <h2 class="align-center">
             Bienvenidos a Uniandes PUYO
         </h2>
     </ui:define>
 
     <ui:define name="description">
-        A page description
+        <!-- Start WOWSlider.com BODY section -->
+        <div id="wowslider-container1">
+            <div class="ws_images"><ul>
+                    <li><a href="http://wowslider.net"><img src="data1/images/baner_uniandes.jpg" alt="http://wowslider.net/" title="" id="wows1_0"/></a></li>
+                    <li><img src="data1/images/baner.png" alt="baner" title="" id="wows1_1"/></li>
+                </ul></div>
+            <div class="ws_bullets"><div>
+                    <a href="#" title="baner uniandes"><span><img src="data1/tooltips/baner_uniandes.jpg" alt="baner uniandes"/>1</span></a>
+                    <a href="#" title="baner"><span><img src="data1/tooltips/baner.png" alt="baner"/>2</span></a>
+                </div></div><div class="ws_script" style="position:absolute;left:-99%"><a href="http://wowslider.com/vi">cssslider</a> by WOWSlider.com v8.7</div>
+            <div class="ws_shadow"></div>
+        </div>	
+        <script type="text/javascript" src="engine1/wowslider.js"></script>
+        <script type="text/javascript" src="engine1/script.js"></script>
+        <!-- End WOWSlider.com BODY section -->
     </ui:define>
 
     <ui:define name="body">
-    	<h2><p:galleria  value="#{imagenesbeans.images}" var="image" panelWidth="700" panelHeight="500" showCaption="true">
-            <p:graphicImage name="Baner2.jpg" alt="Image Description for #{image}" title="#{image}" />
-        </p:galleria> 
-    
-    <h:form id="form">
-            <p:growl id="msgs" showDetail="true"  />
 
-            <h:panelGrid cellpadding="3" >
-                <p:calendar id="inline"  mode="inline"  />
-            </h:panelGrid>
-        </h:form></h2>
+        <h2> 
+
+            <h:form id="form">
+                <p:growl id="msgs" showDetail="true"  />
+
+                <h:panelGrid cellpadding="3" >
+                    <p:calendar id="inline"  mode="inline"  />
+                </h:panelGrid>
+            </h:form></h2>
     </ui:define>
 
 
     <ui:define name="footer">
-          <a target="_blank"
+        <a target="_blank"
            href="https://github.com/adminfaces/">
             Copyright (C) 2017 - AdminFaces
         </a>

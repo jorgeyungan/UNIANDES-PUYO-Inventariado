@@ -7,7 +7,6 @@ public class clsEquipo {
     private String _modelo;
     private String _marca;
     private String _nombre;
-    private String _estado;
     private String _tamaño;
     private String _procesador;
     private String _tipo;
@@ -21,13 +20,12 @@ public class clsEquipo {
     public clsEquipo() {
     }
 
-    public clsEquipo(int _idequipo, String _codigo, String _modelo, String _marca, String _nombre, String _estado, String _tamaño, String _procesador, String _tipo, int _numeropuertos, String _detalle, String _administrable, String _dependencia, String _fecha_compra, String _fecha_fabrica) {
+    public clsEquipo(int _idequipo, String _codigo, String _modelo, String _marca, String _nombre, String _tamaño, String _procesador, String _tipo, int _numeropuertos, String _detalle, String _administrable, String _dependencia, String _fecha_compra, String _fecha_fabrica) {
         this._idequipo = _idequipo;
         this._codigo = _codigo;
         this._modelo = _modelo;
         this._marca = _marca;
         this._nombre = _nombre;
-        this._estado = _estado;
         this._tamaño = _tamaño;
         this._procesador = _procesador;
         this._tipo = _tipo;
@@ -77,14 +75,6 @@ public class clsEquipo {
 
     public void setNombre(String _nombre) {
         this._nombre = _nombre;
-    }
-
-    public String getEstado() {
-        return _estado;
-    }
-
-    public void setEstado(String _estado) {
-        this._estado = _estado;
     }
 
     public String getTamaño() {
@@ -161,7 +151,7 @@ public class clsEquipo {
 
     @Override
     public String toString() {
-        return "clsEquipo{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _estado=" + _estado + ", _tama\u00f1o=" + _tamaño + ", _procesador=" + _procesador + ", _tipo=" + _tipo + ", _numeropuertos=" + _numeropuertos + ", _detalle=" + _detalle + ", _administrable=" + _administrable + ", _dependencia=" + _dependencia + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + '}';
+        return "clsEquipo{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _tama\u00f1o=" + _tamaño + ", _procesador=" + _procesador + ", _tipo=" + _tipo + ", _numeropuertos=" + _numeropuertos + ", _detalle=" + _detalle + ", _administrable=" + _administrable + ", _dependencia=" + _dependencia + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + '}';
     }
     
 }

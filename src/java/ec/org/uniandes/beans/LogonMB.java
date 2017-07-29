@@ -25,6 +25,7 @@ public class LogonMB implements Serializable {
     private boolean remember;
 
     public String doLogon() {
+        
         Faces.getFlash().setKeepMessages(true);
         Messages.addGlobalInfo("Logged in successfully!");
         return "index.xhtml?faces-redirect=true";

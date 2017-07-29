@@ -9,13 +9,13 @@ import java.util.ArrayList;
 
 
 public class crudDetequiposoftware {
-    private boolean save(clsDetequiposoftware sofequi){
+    public static boolean save(clsDetequiposoftware sofequi){
         boolean res=false;
         String sql = "INSERT INTO public.detallesoftware(idequipo,idsoftware,fecha)"
-                + "value(?,?,?)";
+                + "VALUES(?,?,?)";
         ArrayList<Parametro> lstpar =new ArrayList<>();
-        lstpar.add(new Parametro(1, sofequi.getIdequipo()));
-        lstpar.add(new Parametro(2, sofequi.getIdsoftware()));
+        lstpar.add(new Parametro(1, sofequi.getIdequipo().getIdequipo()));
+        lstpar.add(new Parametro(2, sofequi.getIdsoftware().getIdsoftware()));
         lstpar.add(new Parametro(3, sofequi.getFecha()));
         try {
             res=AccesoDatos.ejecutaComando(sql, lstpar);
