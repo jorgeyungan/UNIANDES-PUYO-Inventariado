@@ -64,7 +64,7 @@
                         <p:column headerText="Codigo" style="width: 55px;text-align: center">
                             <h:outputText value="#{equi.idequipo}" />
                         </p:column>
-                        <p:column headerText="Serie" >
+                        <p:column filterBy="#{equi.codigo}" footerText="contains" filterMatchMode="contains" headerText="Serie" >
                             <h:outputText value="#{equi.codigo}" />
                         </p:column>
                         <p:column headerText="Modelo">
@@ -76,7 +76,7 @@
                         <p:column headerText="Nombre">
                             <h:outputText value="#{equi.nombre}" />
                         </p:column>
-                        <p:column headerText="Procesador">
+                        <p:column filterBy="#{equi.procesador}" footerText="contains" filterMatchMode="contains" headerText="Procesador">
                             <h:outputText value="#{equi.procesador}" />
                         </p:column>                       
                         <p:column headerText="Año Fabrica">

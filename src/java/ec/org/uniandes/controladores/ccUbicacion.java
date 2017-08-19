@@ -14,16 +14,27 @@ public class ccUbicacion {
     private clsUbicacion newubicacion;
     private clsUbicacion selectedubicacion;
     private List<clsUbicacion> lista;
+    private List<clsUbicacion> lista2;
     
     public ccUbicacion() {
         newubicacion=new clsUbicacion();
         cargardatos();
     }
     private void cargardatos(){
-        lista = crudUbicacion.findbyAll();
+        lista = crudUbicacion.findtoasignacion();
+        lista2 = crudUbicacion.findbyAll();
+        
     }
      public void insertar(){
          if (crudUbicacion.save(newubicacion)) {
+             newubicacion=new clsUbicacion();
+             cargardatos();
+         } else {
+         }
+     }
+     public void duplicar(){
+         
+         if (crudUbicacion.save(selectedubicacion)) {
              newubicacion=new clsUbicacion();
              cargardatos();
          } else {
@@ -66,5 +77,14 @@ public class ccUbicacion {
 
     public void setLista(List<clsUbicacion> lista) {
         this.lista = lista;
-    }  
+    }
+
+    public List<clsUbicacion> getLista2() {
+        return lista2;
+    }
+
+    public void setLista2(List<clsUbicacion> lista2) {
+        this.lista2 = lista2;
+    }
+    
 }

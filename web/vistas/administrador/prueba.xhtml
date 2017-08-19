@@ -4,7 +4,8 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:p="http://primefaces.org/ui"
                 template="/admin.xhtml"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"> 
 
     <ui:define name="head">
         <title>INVENTARIADO UNIANDES PUYO</title>
@@ -39,9 +40,35 @@
     </ui:define>
 
     <ui:define name="body">
-        <h2>
-            
-        </h2>
+            <h:form>
+                <p:outputLabel value="Equipo"/>
+                <p:selectOneMenu value="#{ccMan.selectedequipo}"  >
+                    <f:selectItem noSelectionOption="tru" itemValue="#{null}" itemLabel="Seleccione"/>
+                    <f:selectItems value="#{ccEquipotodo.lista}" var="equip" itemLabel="#{equip.codigo}" itemValue="#{equip}"/>
+                </p:selectOneMenu>
+                
+                <p:outputLabel value="Reporte">
+                    <p:inputText value="#{ccMan.reporte}" />
+                </p:outputLabel>
+                
+                <p:commandButton value="Agregar" update="detman" actionListener="#{ccMan.agregar()}"/>
+                <p:dataTable id="detman" value="#{ccMan.lista}" var="det">
+                    <p:column headerText="Serie"> 
+                        #{det.idequipo.codigo}
+                    </p:column>
+                    <p:column headerText="Marca">
+                        #{det.idequipo.marca}
+                    </p:column>
+                    <p:column headerText="Modlo">
+                        #{det.idequipo.modelo}
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        #{det.idequipo.nombre}
+                    </p:column>
+                </p:dataTable>
+                    
+                
+            </h:form>
     </ui:define>
 
 

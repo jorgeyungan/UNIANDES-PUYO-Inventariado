@@ -23,9 +23,9 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, pc.getNombre()));
         lstPar.add(new Parametro(5, pc.getFecha_compra()));
         lstPar.add(new Parametro(6, pc.getFecha_fabrica()));
-        lstPar.add(new Parametro(8, pc.getProcesador()));
-        lstPar.add(new Parametro(9, pc.getDependencia()));
-        lstPar.add(new Parametro(10, pc.getDetalle()));
+        lstPar.add(new Parametro(7, pc.getProcesador()));
+        lstPar.add(new Parametro(8, pc.getDependencia()));
+        lstPar.add(new Parametro(9, pc.getDetalle()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {
@@ -45,8 +45,8 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, complementos.getNombre()));
         lstPar.add(new Parametro(5, complementos.getFecha_compra()));
         lstPar.add(new Parametro(6, complementos.getFecha_fabrica()));
-        lstPar.add(new Parametro(8, complementos.getDependencia()));
-        lstPar.add(new Parametro(9, complementos.getDetalle()));
+        lstPar.add(new Parametro(7, complementos.getDependencia()));
+        lstPar.add(new Parametro(8, complementos.getDetalle()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {
@@ -66,9 +66,9 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, impresora.getNombre()));
         lstPar.add(new Parametro(5, impresora.getFecha_compra()));
         lstPar.add(new Parametro(6, impresora.getFecha_fabrica()));
-        lstPar.add(new Parametro(8, impresora.getTipo()));
-        lstPar.add(new Parametro(9, impresora.getDependencia()));
-        lstPar.add(new Parametro(10, impresora.getDetalle()));
+        lstPar.add(new Parametro(7, impresora.getTipo()));
+        lstPar.add(new Parametro(8, impresora.getDependencia()));
+        lstPar.add(new Parametro(9, impresora.getDetalle()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {
@@ -88,9 +88,9 @@ public class crudEquipo {
         lstPar.add(new Parametro(4, interno.getNombre()));
         lstPar.add(new Parametro(5, interno.getFecha_compra()));
         lstPar.add(new Parametro(6, interno.getFecha_fabrica()));
-        lstPar.add(new Parametro(8, interno.getDependencia()));
-        lstPar.add(new Parametro(9, interno.getDetalle()));
-        lstPar.add(new Parametro(10, interno.getTamaño()));
+        lstPar.add(new Parametro(7, interno.getDependencia()));
+        lstPar.add(new Parametro(8, interno.getDetalle()));
+        lstPar.add(new Parametro(9, interno.getTamaño()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
         } catch (Exception e) {

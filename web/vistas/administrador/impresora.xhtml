@@ -64,7 +64,7 @@
                         <p:column headerText="Codigo" style="width: 55px;text-align: center">
                             <h:outputText value="#{equi.idequipo}" />
                         </p:column>
-                        <p:column headerText="Serie" >
+                        <p:column filterBy="#{equi.codigo}" footerText="contains" filterMatchMode="contains" headerText="Serie" >
                             <h:outputText value="#{equi.codigo}" />
                         </p:column>
                         <p:column headerText="Modelo">
@@ -82,7 +82,7 @@
                         <p:column headerText="Fecha Compra">
                             <h:outputText value="#{equi.fecha_compra}" />
                         </p:column>
-                        <p:column headerText="Tipo">
+                        <p:column filterBy="#{equi.tipo}" footerText="contains" filterMatchMode="contains" headerText="Tipo">
                             <h:outputText value="#{equi.tipo}" />
                         </p:column>
                         <p:column headerText="Dependencia">

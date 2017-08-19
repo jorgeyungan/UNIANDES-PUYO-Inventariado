@@ -23,20 +23,11 @@
         <ui:include src="/includes/menu-search.xhtml"/>
         <ui:include src="/includes/menu.xhtml"/>
     </ui:define>
-    
+
     <ui:define name="top-menu">
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
-    
-    <ui:define name="title">
-        <h2 class="align-center">
-            USUARIOS
-        </h2>
-    </ui:define>
 
-    <ui:define name="description">
-        
-    </ui:define>
 
     <ui:define name="body">
         <h2>
@@ -56,15 +47,15 @@
                             USUARIOS
                         </f:facet>
                         <p:column headerText="codigo" style="width: 55px;text-align: center">
-                            <h:outputText value="#{cli.id_usuario}" />
+                            <h:outputText  value="#{cli.id_usuario}" />
                         </p:column>
-                        <p:column headerText="RUC-Cédula Identidad">
+                        <p:column filterBy="#{cli.cedula}" footerText="contains" filterMatchMode="contains" headerText="RUC-Cédula Identidad">
                             <h:outputText value="#{cli.cedula}" />
                         </p:column>
                         <p:column headerText="Nombre">
                             <h:outputText value="#{cli.nombre}" />
                         </p:column>
-                        <p:column headerText="Apellido">
+                        <p:column filterBy="#{cli.apellido}" footerText="contains" filterMatchMode="contains"  headerText="Apellido">
                             <h:outputText value="#{cli.apellido}" />
                         </p:column>
                         <p:column headerText="Cargo">
@@ -76,6 +67,7 @@
                         <p:column headerText="Tipo">
                             <h:outputText value="#{cli.tipo}" />
                         </p:column>
+                        
                         <f:facet name="footer">
                             <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
                             <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUsuario"/>
@@ -93,44 +85,46 @@
                 showEffect="clip"
                 hideEffect="fold">
                 <h:form id="frmNuevoUsuario">
-                    <p:panel header="Usuario">
-                        <p:panel header="Datos Personales">
-                            <h:panelGrid >
-                                <p:outputLabel value="Código: ">
-                                    <p:inputText 
-                                        style="width:130px"
-                                        value="#{ccUsuario.newUsuario.id_usuario}"/>
-                                    <p:outputLabel value=" Cédula: "/>
-                                    <p:inputText 
-                                        style="width:130px"
-                                        value="#{ccUsuario.newUsuario.cedula}"/>
-                                    <p:outputLabel value=" Nombres: "/>
-                                    <p:inputText 
-                                        style="width:180px"
-                                        value="#{ccUsuario.newUsuario.nombre}"/>
-                                    <p:outputLabel value=" Apellidos: "/>
-                                    <p:inputText 
-                                        style="width:180px"
-                                        value="#{ccUsuario.newUsuario.apellido}"/>
-                                </p:outputLabel>
-                            </h:panelGrid>
-                        </p:panel>
-                        <p:panel header="Datos Laborales">
-                            <p:outputLabel value="Cargo: ">
-                                <p:inputText 
-                                    style="width:130px"
-                                    value="#{ccUsuario.newUsuario.cargo}"/>
-                                <p:outputLabel value=" Tipo: "/>
-                                <p:autoComplete 
-                                    dropdown="true" 
-                                    value="#{ccUsuario.newUsuario.tipo}" 
-                                    completeMethod="#{tipobean.completeText(query)}" />
-                                <p:outputLabel value=" Teléfono "/>
-                                <p:inputText 
-                                    style="width:180px"
-                                    value="#{ccUsuario.newUsuario.telefono}"/>
-                            </p:outputLabel>
-                        </p:panel>
+                    <p:panel header="Datos Personales">
+                        <p:panelGrid columns="4">
+                        
+                        <p:outputLabel value=" Cédula: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.cedula}"/>
+                        <p:outputLabel value=" Nombres: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.nombre}"/>
+                        <p:outputLabel value=" Apellidos: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.apellido}"/>
+
+                    </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Login">
+                        <p:panelGrid columns="4">
+                        
+                        <p:outputLabel value=" Usuario: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.usuario}"/>
+                        <p:outputLabel value=" Contraseña: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.contraseña}"/>
+                    </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Detalles">
+                        <p:panelGrid columns="4">
+                        <p:outputLabel value="Cargo: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.cargo}"/>
+                        <p:outputLabel value=" Tipo: "/>
+                        <p:autoComplete 
+                            dropdown="true" 
+                            value="#{ccUsuario.newUsuario.tipo}" 
+                            completeMethod="#{tipobean.completeText(query)}" />
+                        <p:outputLabel value=" Teléfono "/>
+                        <p:inputText 
+                            value="#{ccUsuario.newUsuario.telefono}"/>
+                    </p:panelGrid>
                     </p:panel>
                     <p:commandButton 
                         value="Ingresar"
@@ -140,7 +134,7 @@
                     <p:commandButton 
                         value="Cancelar"
                         immediate="true"
-                        oncomplete="PF('wdlgNuevo').hide();"
+                        onclick="PF('wdlgNuevo').hide();"
                         type="reset"/>
                 </h:form>
             </p:dialog>
@@ -154,39 +148,44 @@
                 hideEffect="fold">
                 <h:form id="frmModificarUsuario">
                     <p:panel header="Datos Personales">
-                        <p:outputLabel value="Código ">
-                            <p:inputText  
-                                style="width:130px"
-                                value="#{ccUsuario.selectedUsuario.id_usuario}"/>
-                            <p:outputLabel value="Cédula: "/>
-                            <p:inputText  
-                                style="width:130px"
-                                value="#{ccUsuario.selectedUsuario.cedula}"/>
-                            <p:outputLabel value="Nombres: "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUsuario.selectedUsuario.nombre}"/>
-                            <p:outputLabel value="Apellidos: "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUsuario.selectedUsuario.apellido}"/>
-                        </p:outputLabel>
+                        <p:panelGrid columns="4">
+                        
+                        <p:outputLabel value=" Cédula: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.selectedUsuario.cedula}"/>
+                        <p:outputLabel value=" Nombres: "/>
+                        <p:inputText 
+                            style="width:180px"
+                            value="#{ccUsuario.selectedUsuario.nombre}"/>
+                        <p:outputLabel value=" Apellidos: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.selectedUsuario.apellido}"/>
+                    </p:panelGrid>
                     </p:panel>
-                    <p:panel header="Datos Laborales">
-                        <p:outputLabel value="Cargo: ">
-                            <p:inputText 
-                                style="width:130px"
-                                value="#{ccUsuario.selectedUsuario.cargo}"/>
-                            <p:outputLabel value=" Tipo: "/>
-                            <p:autoComplete 
-                                dropdown="true" 
-                                value="#{ccUsuario.selectedUsuario.tipo}" 
-                                completeMethod="#{tipobean.completeText(query)}" />
-                            <p:outputLabel value=" Teléfono "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUsuario.selectedUsuario.telefono}"/>
-                        </p:outputLabel>
+                    <p:panel header="Login">
+                        <p:panelGrid columns="4">
+                        <p:outputLabel value=" Usuario: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.selectedUsuario.usuario}"/>
+                        <p:outputLabel value=" Contraseña: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.selectedUsuario.contraseña}"/>
+                    </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Detalles">
+                        <p:panelGrid columns="4">
+                        <p:outputLabel value="Cargo: "/>
+                        <p:inputText 
+                            value="#{ccUsuario.selectedUsuario.cargo}"/>
+                        <p:outputLabel value=" Tipo: "/>
+                        <p:autoComplete 
+                            dropdown="true" 
+                            value="#{ccUsuario.selectedUsuario.tipo}" 
+                            completeMethod="#{tipobean.completeText(query)}" />
+                        <p:outputLabel value=" Teléfono "/>
+                        <p:inputText 
+                            value="#{ccUsuario.selectedUsuario.telefono}"/>
+                    </p:panelGrid>
                     </p:panel>
                     <p:commandButton 
                         value="Modificar"
@@ -195,7 +194,7 @@
                         onclick="wdlgModificar.hide()"/>
                     <p:commandButton 
                         value="Cancelar" 
-                        onclick="wdlgModificar.hide()"
+                        onclick="PF('wdlgModificar').hide();"
                         type="reset" />
 
                 </h:form>
@@ -210,31 +209,34 @@
                 hideEffect="fold">
                 <h:form id="frmEliminarUsuario">
                     <p:panel header="Datos Personales">
-                        <p:outputLabel value="Código ">
-                            <p:outputLabel
-                                value="#{ccUsuario.selectedUsuario.id_usuario}"/>
-                            <p:outputLabel value="Cédula: "/>
-                            <p:outputLabel
-                                value="#{ccUsuario.selectedUsuario.cedula}"/>
-                            <p:outputLabel value="Nombres: "/>
-                            <p:outputLabel 
-                                value="#{ccUsuario.selectedUsuario.nombre}"/>
-                            <p:outputLabel value="Apellidos: "/>
-                            <p:outputLabel
-                                value="#{ccUsuario.selectedUsuario.apellido}"/>
-                        </p:outputLabel>
+                        <p:panelGrid columns="4">
+                        <p:outputLabel value=" Cédula: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.cedula}"/>
+                        <p:outputLabel value=" Nombres: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.nombre}"/>
+                        <p:outputLabel value=" Apellidos: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.apellido}"/>
+
+                    </p:panelGrid>
                     </p:panel>
-                    <p:panel header="Datos Laborales">
-                        <p:outputLabel value="Cargo: ">
-                            <p:outputLabel
-                                value="#{ccUsuario.selectedUsuario.cargo}"/>
-                            <p:outputLabel value=" Tipo: "/>
-                            <p:outputLabel 
-                                value="#{ccUsuario.selectedUsuario.tipo}" />
-                            <p:outputLabel value=" Teléfono "/>
-                            <p:outputLabel
-                                value="#{ccUsuario.selectedUsuario.telefono}"/>
-                        </p:outputLabel>
+                    <p:panel header="Login">
+                        <p:panelGrid columns="4">
+                        
+                        <p:outputLabel value=" Usuario: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.usuario}"/>
+                        <p:outputLabel value=" Contraseña: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.contraseña}"/>
+                    </p:panelGrid>
+                    </p:panel>
+                    <p:panel header="Detalles">
+                        <p:panelGrid columns="4">
+                        <p:outputLabel value="Cargo: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.cargo}"/>
+                        <p:outputLabel value=" Tipo: "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.tipo}"/>
+                        <p:outputLabel value=" Teléfono "/>
+                        <p:outputLabel value="#{ccUsuario.selectedUsuario.telefono}"/>
+                    </p:panelGrid>
                     </p:panel>
                     <p:commandButton 
                         value="Eliminar"
@@ -243,7 +245,7 @@
                         onclick="wdlgEliminar.hide()"/>
                     <p:commandButton 
                         value="Cancelar" 
-                        onclick="wdlgEliminar.hide()"
+                        onclick="PF('wdlgEliminar').hide();"
                         type="reset" />
                 </h:form>
             </p:dialog>
@@ -252,9 +254,8 @@
 
 
     <ui:define name="footer">
-        <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
+        <a target="_blank" >
+            Jorge Luis Yungán
         </a>
 
         <div class="pull-right hidden-xs" style="color: gray">

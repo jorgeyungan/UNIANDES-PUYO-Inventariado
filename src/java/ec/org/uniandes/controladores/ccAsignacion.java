@@ -4,6 +4,7 @@ import ec.org.uniandes.entidades.clsDetubicacionusuario;
 import ec.org.uniandes.entidades.clsUbicacion;
 import ec.org.uniandes.entidades.clsUsuario;
 import ec.org.uniandes.funciones.crudDetubicacionusuario;
+import ec.org.uniandes.funciones.crudUbicacion;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -17,14 +18,20 @@ public class ccAsignacion {
     private List<clsDetubicacionusuario> lista;
     private clsUsuario selectedusuario;
     private clsUbicacion selectedubicacion;
+    private List<clsUbicacion> lista2;
+    
+    
 
     public ccAsignacion() {
         newdetalle = new clsDetubicacionusuario();
         cargardatos();
     }
-
     private void cargardatos() {
         lista = crudDetubicacionusuario.findbyAll();
+
+    }
+    private void cargardatos2() {
+        lista2 = crudUbicacion.findtoasignacion();
 
     }
 
@@ -76,6 +83,14 @@ public class ccAsignacion {
 
     public void setSelectedubicacion(clsUbicacion selectedubicacion) {
         this.selectedubicacion = selectedubicacion;
+    }
+
+    public List<clsUbicacion> getLista2() {
+        return lista2;
+    }
+
+    public void setLista2(List<clsUbicacion> lista2) {
+        this.lista2 = lista2;
     }
 
 }

@@ -12,36 +12,23 @@ public class crudMantenimiento {
 
     public static boolean save(clsMantenimiento mantenimiento){
         boolean resultado = false;
-        String sql = "INSERT INTO public.mantenimiento(fecha)"
-                + " VALUES(?) RETURNING mantenimiento.idmantenimiento";
+        String sql = "INSERT INTO public.mantenimiento(fecha,reporte,idequipo,idusuario,estado)"
+                + " VALUES (?,?,?,?,?)";
         ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, mantenimiento.getFechamantenimiento()));
+        lstPar.add(new Parametro(1, mantenimiento.getFecha()));
+        lstPar.add(new Parametro(2, mantenimiento.getReporte()));
+        lstPar.add(new Parametro(3, mantenimiento.getIdequipo().getIdequipo()));
+        lstPar.add(new Parametro(4, mantenimiento.getIdusuario().getId_usuario()));
+        lstPar.add(new Parametro(5, mantenimiento.getEstado()));
         try {
             resultado = AccesoDatos.ejecutaComando(sql, lstPar);
-            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
-            clsMantenimiento mante = null;
             
-                mante = new clsMantenimiento();
-                mante.setIdmantenimiento(cres.getInt("idmantenimiento"));
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return resultado;
     }
-    public static int saveman(clsMantenimiento mantenimiento){
-        int a = 0;
-        String sql = "INSERT INTO public.mantenimiento(fecha)"
-                + " VALUES(?) RETURNING mantenimiento.idmantenimiento";
-        ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, mantenimiento.getFechamantenimiento()));
-        try {
-            a = AccesoDatos.ejecutaComandoReturn(sql, lstPar);
-            
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return a;
-    }
+    
     public static boolean delete(clsMantenimiento mantenimiento) {
         boolean res=false;
         String sql = "DELETE FROM public.mantenimiento WHERE idmantenimiento=?";
@@ -59,11 +46,16 @@ public class crudMantenimiento {
     public static boolean update(clsMantenimiento mantenimiento) {
         boolean res = false;
         String sql = "UPDATE public.mantenimiento " +
-                "SET fecha=? " + 
+                "SET fecha=?,reporte=?,idequipo=?,idusuario=?,estado=? " + 
                 "WHERE idmantenimiento=?";
         ArrayList<Parametro> lstPar = new ArrayList<>(); 
-        lstPar.add(new Parametro(1, mantenimiento.getFechamantenimiento()));
-        lstPar.add(new Parametro(2, mantenimiento.getIdmantenimiento())); 
+        lstPar.add(new Parametro(1, mantenimiento.getFecha()));
+        lstPar.add(new Parametro(2, mantenimiento.getReporte()));
+        lstPar.add(new Parametro(3, mantenimiento.getIdequipo().getIdequipo()));
+        lstPar.add(new Parametro(4, mantenimiento.getIdusuario().getId_usuario()));
+        lstPar.add(new Parametro(5, mantenimiento.getEstado()));
+        lstPar.add(new Parametro(6, mantenimiento.getIdmantenimiento())); 
+        
         try{
             res= AccesoDatos.ejecutaComando(sql, lstPar);
         }catch (Exception e) {
@@ -72,11 +64,10 @@ public class crudMantenimiento {
         return res;
     }
 
-    public static ArrayList<clsMantenimiento> findbyAll() {
+    public static ArrayList<clsMantenimiento> findbycerrado() {
         ArrayList<clsMantenimiento> listado = new ArrayList<>();
-        String sql = "SELECT idmantenimiento,fecha,equipo.serie,equipo.marca"
-                + "equipo.modelo,detallemantenimiento.reporte "+
-                "FROM public.mantenimiento";
+        String sql = "SELECT idmantenimiento,fecha,reporte,idequipo,idusuario,estado "+
+                "FROM public.mantenimiento WHERE estado='CERRADO'";
         ArrayList<Parametro> lstPar = new ArrayList<>();
         try {
             ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
@@ -85,7 +76,35 @@ public class crudMantenimiento {
             {
                 mante = new clsMantenimiento();
                 mante.setIdmantenimiento(cres.getInt("idmantenimiento"));
-                mante.setFechamantenimiento(cres.getString("fecha"));
+                mante.setFecha(cres.getString("fecha"));
+                mante.setReporte(cres.getString("reporte"));
+                mante.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
+                mante.setIdusuario(crudUsuario.findbyId(cres.getInt("idusuario")));                           
+                mante.setEstado(cres.getString("estado"));
+                listado.add((mante));
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return listado;
+    }
+    public static ArrayList<clsMantenimiento> findbyabierto() {
+        ArrayList<clsMantenimiento> listado = new ArrayList<>();
+        String sql = "SELECT idmantenimiento,fecha,reporte,idequipo,idusuario,estado "+
+                "FROM public.mantenimiento WHERE estado='ABIERTO'";
+        ArrayList<Parametro> lstPar = new ArrayList<>();
+        try {
+            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
+            clsMantenimiento mante = null;
+            while (cres.next())
+            {
+                mante = new clsMantenimiento();
+                mante.setIdmantenimiento(cres.getInt("idmantenimiento"));
+                mante.setFecha(cres.getString("fecha"));
+                mante.setReporte(cres.getString("reporte"));
+                mante.setIdequipo(crudEquipo.findbyId(cres.getInt("idequipo")));
+                mante.setIdusuario(crudUsuario.findbyId(cres.getInt("idusuario")));
+                mante.setEstado(cres.getString("estado"));
                 listado.add((mante));
             }
         } catch (Exception e) {
@@ -94,42 +113,4 @@ public class crudMantenimiento {
         return listado;
     }
 
-    public static clsMantenimiento findbyId(clsMantenimiento mantenimiento) {
-        clsMantenimiento mante = null;
-        String sql = "SELECT idmantenimiento,fecha "+
-                "FROM public.mantenimiento WHERE idmantenimiento=?";
-        ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, mantenimiento.getIdmantenimiento()));
-        try {
-            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
-            while (cres.next()) {
-                mante = new clsMantenimiento();
-                mante.setIdmantenimiento(cres.getInt("idmantenimiento"));
-                mante.setFechamantenimiento(cres.getString("fecha"));
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return mante;
-    }
-    public static clsMantenimiento findbyId(int mantenimiento) {
-        clsMantenimiento mante = null;
-        String sql = "SELECT idmantenimiento,fecha "+
-                "FROM public.mantenimiento WHERE idmantenimiento=?";
-        ArrayList<Parametro> lstPar = new ArrayList<>();
-        lstPar.add(new Parametro(1, mantenimiento));
-        try {
-            ConjuntoResultado cres = AccesoDatos.ejecutaQuery(sql, lstPar);
-            while (cres.next()) {
-                mante = new clsMantenimiento();
-                mante.setIdmantenimiento(cres.getInt("idmantenimiento"));
-                mante.setFechamantenimiento(cres.getString("fecha"));
-            }
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return mante;
-    }
-    
-    
 }

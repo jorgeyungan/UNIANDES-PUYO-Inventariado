@@ -9,11 +9,13 @@ public class clsUsuario {
     private String _cargo;
     private String _telefono;
     private String _tipo;
+    private String _usuario;
+    private String _contraseña;
 
     public clsUsuario() {
     }
 
-    public clsUsuario(int _id_usuario, String _cedula, String _nombre, String _apellido, String _cargo, String _telefono, String _tipo) {
+    public clsUsuario(int _id_usuario, String _cedula, String _nombre, String _apellido, String _cargo, String _telefono, String _tipo, String _usuario, String _contraseña) {
         this._id_usuario = _id_usuario;
         this._cedula = _cedula;
         this._nombre = _nombre;
@@ -21,6 +23,24 @@ public class clsUsuario {
         this._cargo = _cargo;
         this._telefono = _telefono;
         this._tipo = _tipo;
+        this._usuario = _usuario;
+        this._contraseña = _contraseña;
+    }
+
+    public String getContraseña() {
+        return _contraseña;
+    }
+
+    public void setContraseña(String _contraseña) {
+        this._contraseña = _contraseña;
+    }
+
+    public String getUsuario() {
+        return _usuario;
+    }
+
+    public void setUsuario(String _usuario) {
+        this._usuario = _usuario;
     }
 
     public int getId_usuario() {
@@ -81,7 +101,8 @@ public class clsUsuario {
 
     @Override
     public String toString() {
-        return "clsUsuario{" + "_id_usuario=" + _id_usuario + ", _cedula=" + _cedula + ", _nombre=" + _nombre + ", _apellido=" + _apellido + ", _cargo=" + _cargo + ", _telefono=" + _telefono + ", _tipo=" + _tipo + '}';
+        return "clsUsuario{" + "_id_usuario=" + _id_usuario + ", _cedula=" + _cedula + ", _nombre=" + _nombre + ", _apellido=" + _apellido + ", _cargo=" + _cargo + ", _telefono=" + _telefono + ", _tipo=" + _tipo + ", _usuario=" + _usuario + ", _contrase\u00f1a=" + _contraseña + '}';
     }
     
+
 }

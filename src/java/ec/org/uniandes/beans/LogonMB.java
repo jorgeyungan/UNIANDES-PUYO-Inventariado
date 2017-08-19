@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ec.org.uniandes.beans;
+
 import org.omnifaces.cdi.ViewScoped;
 import org.omnifaces.util.Faces;
 import org.omnifaces.util.Messages;
@@ -18,6 +19,7 @@ import java.io.Serializable;
 @ViewScoped
 public class LogonMB implements Serializable {
 
+    
     private String email;
 
     private String password;
@@ -54,4 +56,5 @@ public class LogonMB implements Serializable {
     public void setRemember(boolean remember) {
         this.remember = remember;
     }
+
 }

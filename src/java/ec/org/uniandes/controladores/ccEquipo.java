@@ -21,11 +21,10 @@ public class ccEquipo {
         newEquipo=new clsEquipo();
         cargardatos();
     }
-    private void cargartodo(){
-        todo=crudEquipo.findAll();
-    }
+    
     private void cargardatos(){
         lista=crudEquipo.findAllpc();
+        todo=crudEquipo.findAll();
     }
     public void insertar(){
         if (crudEquipo.savepc(newEquipo)) {

@@ -153,5 +153,6 @@ public class clsEquipo {
     public String toString() {
         return "clsEquipo{" + "_idequipo=" + _idequipo + ", _codigo=" + _codigo + ", _modelo=" + _modelo + ", _marca=" + _marca + ", _nombre=" + _nombre + ", _tama\u00f1o=" + _tamaño + ", _procesador=" + _procesador + ", _tipo=" + _tipo + ", _numeropuertos=" + _numeropuertos + ", _detalle=" + _detalle + ", _administrable=" + _administrable + ", _dependencia=" + _dependencia + ", _fecha_compra=" + _fecha_compra + ", _fecha_fabrica=" + _fecha_fabrica + '}';
     }
+
     
 }

@@ -64,7 +64,7 @@
                         <p:column headerText="Codigo" style="width: 55px;text-align: center">
                             <h:outputText value="#{equi.idequipo}" />
                         </p:column>
-                        <p:column headerText="Serie" >
+                        <p:column filterBy="#{equi.codigo}" footerText="contains" filterMatchMode="contains" headerText="Serie" >
                             <h:outputText value="#{equi.codigo}" />
                         </p:column>
                         <p:column headerText="Modelo">

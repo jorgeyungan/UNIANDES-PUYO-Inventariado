@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/admin.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+    <ui:define name="head">
+        <title>INVENTARIADO UNIANDES PUYO</title>
+    </ui:define>
+
+    <ui:define name="logo-lg">
+        UNIANDES PUYO
+    </ui:define>
+
+    <ui:define name="logo-mini">
+        MANÚ
+    </ui:define>
+
+    <ui:define name="menu">
+
+        <ui:include src="/includes/menu-search.xhtml"/>
+        <ui:include src="/includes/menu.xhtml"/>
+    </ui:define>
+
+    <ui:define name="top-menu">
+        <ui:include src="/includes/top-bar.xhtml"/>
+    </ui:define>
+
+    <ui:define name="body">
+        <h2>
+            <h:form>
+                <p:panelGrid columns="2" >
+                    <p:dataTable 
+                        id="tblUsuario" 
+                        var="cli"
+                        value="#{ccUsuario.lista}"
+                        selectionMode="single"
+                        selection="#{ccAbierto.selectedusuario}"
+                        rowKey="#{cli.id_usuario}"
+                        rows="6" paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+                        <f:facet name="header">
+                            USUARIOS
+                        </f:facet>
+                        <p:column headerText="RUC-Cédula Identidad">
+                            <h:outputText value="#{cli.cedula}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{cli.nombre}" />
+                        </p:column>
+                        <p:column headerText="Apellido">
+                            <h:outputText value="#{cli.apellido}" />
+                        </p:column>
+                    </p:dataTable>   
+                    <p:dataTable 
+                        id="tblEquipo" 
+                        var="equi" 
+                        value="#{ccEquipo.todo}"
+                        selectionMode="single"
+                        selection="#{ccAbierto.selectedequipo}"
+                        rowKey="#{equi.idequipo}"
+                        rows="6" paginator="true" 
+                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                        rowsPerPageTemplate="6,12,16">
+                        <f:facet name="header">
+                            Datos del Ordenadores
+                        </f:facet>
+                        <p:column headerText="Codigo" style="width: 55px;text-align: center">
+                            <h:outputText value="#{equi.idequipo}" />
+                        </p:column>
+                        <p:column headerText="Serie" >
+                            <h:outputText value="#{equi.codigo}" />
+                        </p:column>
+                        <p:column headerText="Modelo">
+                            <h:outputText value="#{equi.modelo}" />
+                        </p:column>
+                        <p:column headerText="Marca">
+                            <h:outputText value="#{equi.marca}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{equi.nombre}" />
+                        </p:column>
+                    </p:dataTable>
+
+                    <p:outputLabel value=" Fecha "/>
+                    <p:inputMask value="#{ccAbierto.newmantenimiento.fecha}" mask="9999/99/99"/>
+                    <p:outputLabel value=" Estado "/>
+                    <p:inputText value="#{ccAbierto.newmantenimiento.estado}"/>
+                    <p:outputLabel value=" Reporte "/>
+                    <p:inputText value="#{ccAbierto.newmantenimiento.reporte}" />
+                </p:panelGrid>
+
+                <p:commandButton 
+                    value="Ingresar"
+                    action="#{ccAbierto.insertar()}"
+                    onclick="wdlgNuevo.hide();"
+                    />                
+                <p:commandButton 
+                    value="Cancelar"
+                    immediate="true"
+                    oncomplete="PF('wdlgNuevo').hide();"
+                    type="reset"/>
+            </h:form>
+
+
+        </h2>
+    </ui:define>
+
+
+    <ui:define name="footer">
+        <a target="_blank"           >
+            Jorge Luis Yungán
+        </a>
+
+        <div class="pull-right hidden-xs" style="color: gray">
+            <i>1.0.0</i>
+        </div>
+    </ui:define>
+
+
+</ui:composition>
