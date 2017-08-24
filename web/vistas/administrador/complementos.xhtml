@@ -94,6 +94,11 @@
                             <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarComplementos"/>
                         </f:facet>
                     </p:dataTable>
+                    
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblComplementos" fileName="Complementos" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
             </h:form>
             <p:dialog 
@@ -240,9 +245,8 @@
 
 
     <ui:define name="footer">
-        <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
+        <a target="_blank" >
+            Jorge Luis Yungán
         </a>
 
         <div class="pull-right hidden-xs" style="color: gray">

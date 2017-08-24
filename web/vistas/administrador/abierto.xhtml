@@ -74,6 +74,11 @@
                             <p:commandButton id="btnReparar" value="Reparar" oncomplete="PF('wdlgReparar').show();" update=":frmReparar" />
                         </f:facet>
                     </p:dataTable>
+                    
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblMantenimiento" fileName="Tickes Abiertos" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
             </h:form>
             <p:dialog 

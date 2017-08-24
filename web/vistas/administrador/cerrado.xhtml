@@ -29,15 +29,7 @@
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
 
-    <ui:define name="title">
-        <h2 class="align-center">
-            USUARIOS
-        </h2>
-    </ui:define>
 
-    <ui:define name="description">
-        A page description
-    </ui:define>
 
     <ui:define name="body">
         <h2>
@@ -47,7 +39,7 @@
                         id="tblMantenimiento" 
                         var="cli"
                         value="#{ccAbierto.lista1}"
-                        
+
                         rows="6" paginator="true" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         rowsPerPageTemplate="6,12,16">
@@ -80,6 +72,11 @@
                         </p:column>
 
                     </p:dataTable>
+
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblMantenimiento" fileName="Tickes Cerrados" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
             </h:form>
 
@@ -88,11 +85,9 @@
 
 
     <ui:define name="footer">
-        <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
+        <a target="_blank" >
+            Jorge Luis Yungán
         </a>
-
         <div class="pull-right hidden-xs" style="color: gray">
             <i>1.0.0</i>
         </div>

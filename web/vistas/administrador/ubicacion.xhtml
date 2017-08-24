@@ -35,34 +35,31 @@
             <h:form id="frmUbicacion">
                 <p:panel id="pnlUbicacion">
                     <p:dataTable 
-                        id="basicDT" 
+                        id="tblubicacion" 
                         var="ubi" 
                         value="#{ccUbicacion.lista2}"
                         selectionMode="single"
                         selection="#{ccUbicacion.selectedubicacion}"
                         rowKey="#{ubi.idubicacion}"
-                        rows="25" paginator="true" 
+                        rows="12" paginator="true" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         >
-                        <f:facet name="header">
-                            UBICACION
-                        </f:facet>
-                        <p:column headerText="codigo" style="width: 55px;text-align: center">
+                        <p:column headerText="codigo" style="width: 55px;text-align: center" sortBy="#{ubi.idubicacion}">
                             <h:outputText value="#{ubi.idubicacion}" />
                         </p:column>
-                        <p:column filterBy="#{ubi.edificio}" footerText="contains" filterMatchMode="contains" headerText="Edificio">
+                        <p:column filterBy="#{ubi.edificio}" sortBy="#{ubi.edificio}" footerText="contains" filterMatchMode="contains" headerText="Edificio">
                             <h:outputText value="#{ubi.edificio}" />
                         </p:column>
-                        <p:column filterBy="#{ubi.piso}" footerText="contains" filterMatchMode="contains" headerText="Piso">
+                        <p:column filterBy="#{ubi.piso}" sortBy="#{ubi.piso}" footerText="contains" filterMatchMode="contains" headerText="Piso">
                             <h:outputText value="#{ubi.piso}" />
                         </p:column>
-                        <p:column filterBy="#{ubi.carrera}" footerText="contains" filterMatchMode="contains" headerText="Carrera">
+                        <p:column filterBy="#{ubi.carrera}" sortBy="#{ubi.carrera}" footerText="contains" filterMatchMode="contains" headerText="Carrera">
                             <h:outputText value="#{ubi.carrera}" />
                         </p:column>
-                        <p:column filterBy="#{ubi.sala}" footerText="contains" filterMatchMode="contains" headerText="Sala">
+                        <p:column filterBy="#{ubi.sala}" sortBy="#{ubi.sala}" footerText="contains" filterMatchMode="contains" headerText="Sala">
                             <h:outputText value="#{ubi.sala}" />
                         </p:column>
-                        <p:column headerText="Sector">
+                        <p:column headerText="PC" sortBy="#{ubi.sector}">
                             <h:outputText value="#{ubi.sector}" />
                         </p:column>
                         <f:facet name="footer">
@@ -72,6 +69,10 @@
                             <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarUbicacion"/>
                         </f:facet>
                     </p:dataTable>
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblubicacion" fileName="Ubicacion" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
             </h:form>
             <p:dialog 
@@ -128,21 +129,21 @@
                 showEffect="clip"
                 hideEffect="fold">
                 <h:form id="frmDuplicarUbicacion">
-                        <p:panelGrid columns="4">
-                            <p:outputLabel  value=" Edificio: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.edificio}"/>
-                            <p:outputLabel value=" Piso: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.piso}"/>
-                            <p:outputLabel value=" Carrera: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.carrera}"/>
-                            <p:outputLabel value=" Sala: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.sala}"/>
-                            <p:outputLabel value="Sector "/>
-                            <p:inputText 
-                                style="width:130px"
-                                title=""
-                                value="#{ccUbicacion.selectedubicacion.sector}"/>
-                        </p:panelGrid>
+                    <p:panelGrid columns="4">
+                        <p:outputLabel  value=" Edificio: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.edificio}"/>
+                        <p:outputLabel value=" Piso: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.piso}"/>
+                        <p:outputLabel value=" Carrera: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.carrera}"/>
+                        <p:outputLabel value=" Sala: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.sala}"/>
+                        <p:outputLabel value="Sector "/>
+                        <p:inputText 
+                            style="width:130px"
+                            title=""
+                            value="#{ccUbicacion.selectedubicacion.sector}"/>
+                    </p:panelGrid>
                     <p:commandButton 
                         value="Ingresar"
                         action="#{ccUbicacion.duplicar()}"
@@ -164,29 +165,29 @@
                 showEffect="clip"
                 hideEffect="fold">
                 <h:form id="frmModificarUbicacion">
-                        <p:panelGrid columns="4">
-                            <p:outputLabel value=" Edificio: "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUbicacion.selectedubicacion.edificio}"/>
-                            <p:outputLabel value=" Piso: "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUbicacion.selectedubicacion.piso}"/>
-                            <p:outputLabel value=" Carrera: "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUbicacion.selectedubicacion.carrera}"/>
-                            <p:outputLabel value=" Sala: "/>
-                            <p:inputText 
-                                style="width:180px"
-                                value="#{ccUbicacion.selectedubicacion.sala}"/>
-                            <p:outputLabel value=" Sector: "/>
-                            <p:inputText 
-                                id="cargo" 
-                                style="width:130px"
-                                value="#{ccUbicacion.selectedubicacion.sector}"/>
-                        </p:panelGrid>
+                    <p:panelGrid columns="4">
+                        <p:outputLabel value=" Edificio: "/>
+                        <p:inputText 
+                            style="width:180px"
+                            value="#{ccUbicacion.selectedubicacion.edificio}"/>
+                        <p:outputLabel value=" Piso: "/>
+                        <p:inputText 
+                            style="width:180px"
+                            value="#{ccUbicacion.selectedubicacion.piso}"/>
+                        <p:outputLabel value=" Carrera: "/>
+                        <p:inputText 
+                            style="width:180px"
+                            value="#{ccUbicacion.selectedubicacion.carrera}"/>
+                        <p:outputLabel value=" Sala: "/>
+                        <p:inputText 
+                            style="width:180px"
+                            value="#{ccUbicacion.selectedubicacion.sala}"/>
+                        <p:outputLabel value=" Sector: "/>
+                        <p:inputText 
+                            id="cargo" 
+                            style="width:130px"
+                            value="#{ccUbicacion.selectedubicacion.sector}"/>
+                    </p:panelGrid>
                     <p:commandButton 
                         value="Modificar"
                         action="#{ccUbicacion.actualizar()}"
@@ -207,18 +208,18 @@
                 showEffect="clip"
                 hideEffect="fold">
                 <h:form id="frmEliminarUbicacion">
-                        <p:panelGrid columns="4">
-                            <p:outputLabel value=" Edificio: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.edificio}"/>
-                            <p:outputLabel value=" Piso: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.piso}"/>
-                            <p:outputLabel value=" Carrera: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.carrera}"/>
-                            <p:outputLabel value=" Sala: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.sala}"/>
-                            <p:outputLabel value=" Sector: "/>
-                            <p:outputLabel value="#{ccUbicacion.selectedubicacion.sector}"/>
-</p:panelGrid>
+                    <p:panelGrid columns="4">
+                        <p:outputLabel value=" Edificio: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.edificio}"/>
+                        <p:outputLabel value=" Piso: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.piso}"/>
+                        <p:outputLabel value=" Carrera: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.carrera}"/>
+                        <p:outputLabel value=" Sala: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.sala}"/>
+                        <p:outputLabel value=" Sector: "/>
+                        <p:outputLabel value="#{ccUbicacion.selectedubicacion.sector}"/>
+                    </p:panelGrid>
                     <p:commandButton 
                         value="Eliminar"
                         action="#{ccUbicacion.eliminar()}"

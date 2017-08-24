@@ -30,64 +30,64 @@
 
 
     <ui:define name="body">
-        <h2>
-            <h:form id="frmUsuario">
-                <p:panel id="pnlUsuario">
-                    <p:dataTable 
-                        id="tblUsuario" 
-                        var="cli"
-                        value="#{ccUsuario.lista}"
-                        selectionMode="single"
-                        selection="#{ccUsuario.selectedUsuario}"
-                        rowKey="#{cli.id_usuario}"
-                        rows="6" paginator="true" 
-                        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16">
-                        <f:facet name="header">
-                            USUARIOS
-                        </f:facet>
-                        <p:column headerText="codigo" style="width: 55px;text-align: center">
-                            <h:outputText  value="#{cli.id_usuario}" />
-                        </p:column>
-                        <p:column filterBy="#{cli.cedula}" footerText="contains" filterMatchMode="contains" headerText="RUC-Cédula Identidad">
-                            <h:outputText value="#{cli.cedula}" />
-                        </p:column>
-                        <p:column headerText="Nombre">
-                            <h:outputText value="#{cli.nombre}" />
-                        </p:column>
-                        <p:column filterBy="#{cli.apellido}" footerText="contains" filterMatchMode="contains"  headerText="Apellido">
-                            <h:outputText value="#{cli.apellido}" />
-                        </p:column>
-                        <p:column headerText="Cargo">
-                            <h:outputText value="#{cli.cargo}" />
-                        </p:column>
-                        <p:column headerText="Telefono">
-                            <h:outputText value="#{cli.telefono}" />
-                        </p:column>
-                        <p:column headerText="Tipo">
-                            <h:outputText value="#{cli.tipo}" />
-                        </p:column>
-                        
-                        <f:facet name="footer">
-                            <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
-                            <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUsuario"/>
-                            <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarUsuario"/>
-                        </f:facet>
-                    </p:dataTable>
-                </p:panel>
-            </h:form>
-            <p:dialog 
-                id="dlgAgregar" 
-                header="Nuevo Usuario"
-                widgetVar="wdlgNuevo" 
-                modal="true"
-                resizable="false" 
-                showEffect="clip"
-                hideEffect="fold">
-                <h:form id="frmNuevoUsuario">
-                    <p:panel header="Datos Personales">
-                        <p:panelGrid columns="4">
-                        
+        <h:form id="frmUsuario">
+            <p:panel id="pnlUsuario">
+                <p:commandButton value="PDF" ajax="false" >
+                    <p:dataExporter type="pdf" target="tblUsuario" fileName="cars" options="#{archivopdf.pdfOpt}"/>
+                </p:commandButton>
+                <p:dataTable 
+                    id="tblUsuario" 
+                    var="cli"
+                    value="#{ccUsuario.lista}"
+                    selectionMode="single"
+                    selection="#{ccUsuario.selectedUsuario}"
+                    rowKey="#{cli.id_usuario}"
+                    rows="6" paginator="true" 
+                    paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                    rowsPerPageTemplate="6,12,16"
+                    >
+
+
+                    <p:column headerText="Codigo" style="width: 55px;text-align: center">
+                        <h:outputText  value="#{cli.id_usuario}" />
+                    </p:column>
+                    <p:column filterBy="#{cli.cedula}" footerText="contains" filterMatchMode="contains" headerText="RUC-Cédula Identidad">
+                        <h:outputText value="#{cli.cedula}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{cli.nombre}" />
+                    </p:column>
+                    <p:column filterBy="#{cli.apellido}" footerText="contains" filterMatchMode="contains"  headerText="Apellido">
+                        <h:outputText value="#{cli.apellido}" />
+                    </p:column>
+                    <p:column headerText="Telefono">
+                        <h:outputText value="#{cli.telefono}" />
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
+                        <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarUsuario"/>
+                        <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarUsuario"/>
+                    </f:facet>
+                </p:dataTable>
+                <h:commandLink id="pdf">
+                    <h:graphicImage url="/resources/images/pdf.png" />
+                    <p:dataExporter type="pdf" target="tblUsuario" fileName="Usuario" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                </h:commandLink>
+            </p:panel>
+        </h:form>
+        <p:dialog 
+            id="dlgAgregar" 
+            header="Nuevo Usuario"
+            widgetVar="wdlgNuevo" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmNuevoUsuario">
+                <p:panel header="Datos Personales">
+                    <p:panelGrid columns="4">
+
                         <p:outputLabel value=" Cédula: "/>
                         <p:inputText 
                             value="#{ccUsuario.newUsuario.cedula}"/>
@@ -99,10 +99,10 @@
                             value="#{ccUsuario.newUsuario.apellido}"/>
 
                     </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="Login">
-                        <p:panelGrid columns="4">
-                        
+                </p:panel>
+                <p:panel header="Login">
+                    <p:panelGrid columns="4">
+
                         <p:outputLabel value=" Usuario: "/>
                         <p:inputText 
                             value="#{ccUsuario.newUsuario.usuario}"/>
@@ -110,9 +110,9 @@
                         <p:inputText 
                             value="#{ccUsuario.newUsuario.contraseña}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="Detalles">
-                        <p:panelGrid columns="4">
+                </p:panel>
+                <p:panel header="Detalles">
+                    <p:panelGrid columns="4">
                         <p:outputLabel value="Cargo: "/>
                         <p:inputText 
                             value="#{ccUsuario.newUsuario.cargo}"/>
@@ -125,31 +125,31 @@
                         <p:inputText 
                             value="#{ccUsuario.newUsuario.telefono}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:commandButton 
-                        value="Ingresar"
-                        action="#{ccUsuario.insertar()}"
-                        update=":frmUsuario:pnlUsuario: frmNuevoUsuario" 
-                        onclick="wdlgNuevo.hide();"/>                
-                    <p:commandButton 
-                        value="Cancelar"
-                        immediate="true"
-                        onclick="PF('wdlgNuevo').hide();"
-                        type="reset"/>
-                </h:form>
-            </p:dialog>
-            <p:dialog 
-                id="dlgModificar" 
-                header="Modificar Usuario"
-                widgetVar="wdlgModificar" 
-                modal="true"
-                resizable="false" 
-                showEffect="clip"
-                hideEffect="fold">
-                <h:form id="frmModificarUsuario">
-                    <p:panel header="Datos Personales">
-                        <p:panelGrid columns="4">
-                        
+                </p:panel>
+                <p:commandButton 
+                    value="Ingresar"
+                    action="#{ccUsuario.insertar()}"
+                    update=":frmUsuario:pnlUsuario: frmNuevoUsuario" 
+                    onclick="wdlgNuevo.hide();"/>                
+                <p:commandButton 
+                    value="Cancelar"
+                    immediate="true"
+                    onclick="PF('wdlgNuevo').hide();"
+                    type="reset"/>
+            </h:form>
+        </p:dialog>
+        <p:dialog 
+            id="dlgModificar" 
+            header="Modificar Usuario"
+            widgetVar="wdlgModificar" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmModificarUsuario">
+                <p:panel header="Datos Personales">
+                    <p:panelGrid columns="4">
+
                         <p:outputLabel value=" Cédula: "/>
                         <p:inputText 
                             value="#{ccUsuario.selectedUsuario.cedula}"/>
@@ -161,9 +161,9 @@
                         <p:inputText 
                             value="#{ccUsuario.selectedUsuario.apellido}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="Login">
-                        <p:panelGrid columns="4">
+                </p:panel>
+                <p:panel header="Login">
+                    <p:panelGrid columns="4">
                         <p:outputLabel value=" Usuario: "/>
                         <p:inputText 
                             value="#{ccUsuario.selectedUsuario.usuario}"/>
@@ -171,9 +171,9 @@
                         <p:inputText 
                             value="#{ccUsuario.selectedUsuario.contraseña}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="Detalles">
-                        <p:panelGrid columns="4">
+                </p:panel>
+                <p:panel header="Detalles">
+                    <p:panelGrid columns="4">
                         <p:outputLabel value="Cargo: "/>
                         <p:inputText 
                             value="#{ccUsuario.selectedUsuario.cargo}"/>
@@ -186,30 +186,30 @@
                         <p:inputText 
                             value="#{ccUsuario.selectedUsuario.telefono}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:commandButton 
-                        value="Modificar"
-                        action="#{ccUsuario.modificar()}"
-                        update=":frmUsuario:pnlUsuario: frmModificarUsuario"
-                        onclick="wdlgModificar.hide()"/>
-                    <p:commandButton 
-                        value="Cancelar" 
-                        onclick="PF('wdlgModificar').hide();"
-                        type="reset" />
+                </p:panel>
+                <p:commandButton 
+                    value="Modificar"
+                    action="#{ccUsuario.modificar()}"
+                    update=":frmUsuario:pnlUsuario: frmModificarUsuario"
+                    onclick="wdlgModificar.hide()"/>
+                <p:commandButton 
+                    value="Cancelar" 
+                    onclick="PF('wdlgModificar').hide();"
+                    type="reset" />
 
-                </h:form>
-            </p:dialog>
-            <p:dialog 
-                id="dlgEliminar" 
-                header="Eliminar Usuario"
-                widgetVar="wdlgEliminar" 
-                modal="true"
-                resizable="false" 
-                showEffect="clip"
-                hideEffect="fold">
-                <h:form id="frmEliminarUsuario">
-                    <p:panel header="Datos Personales">
-                        <p:panelGrid columns="4">
+            </h:form>
+        </p:dialog>
+        <p:dialog 
+            id="dlgEliminar" 
+            header="Eliminar Usuario"
+            widgetVar="wdlgEliminar" 
+            modal="true"
+            resizable="false" 
+            showEffect="clip"
+            hideEffect="fold">
+            <h:form id="frmEliminarUsuario">
+                <p:panel header="Datos Personales">
+                    <p:panelGrid columns="4">
                         <p:outputLabel value=" Cédula: "/>
                         <p:outputLabel value="#{ccUsuario.selectedUsuario.cedula}"/>
                         <p:outputLabel value=" Nombres: "/>
@@ -218,18 +218,18 @@
                         <p:outputLabel value="#{ccUsuario.selectedUsuario.apellido}"/>
 
                     </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="Login">
-                        <p:panelGrid columns="4">
-                        
+                </p:panel>
+                <p:panel header="Login">
+                    <p:panelGrid columns="4">
+
                         <p:outputLabel value=" Usuario: "/>
                         <p:outputLabel value="#{ccUsuario.selectedUsuario.usuario}"/>
                         <p:outputLabel value=" Contraseña: "/>
                         <p:outputLabel value="#{ccUsuario.selectedUsuario.contraseña}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:panel header="Detalles">
-                        <p:panelGrid columns="4">
+                </p:panel>
+                <p:panel header="Detalles">
+                    <p:panelGrid columns="4">
                         <p:outputLabel value="Cargo: "/>
                         <p:outputLabel value="#{ccUsuario.selectedUsuario.cargo}"/>
                         <p:outputLabel value=" Tipo: "/>
@@ -237,19 +237,18 @@
                         <p:outputLabel value=" Teléfono "/>
                         <p:outputLabel value="#{ccUsuario.selectedUsuario.telefono}"/>
                     </p:panelGrid>
-                    </p:panel>
-                    <p:commandButton 
-                        value="Eliminar"
-                        action="#{ccUsuario.eliminar()}"
-                        update=":frmUsuario:pnlUsuario: frmEliminarUsuario" 
-                        onclick="wdlgEliminar.hide()"/>
-                    <p:commandButton 
-                        value="Cancelar" 
-                        onclick="PF('wdlgEliminar').hide();"
-                        type="reset" />
-                </h:form>
-            </p:dialog>
-        </h2>
+                </p:panel>
+                <p:commandButton 
+                    value="Eliminar"
+                    action="#{ccUsuario.eliminar()}"
+                    update=":frmUsuario:pnlUsuario: frmEliminarUsuario" 
+                    onclick="wdlgEliminar.hide()"/>
+                <p:commandButton 
+                    value="Cancelar" 
+                    onclick="PF('wdlgEliminar').hide();"
+                    type="reset" />
+            </h:form>
+        </p:dialog>
     </ui:define>
 
 

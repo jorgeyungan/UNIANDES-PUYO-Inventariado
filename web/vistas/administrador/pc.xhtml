@@ -29,25 +29,14 @@
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
 
-    <ui:define name="title">
-        <h2 class="align-center">
-            Bienvenidos a Uniandes PUYO
-        </h2>
-    </ui:define>
 
-    <ui:define name="description">
-        
-            aqui la descripcion
-        
-
-    </ui:define>
-    <ui:define name="right">
-        aqui la descripcion
-    </ui:define>
     <ui:define name="body">
         <h2>
             <h:form id="frmEquipo">
                 <p:panel id="pnlEquipo" >
+                    <p:commandButton value="PDF color" ajax="false" style="float: right">
+                        <p:dataExporter type="pdf" target="tblEquipo" fileName="cars" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}"/>
+                    </p:commandButton>
                     <p:dataTable 
                         id="tblEquipo" 
                         var="equi" 
@@ -55,11 +44,12 @@
                         selectionMode="single"
                         selection="#{ccEquipo.selectedEquipo}"
                         rowKey="#{equi.idequipo}"
-                        rows="6" paginator="true" 
+                        rows="15" paginator="true" 
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                        rowsPerPageTemplate="6,12,16">
+
+                        style="margin-bottom:20px">
                         <f:facet name="header">
-                            Datos del Ordenadores
+                            Laptop y Destock
                         </f:facet>
                         <p:column headerText="Codigo" style="width: 55px;text-align: center">
                             <h:outputText value="#{equi.idequipo}" />
@@ -79,25 +69,23 @@
                         <p:column filterBy="#{equi.procesador}" footerText="contains" filterMatchMode="contains" headerText="Procesador">
                             <h:outputText value="#{equi.procesador}" />
                         </p:column>                       
-                        <p:column headerText="Año Fabrica">
-                            <h:outputText value="#{equi.fecha_fabrica}" />
-                        </p:column>
-                        <p:column headerText="Fecha Compra">
-                            <h:outputText value="#{equi.fecha_compra}" />
-                        </p:column>
                         <p:column headerText="Dependencia">
                             <h:outputText value="#{equi.dependencia}" />
                         </p:column>
-                        <p:column headerText="Detalle">
-                            <h:outputText value="#{equi.detalle}" />
-                        </p:column>
+
                         <f:facet name="footer">
                             <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
                             <p:commandButton id="btnModificar" value="Modificar" oncomplete="PF('wdlgModificar').show();" update=":frmModificarEquipo"/>
                             <p:commandButton id="btnEliminar" value="Eliminar" oncomplete="PF('wdlgEliminar').show();" update=":frmEliminarEquipo"/>
                         </f:facet>
                     </p:dataTable>
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblEquipo" fileName="Equipo" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
+
+
             </h:form>
             <p:dialog 
                 id="dlgAgregar" 
@@ -249,9 +237,8 @@
 
 
     <ui:define name="footer">
-        <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
+        <a target="_blank" >
+            Jorge Luis Yungán
         </a>
 
         <div class="pull-right hidden-xs" style="color: gray">

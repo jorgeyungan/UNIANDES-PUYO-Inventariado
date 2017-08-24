@@ -29,12 +29,6 @@
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
 
-    <ui:define name="title">
-        <h2 class="align-center">
-            Bienvenidos a Uniandes PUYO
-        </h2>
-    </ui:define>
-
     
     <ui:define name="body">
         <h2>
@@ -78,6 +72,11 @@
                             <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
                         </f:facet>
                     </p:dataTable>
+                    
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblAsignacion" fileName="Asignacion" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
             </h:form>
             <p:dialog 

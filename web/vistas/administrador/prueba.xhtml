@@ -20,16 +20,16 @@
     </ui:define>
 
     <ui:define name="menu">
-        
+
         <ui:include src="/includes/menu-search.xhtml"/>
         <ui:include src="/includes/menu.xhtml"/>
-     </ui:define>
+    </ui:define>
 
     <ui:define name="top-menu">
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
 
-      <ui:define name="title">
+    <ui:define name="title">
         <h2 class="align-center">
             Bienvenidos a Uniandes PUYO
         </h2>
@@ -40,42 +40,41 @@
     </ui:define>
 
     <ui:define name="body">
-            <h:form>
-                <p:outputLabel value="Equipo"/>
-                <p:selectOneMenu value="#{ccMan.selectedequipo}"  >
-                    <f:selectItem noSelectionOption="tru" itemValue="#{null}" itemLabel="Seleccione"/>
-                    <f:selectItems value="#{ccEquipotodo.lista}" var="equip" itemLabel="#{equip.codigo}" itemValue="#{equip}"/>
-                </p:selectOneMenu>
-                
-                <p:outputLabel value="Reporte">
-                    <p:inputText value="#{ccMan.reporte}" />
-                </p:outputLabel>
-                
-                <p:commandButton value="Agregar" update="detman" actionListener="#{ccMan.agregar()}"/>
-                <p:dataTable id="detman" value="#{ccMan.lista}" var="det">
-                    <p:column headerText="Serie"> 
-                        #{det.idequipo.codigo}
-                    </p:column>
-                    <p:column headerText="Marca">
-                        #{det.idequipo.marca}
-                    </p:column>
-                    <p:column headerText="Modlo">
-                        #{det.idequipo.modelo}
-                    </p:column>
-                    <p:column headerText="Nombre">
-                        #{det.idequipo.nombre}
-                    </p:column>
-                </p:dataTable>
-                    
-                
-            </h:form>
+        <h:form>
+            <p:outputLabel value="Equipo"/>
+            <p:selectOneMenu value="#{ccMan.selectedequipo}"  >
+                <f:selectItem noSelectionOption="tru" itemValue="#{null}" itemLabel="Seleccione"/>
+                <f:selectItems value="#{ccEquipotodo.lista}" var="equip" itemLabel="#{equip.codigo}" itemValue="#{equip}"/>
+            </p:selectOneMenu>
+
+            <p:outputLabel value="Reporte">
+                <p:inputText value="#{ccMan.reporte}" />
+            </p:outputLabel>
+
+            <p:commandButton value="Agregar" update="detman" actionListener="#{ccMan.agregar()}"/>
+            <p:dataTable id="detman" value="#{ccMan.lista}" var="det">
+                <p:column headerText="Serie"> 
+                    #{det.idequipo.codigo}
+                </p:column>
+                <p:column headerText="Marca">
+                    #{det.idequipo.marca}
+                </p:column>
+                <p:column headerText="Modlo">
+                    #{det.idequipo.modelo}
+                </p:column>
+                <p:column headerText="Nombre">
+                    #{det.idequipo.nombre}
+                </p:column>
+            </p:dataTable>
+
+
+        </h:form>
     </ui:define>
 
 
     <ui:define name="footer">
-          <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
+        <a target="_blank" >
+            Jorge Luis Yungán
         </a>
 
         <div class="pull-right hidden-xs" style="color: gray">

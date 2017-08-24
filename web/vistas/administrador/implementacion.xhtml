@@ -29,21 +29,8 @@
         <ui:include src="/includes/top-bar.xhtml"/>
     </ui:define>
 
-    <ui:define name="title">
-        <h2 class="align-center">
-            Bienvenidos a Uniandes PUYO
-        </h2>
-    </ui:define>
+    
 
-    <ui:define name="description">
-        <h2 style="font-size: 150%;font-style: oblique">
-        Implementacion de un nuevo Equipo para el uso de Docentes ó Estudiantes.
-</h2>
-
-    </ui:define>
-    <ui:define name="right">
-        aqui la descripcion
-    </ui:define>
     <ui:define name="body">
         <h2>
             <h:form id="frmImplementacion">
@@ -98,6 +85,11 @@
                             <p:commandButton id="btnNuevo" value="Nuevo" oncomplete="PF('wdlgNuevo').show();"  />
                         </f:facet>
                     </p:dataTable>
+                    
+                    <h:commandLink id="pdf">
+                        <h:graphicImage url="/resources/images/pdf.png" />
+                        <p:dataExporter type="pdf" target="tblUbiEquipo" fileName="Impresoras" options="#{archivopdf.pdfOpt}" preProcessor="#{archivopdf.preProcessPDF}" />
+                    </h:commandLink>
                 </p:panel>
             </h:form>
             <p:dialog 
@@ -191,9 +183,8 @@
 
 
     <ui:define name="footer">
-        <a target="_blank"
-           href="https://github.com/adminfaces/">
-            Copyright (C) 2017 - AdminFaces
+        <a target="_blank" >
+            Jorge Luis Yungán
         </a>
 
         <div class="pull-right hidden-xs" style="color: gray">
